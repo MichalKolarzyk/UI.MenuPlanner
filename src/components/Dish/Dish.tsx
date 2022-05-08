@@ -1,5 +1,5 @@
-import { ChangeEvent, MouseEventHandler, useState } from "react";
-import DishModel from "../models/DishModel";
+import { useState } from "react";
+import DishModel from "../../models/DishModel";
 import EditButton from "../ui/buttons/EditButton";
 import classes from "./Dish.module.css";
 import Ingreadients from "./Ingreadients";

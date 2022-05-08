@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Dish from "../../components/Dish";
-import Steps from "../../components/Steps";
+import Dish from "../Dish";
 
 export default {
     title: "Components/Dish",
