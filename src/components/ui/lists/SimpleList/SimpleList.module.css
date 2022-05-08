@@ -112,6 +112,7 @@
 
 .editIcon{
     color: #888888;
+    opacity: 0.75;
     padding: 0.25em;
     border-radius: 5px;
     min-width: 16px;

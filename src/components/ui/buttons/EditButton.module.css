@@ -1,0 +1,38 @@
+.editButton{
+    background-color: #026AA7;
+    color: #EBF3F8;
+    padding: 0.5em;
+    border-style: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.editButton:hover{
+    background-color: #04649c;
+}
+
+.buttonContainer{
+    display: flex;
+    border-radius: 8px;
+}
+
+.saveButton{
+    background-color: #026AA7;
+    width: 50%;
+    padding: 0.5em;
+    color: #EBF3F8;
+    cursor: pointer;
+    border-style: none;
+    margin: 0;
+    border-radius: 8px;
+}
+
+.cancelButton{
+    background-color: #ED7969;
+    cursor: pointer;
+    width: 50%;
+    padding: 0.5em;
+    border-style: none;
+    margin: 0;
+    border-radius: 8px;
+}
