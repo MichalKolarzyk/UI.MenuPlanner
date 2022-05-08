@@ -1,0 +1,130 @@
+.card{
+    display: inline-block;
+    background-color: #EBECF0;
+    padding: 1em;
+    border-radius: 5px;
+    max-width: 500px;
+    min-width: 250px;
+    box-shadow: 2px 2px 4px #888888
+}
+
+.title{
+    font-size: large;
+    font-weight: bold;
+    padding-left: 0.5em;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.25em;
+    padding: 0;
+}
+
+.addButton{
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    background-color: #EBECF0;
+    border-style: none;
+    float: left; 
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 5px;
+    text-align: left;
+    color: #6d6e72;
+}
+
+.addButton:hover{
+    background-color: #DADBE2;
+    cursor: pointer;
+    color: #172B4D;
+}
+
+.addElementContainer{
+    display: flex;
+    gap: 0.5em;
+    flex-direction: row;
+    align-items: center;
+}
+
+.addElementButton{
+    border-style: none;
+    background-color: #026AA7;
+    color: #EBF3F8;
+    padding: 0.5em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.addElementButton:hover{
+    background-color: #04649c;
+    color: #e5edf1;
+}
+
+.cancelAddElementButton{
+    display: block;
+    border-style: none;
+    opacity: 1;
+    padding: 0;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+.cancelAddElementButton:hover{
+    opacity: 0.75;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F4F5F7;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    padding: 0.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px #888888
+}
+
+.row:hover{
+    background-color: #EBECF0;
+}
+
+.newItemInput{
+    display: block;
+    background-color: #F4F5F7;
+    box-sizing: border-box;
+    margin-bottom: 0.25em;
+    padding: 0.5em;
+    border-radius: 5px;
+    outline: none;
+    border-style: none;
+    width: 100%;
+    height: 4em;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px #888888;
+}
+
+.editIcon{
+    color: #888888;
+    padding: 0.25em;
+    border-radius: 5px;
+    min-width: 16px;
+}
+
+.editIconNotVisible{
+    opacity: 0;
+    padding: 0.25em;
+    border-radius: 5px;
+    min-width: 16px;
+}
+
+.editIcon:hover{
+    background-color: #e1e1e2;
+}
+
