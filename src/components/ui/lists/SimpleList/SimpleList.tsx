@@ -46,6 +46,7 @@ const SimpleList = (props: SimpleListProps) => {
             onTrashClick={onTrashClickHandler}
             item={item}
             index={index}
+            isDisabled={props.isDisabled}
         />
     ));
 
@@ -53,13 +54,13 @@ const SimpleList = (props: SimpleListProps) => {
         <div className={classes.card}>
             <div className={classes.title}>{props.title}</div>
             <ul className={classes.list}>{itemView}</ul>
-            {!addingMode && (
+            {!props.isDisabled && !addingMode && (
                 <button onClick={addButtonClickHandler} className={classes.addButton}>
                     <FaPlus />
                     <span>Add</span>
                 </button>
             )}
-            {addingMode && (
+            {!props.isDisabled && addingMode && (
                 <div>
                     <input value={newItem} onChange={onNewInputChangeHandler} className={classes.newItemInput} />
                     <div className={classes.addElementContainer}>
@@ -91,7 +92,7 @@ const SimpleRow = (props: SimpleRowProps) => {
     return (
         <li className={classes.row} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
             <div>{props.item}</div>
-            <div>
+            {!props.isDisabled && <div>
                 <FaEdit
                     onClick={onEditClickHandler}
                     className={isHover ? classes.editIcon : classes.editIconNotVisible}
@@ -100,7 +101,7 @@ const SimpleRow = (props: SimpleRowProps) => {
                     onClick={onTrashClickHandler}
                     className={isHover ? classes.editIcon : classes.editIconNotVisible}
                 />
-            </div>
+            </div>}
         </li>
     );
 };
@@ -109,6 +110,7 @@ type SimpleListProps = {
     title: string;
     items?: Array<string>;
     isEditMode?: boolean;
+    isDisabled?: boolean;
     listUpdated?: (items: Array<string>) => void;
     onEditClick?: (index: number) => void;
 };
@@ -116,6 +118,7 @@ type SimpleListProps = {
 type SimpleRowProps = {
     item: string;
     index: number;
+    isDisabled?: boolean;
     onTrashClick?: (index: number) => void;
     onEditClick?: (index: number) => void;
 };

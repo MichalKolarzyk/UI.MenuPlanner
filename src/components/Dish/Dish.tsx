@@ -6,50 +6,66 @@ import classes from "./Dish.module.css";
 
 const Dish = (props: DishProps) => {
     const [editMode, setEditMode] = useState(false);
-    const [dishBeforeEdit, setDishBeforeEdit] = useState(props.dish); 
+    const [dishBeforeEdit, setDishBeforeEdit] = useState(props.dish);
     const [dish, setDish] = useState(props.dish);
 
     const onEditClickHandler = () => {
         setEditMode(true);
-        setDishBeforeEdit({...dish});
+        setDishBeforeEdit({ ...dish });
         console.log(dishBeforeEdit);
     };
 
-    const onCancelEditHandler = () =>{
+    const onCancelClickHandler = () => {
         console.log(dishBeforeEdit);
         setEditMode(false);
         setDish(dish);
-    }
+    };
 
-    const onSaveClickHandler = () =>{
+    const onSaveClickHandler = () => {
         setEditMode(false);
-        setDishBeforeEdit({...dish});
-    }
+        setDishBeforeEdit({ ...dish });
+    };
 
     const onStepListUpdated = (updatedSteps: Array<string>) => {
-        const newDish = {...dish}
+        const newDish = { ...dish };
         newDish.recipe.steps = updatedSteps;
         setDish(newDish);
-    }
+    };
 
     const onEditStepHandler = (index: number) => {
-        console.log(dish.recipe.steps?.[index])
-    }
+        console.log(dish.recipe.steps?.[index]);
+    };
 
     const onEditIngreadientHandler = (index: number) => {
         console.log(dish.recipe.ingreadients?.[index]);
-    }
+    };
 
     return (
         <div>
             <div className={classes.header}>
                 <h2>{dish.name}</h2>
-                <EditButton editMode={editMode} onSaveClick={onSaveClickHandler} onCancelClick={onCancelEditHandler} onEditClick={onEditClickHandler} />
+                <EditButton
+                    editMode={editMode}
+                    onSaveClick={onSaveClickHandler}
+                    onCancelClick={onCancelClickHandler}
+                    onEditClick={onEditClickHandler}
+                />
             </div>
             <p>{dish.discription}</p>
             <div className={classes.container}>
-                <SimpleList onEditClick={onEditStepHandler} listUpdated={onStepListUpdated} title="Steps" items={dish.recipe.steps} />
-                <SimpleList onEditClick={onEditIngreadientHandler} title="Ingreadients" items={dish.recipe.ingreadients?.map((i) => `${i.name}: ${i.amount}`)} />
+                <SimpleList
+                    onEditClick={onEditStepHandler}
+                    listUpdated={onStepListUpdated}
+                    title="Steps"
+                    items={dish.recipe.steps}
+                    isDisabled={!editMode}
+                />
+                <SimpleList
+                    onEditClick={onEditIngreadientHandler}
+                    title="Ingreadients"
+                    items={dish.recipe.ingreadients?.map((i) => `${i.name}: ${i.amount}`)}
+                    isDisabled={!editMode}
+                />
             </div>
         </div>
     );

@@ -11,13 +11,23 @@ export default {
 
 const Template: ComponentStory<typeof SimpleList> = (args) => <SimpleList {...args} />;
 
-export const StepList = Template.bind({});
-StepList.args = {
+export const stepList = Template.bind({});
+stepList.args = {
     title: "steps",
     items: [
         "Step1",
         "Super long step aaaaaaaaaaaaaaaa aaaaaaaaaaaa",
         "Step3",
     ]
-
 };
+
+export const disabledList = Template.bind({});
+disabledList.args = {
+    isDisabled: true,
+    title: "steps",
+    items: [
+        "Item 1",
+        "Item 2",
+    ]
+};
+
