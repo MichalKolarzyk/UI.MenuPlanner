@@ -1,15 +1,15 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import SimpleList from "../SimpleList";
+import { StringList } from "../SimpleList";
 
 export default {
     title: "UI/SimpleList",
-    component: SimpleList,
+    component: StringList,
     argTypes: {
         backgroundColor: { control: "color" },
     },
-} as ComponentMeta<typeof SimpleList>;
+} as ComponentMeta<typeof StringList>;
 
-const Template: ComponentStory<typeof SimpleList> = (args) => <SimpleList {...args} />;
+const Template: ComponentStory<typeof StringList> = (args) => <StringList {...args} />;
 
 export const stepList = Template.bind({});
 stepList.args = {

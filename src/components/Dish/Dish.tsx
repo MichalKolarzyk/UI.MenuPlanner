@@ -1,7 +1,8 @@
 import { useState } from "react";
 import DishModel from "../../models/DishModel";
+import Ingreadient from "../../models/IngreadientModel";
 import EditButton from "../ui/buttons/EditButton";
-import SimpleList from "../ui/lists/SimpleList/SimpleList";
+import SimpleList, { StringList } from "../ui/lists/SimpleList/SimpleList";
 import classes from "./Dish.module.css";
 
 const Dish = (props: DishProps) => {
@@ -32,6 +33,12 @@ const Dish = (props: DishProps) => {
         setDish(newDish);
     };
 
+    const onIngreadientListUpdated = (updateIngredients: Array<Ingreadient>) => {
+        const newDish = { ...dish };
+        newDish.recipe.ingreadients = updateIngredients;
+        setDish(newDish);
+    }
+
     const onEditStepHandler = (index: number) => {
         console.log(dish.recipe.steps?.[index]);
     };
@@ -39,6 +46,22 @@ const Dish = (props: DishProps) => {
     const onEditIngreadientHandler = (index: number) => {
         console.log(dish.recipe.ingreadients?.[index]);
     };
+
+    const newIngreadientCreatedHandler = (itemAsStr: string) => {
+        let ingreadient: Ingreadient = {
+            amount: 1,
+            name: itemAsStr
+        }
+
+        if(itemAsStr.includes(":")){
+            const elements = itemAsStr.split(":")
+            if(elements.length === 2 && Number(elements[1]) !== NaN){
+                ingreadient.name = elements[0].trim();
+                ingreadient.amount = Number(elements[1].trim())
+            }
+        }
+        return ingreadient
+    }
 
     return (
         <div>
@@ -53,18 +76,21 @@ const Dish = (props: DishProps) => {
             </div>
             <p>{dish.discription}</p>
             <div className={classes.container}>
-                <SimpleList
-                    onEditClick={onEditStepHandler}
-                    listUpdated={onStepListUpdated}
+                <StringList
                     title="Steps"
                     items={dish.recipe.steps}
                     isDisabled={!editMode}
+                    onEditClick={onEditStepHandler}
+                    onListUpdated={onStepListUpdated}
                 />
                 <SimpleList
-                    onEditClick={onEditIngreadientHandler}
                     title="Ingreadients"
-                    items={dish.recipe.ingreadients?.map((i) => `${i.name}: ${i.amount}`)}
+                    items={dish.recipe.ingreadients}
                     isDisabled={!editMode}
+                    itemToString={(item) => `${item?.name}: ${item?.amount}`}
+                    createNewItem={newIngreadientCreatedHandler}
+                    onListUpdated={onIngreadientListUpdated}
+                    onEditClick={onEditIngreadientHandler}
                 />
             </div>
         </div>
