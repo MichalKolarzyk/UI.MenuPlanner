@@ -2,7 +2,7 @@ import { useState } from "react";
 import DishModel from "../../models/DishModel";
 import Ingreadient from "../../models/IngreadientModel";
 import EditButton from "../ui/buttons/EditButton";
-import SimpleList, { StringList } from "../ui/lists/SimpleList/SimpleList";
+import { SimpleList, StringList } from "../ui/lists/SimpleList/SimpleList";
 import classes from "./Dish.module.css";
 
 const Dish = (props: DishProps) => {
@@ -37,7 +37,7 @@ const Dish = (props: DishProps) => {
         const newDish = { ...dish };
         newDish.recipe.ingreadients = updateIngredients;
         setDish(newDish);
-    }
+    };
 
     const onEditStepHandler = (index: number) => {
         console.log(dish.recipe.steps?.[index]);
@@ -50,18 +50,18 @@ const Dish = (props: DishProps) => {
     const newIngreadientCreatedHandler = (itemAsStr: string) => {
         let ingreadient: Ingreadient = {
             amount: 1,
-            name: itemAsStr
-        }
+            name: itemAsStr,
+        };
 
-        if(itemAsStr.includes(":")){
-            const elements = itemAsStr.split(":")
-            if(elements.length === 2 && Number(elements[1]) !== NaN){
+        if (itemAsStr.includes(":")) {
+            const elements = itemAsStr.split(":");
+            if (elements.length === 2 && !isNaN(Number(elements[1]))) {
                 ingreadient.name = elements[0].trim();
-                ingreadient.amount = Number(elements[1].trim())
+                ingreadient.amount = Number(elements[1].trim());
             }
         }
-        return ingreadient
-    }
+        return ingreadient;
+    };
 
     return (
         <div>
@@ -80,8 +80,9 @@ const Dish = (props: DishProps) => {
                     title="Steps"
                     items={dish.recipe.steps}
                     isDisabled={!editMode}
-                    onEditClick={onEditStepHandler}
+                    onRowEditClick={onEditStepHandler}
                     onListUpdated={onStepListUpdated}
+                    onRowClick={onEditStepHandler}
                 />
                 <SimpleList
                     title="Ingreadients"
@@ -90,7 +91,7 @@ const Dish = (props: DishProps) => {
                     itemToString={(item) => `${item?.name}: ${item?.amount}`}
                     createNewItem={newIngreadientCreatedHandler}
                     onListUpdated={onIngreadientListUpdated}
-                    onEditClick={onEditIngreadientHandler}
+                    onRowEditClick={onEditIngreadientHandler}
                 />
             </div>
         </div>

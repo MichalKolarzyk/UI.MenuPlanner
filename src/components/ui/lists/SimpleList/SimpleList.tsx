@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from "react";
 import classes from "./SimpleList.module.css";
 import { FaPlus, FaEdit, FaRegTimesCircle, FaTrashAlt } from "react-icons/fa";
 
-const SimpleList = <T,>(props: SimpleListProps<T>) => {
+export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     const [addingMode, setAddingMode] = useState(false);
     const [items, setItems] = useState(props.items === undefined ? new Array<T>() : props.items);
     const [newItemStr, setNewItemStr] = useState("");
@@ -22,7 +22,7 @@ const SimpleList = <T,>(props: SimpleListProps<T>) => {
     };
 
     const onEditClickHandler = (index: number) => {
-        props.onEditClick?.(index);
+        props.onRowEditClick?.(index);
     };
 
     const onAddElementHandler = () => {
@@ -49,6 +49,7 @@ const SimpleList = <T,>(props: SimpleListProps<T>) => {
             item={item}
             index={index}
             isDisabled={props.isDisabled}
+            onClick={props.onRowClick}
         />
     ));
 
@@ -90,9 +91,13 @@ const SimpleRow = <T,>(props: SimpleRowProps<T>) => {
     const onEditClickHandler = () => {
         props.onEditClick?.(props.index);
     };
+    
+    const onClickHandler = () => {
+        props.onClick?.(props.index)
+    }
 
     return (
-        <li className={classes.row} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
+        <li className={classes.row} onClick={onClickHandler} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
             <div>{props.itemAsString}</div>
             {!props.isDisabled && (
                 <div>
@@ -117,31 +122,31 @@ export const StringList = (props: StringListProps) => {
             createNewItem={(item: string) => item}
             title={props.title}
             isDisabled={props.isDisabled}
-            isEditMode={props.isEditMode}
             items={props.items}
             onListUpdated={props.onListUpdated}
-            onEditClick={props.onEditClick}
+            onRowEditClick={props.onRowEditClick}
+            onRowClick={props.onRowClick}
         />
     );
 };
 type StringListProps = {
     title: string;
     items?: Array<string>;
-    isEditMode?: boolean;
     isDisabled?: boolean;
     onListUpdated?: (items: Array<string>) => void;
-    onEditClick?: (index: number) => void;
+    onRowEditClick?: (index: number) => void;
+    onRowClick?: (index: number) => void;
 };
 
 type SimpleListProps<T> = {
     title: string;
     items?: Array<T>;
-    isEditMode?: boolean;
     isDisabled?: boolean;
     itemToString: (item: T) => string;
     createNewItem: (itemAsStr: string) => T;
     onListUpdated?: (items: Array<T>) => void;
-    onEditClick?: (index: number) => void;
+    onRowEditClick?: (index: number) => void;
+    onRowClick?: (index: number) => void;
 };
 
 type SimpleRowProps<T> = {
@@ -151,6 +156,5 @@ type SimpleRowProps<T> = {
     isDisabled?: boolean;
     onTrashClick?: (index: number) => void;
     onEditClick?: (index: number) => void;
+    onClick?: (index: number) => void;
 };
-
-export default SimpleList;
