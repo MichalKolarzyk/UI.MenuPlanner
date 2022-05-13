@@ -84,11 +84,13 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
 const SimpleRow = <T,>(props: SimpleRowProps<T>) => {
     const [isHover, setIsHover] = useState(false);
 
-    const onTrashClickHandler = () => {
+    const onTrashClickHandler = (x: React.MouseEvent<SVGElement, MouseEvent>) => {
+        x.stopPropagation();
         props.onTrashClick?.(props.index);
     };
 
-    const onEditClickHandler = () => {
+    const onEditClickHandler = (x: React.MouseEvent<SVGElement, MouseEvent>) => {
+        x.stopPropagation();
         props.onEditClick?.(props.index);
     };
     
