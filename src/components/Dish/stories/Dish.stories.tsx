@@ -17,6 +17,8 @@ ChipsAndChips.args = {
         name: "Chips & Chips",
         discription: "The best for english food gourmets of English cuisine.",
         recipe: {
+            description: "description",
+            title: "title",
             ingreadients: [
                 {
                     amount: 1,
@@ -28,27 +30,6 @@ ChipsAndChips.args = {
                 },
             ],
             steps: ["step 1", "step 2", "step 3"],
-        },
-    },
-};
-
-export const EmptyDish = Template.bind({});
-EmptyDish.args = {
-    dish: {
-        name: "Empty dish",
-        discription: "Sory, this dish is not ready. Lists are not initialized.",
-        recipe: {},
-    },
-};
-
-export const EmptyDish2 = Template.bind({});
-EmptyDish2.args = {
-    dish: {
-        name: "Empty dish 2",
-        discription: "Sory, this dish is not ready. Lists are empty.",
-        recipe: {
-            ingreadients: [],
-            steps: [],
         },
     },
 };

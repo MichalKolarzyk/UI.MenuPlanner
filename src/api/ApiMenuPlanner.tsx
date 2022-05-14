@@ -1,6 +1,8 @@
 import axios, { AxiosInstance } from "axios";
+import DishModel from "../models/DishModel";
+import RecipeModel from "../models/RecipeModel";
 
-export default class ApiPlanner {
+export default class ApiMenuPlanner {
     axiosInstance: AxiosInstance;
 
     constructor(baseUrl: string) {
@@ -10,22 +12,33 @@ export default class ApiPlanner {
         });
     }
 
-    async getTestAsync() {
+    async getDish(id: string) {
         try {
-            const response = await this.axiosInstance.get("");
-            console.log(response)
+            const response = await this.axiosInstance.get(`/api/dish/${id}`, {});
+            return response.data as DishModel;
         } catch (error) {
             console.log(error);
         }
     }
 
-    getTest() {
-        this.axiosInstance.get("").then(response => {
+    async createRecipe(recipe: RecipeModel) {
+        try {
+            const response = await this.axiosInstance.post("/api/recipe", {
+                body: recipe,
+            });
             console.log(response);
-        }).then(error => {
-            console.log(error)
-        }).then(() => {
-            //always executed
-        })
+        } catch (error) {
+            console.log(error);
+        }
     }
+
+    // getTest() {
+    //     this.axiosInstance.get("").then(response => {
+    //         console.log(response);
+    //     }).then(error => {
+    //         console.log(error)
+    //     }).then(() => {
+    //         //always executed
+    //     })
+    // }
 }

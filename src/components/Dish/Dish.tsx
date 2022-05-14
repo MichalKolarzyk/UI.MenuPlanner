@@ -100,6 +100,8 @@ const Dish = (props: DishProps) => {
 
 type DishProps = {
     dish: DishModel;
+    onSave?: () => {},
+    onCancel?: () => {},
 };
 
 export default Dish;
