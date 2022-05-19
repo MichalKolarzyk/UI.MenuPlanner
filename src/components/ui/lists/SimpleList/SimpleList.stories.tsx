@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { StringList } from "../SimpleList";
+import { StringList } from "./SimpleList";
 
 export default {
     title: "UI/SimpleList",
