@@ -1,0 +1,16 @@
+.table {
+    border-collapse: collapse;
+}
+
+.header {
+    border: 1px solid black;
+    text-align: left;
+    padding: 0.5em;
+}
+
+.row {
+    cursor: pointer;
+    border: 1px solid black;
+    text-align: left;
+    padding: 0.5em;
+}
