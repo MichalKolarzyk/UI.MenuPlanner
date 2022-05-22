@@ -5,13 +5,14 @@ const EnumInput = (props: EnumInputProps) => {
 
     const options = props.options?.map((o, index) => <option key={index}>{o}</option>);
 
-    return <select onChange={onChangeHandler} value={props.value}>{options}</select>;
+    return <select className={props.className} onChange={onChangeHandler} value={props.value}>{options}</select>;
 };
 
 type EnumInputProps = {
-    value: string;
+    value?: string;
     options?: Array<string>;
-    onChange: (value: string) => void
+    onChange: (value: string) => void;
+    className: string;
 };
 
 export default EnumInput;

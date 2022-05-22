@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import EnumInput from "../../inputs/enumInput/EnumInput";
+import Button, { ButtonSize, ButtonStyle } from "../../buttons/button/Button";
+import SimpleFormInput from "./SimpleFormInput";
 
 const SimpleForm = (props: SimpleFormProps) => {
     const [item, setItem] = useState(props.item);
@@ -21,33 +22,31 @@ const SimpleForm = (props: SimpleFormProps) => {
     return (
         <form onSubmit={submitHandler}>
             {formFields}
-            <button>Submit</button>
+            <Button style={ButtonStyle.accept}>Submit</Button>
+            <Button style={ButtonStyle.cancel}>Cancel</Button>
         </form>
     );
 };
 
 const FormField = (props: FormFieldProps) => {
+    const [state, setState] = useState<FormFieldValidationResult>();
+
     const inputChangeHanler = (event: any) => {
         const newValue = event.target.value;
         const result = props.field.onValidation?.(newValue);
-        if (result?.isValid === false) {
-            console.log(result.errorMessage);
-            return;
-        }
+        setState(result);
         props.onValueUpdated(props.field, newValue);
     };
-    const inputComponent = () => {
-        if(props.field.type === "enum"){
-            return <EnumInput onChange={inputChangeHanler} value={props.value} options={props.field.options}/>
-        }
-        return <input onChange={inputChangeHanler} value={props.value} type={props.field.type} />
-    }
-    return (
-        <div>
-            <span>{props.field.text}</span>
-            {inputComponent()}
-        </div>
-    );
+
+    return <SimpleFormInput
+                onChange={inputChangeHanler}
+                value={props.value}
+                options={props.field.options}
+                type={props.field.type}
+                label={props.field.text}
+                errorMessage={state?.errorMessage}
+                isValid={state?.isValid}
+            />
 };
 
 type SimpleFormProps = {

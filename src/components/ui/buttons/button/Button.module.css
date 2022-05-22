@@ -1,0 +1,59 @@
+.base{
+    border-style: none;
+    padding: 0.75em;
+    cursor: pointer;
+    height: auto;
+}
+
+.sharpCorners{
+    border-radius: 3px;
+}
+
+.roundedCorners{
+    border-radius: 7px;
+}
+
+.elipse{
+    border-radius: 50%;
+}
+.accept{
+    background-color: #1cbe3f;
+    color: #e5edf1;
+}
+
+.accept:hover{
+    background-color: #2ccc4e;
+    color: #e5edf1;
+}
+
+.default{
+    background-color: #026AA7;
+    color: #EBF3F8;
+}
+
+.default:hover{
+    background-color: #04649c;
+    color: #e5edf1;
+}
+
+.cancel{
+    background-color: #d83b3b;
+    color: #EBF3F8;
+}
+
+.cancel:hover{
+    background-color: #d85353;
+    color: #e5edf1;
+}
+
+.small{
+    font-size: small;
+}
+
+.medium{
+    font-size: medium;
+}
+
+.large{
+    font-size: large;
+}

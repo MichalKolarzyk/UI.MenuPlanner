@@ -15,8 +15,10 @@ simpleForm.args = {
         id: 123,
         firstName: "Michał",
         lastName: "Kowalski",
+        email: "michalkowalski@gmail.com",
+        email2: "",
         age: 27,
-        gender: "famale1",
+        gender: "famale",
     },
     fields: [
         {
@@ -47,6 +49,32 @@ simpleForm.args = {
             }
         },
         {
+            property: "email",
+            text: "Email",
+            onValidation: (item: string) => {
+                if(!item.includes("@")){
+                    return FormFieldValidationResult.invalidField("Email should contain @ character")
+                }
+                if(item.length < 6){
+                    return FormFieldValidationResult.invalidField("Email address is too short")
+                }
+                return FormFieldValidationResult.ValidField
+            }
+        },
+        {
+            property: "email2",
+            text: "Email 2",
+            onValidation: (item: string) => {
+                if(!item.includes("@")){
+                    return FormFieldValidationResult.invalidField("Email should contain @ character")
+                }
+                if(item.length < 6){
+                    return FormFieldValidationResult.invalidField("Email address is too short")
+                }
+                return FormFieldValidationResult.ValidField
+            }
+        },
+        {
             property: "age",
             text: "Age",
             type: "number",
@@ -65,6 +93,7 @@ simpleForm.args = {
                 "male",
                 "famale",
                 "unknown",
+                "robot",
             ]
         },
     ]
