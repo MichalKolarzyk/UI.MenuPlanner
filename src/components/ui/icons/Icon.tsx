@@ -10,7 +10,6 @@ const Icon = (props: IconButtonProps) => {
     const image = props.image ?? IconImage.edit;
     const iconComponent = React.createElement(FontAwesome[image], {
         className: iconClassName,
-        size: props.size,
     });
 
     return iconComponent

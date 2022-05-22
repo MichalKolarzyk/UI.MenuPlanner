@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Dish from "../Dish";
+import Dish from "./Dish";
 
 export default {
     title: "Components/Dish",
@@ -14,11 +14,9 @@ const Template: ComponentStory<typeof Dish> = (args) => <Dish {...args} />;
 export const ChipsAndChips = Template.bind({});
 ChipsAndChips.args = {
     dish: {
-        name: "Chips & Chips",
-        discription: "The best for english food gourmets of English cuisine.",
         recipe: {
-            description: "description",
-            title: "title",
+            title: "Chips & Chips",
+            description: "The best for english food gourmets of English cuisine.",
             ingreadients: [
                 {
                     amount: 1,

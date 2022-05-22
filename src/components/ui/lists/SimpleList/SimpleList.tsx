@@ -1,6 +1,11 @@
 import { ChangeEvent, useState } from "react";
-import classes from "./SimpleList.module.css";
-import { FaPlus, FaEdit, FaRegTimesCircle, FaTrashAlt } from "react-icons/fa";
+import Card, { CardColors, CardShape } from "../../containers/cards/card/Card";
+import Label, { LabelSize } from "../../labels/label/Label";
+import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
+import IconButton, { IconButtonSize } from "../../buttons/iconButton/IconButton";
+import { IconImage } from "../../icons/Icon";
+import Input from "../../inputs/input/Input";
+import Button, { ButtonPadding, ButtonShape, ButtonStyle } from "../../buttons/button/Button";
 
 export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     const [addingMode, setAddingMode] = useState(false);
@@ -54,36 +59,45 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     ));
 
     return (
-        <div className={classes.card}>
-            <div className={classes.title}>{props.title}</div>
-            <ul className={classes.list}>{itemView}</ul>
-            {!props.isDisabled && !addingMode && (
-                <button onClick={addButtonClickHandler} className={classes.addButton}>
-                    <FaPlus />
-                    <span>Add</span>
-                </button>
-            )}
-            {!props.isDisabled && addingMode && (
-                <div>
-                    <input value={newItemStr} onChange={onNewInputChangeHandler} className={classes.newItemInput} />
-                    <div className={classes.addElementContainer}>
-                        <button className={classes.addElementButton} onClick={onAddElementHandler}>
-                            Add element
-                        </button>
-                        <FaRegTimesCircle
-                            className={classes.cancelAddElementButton}
-                            onClick={closeButtonClickHandler}
-                        />
-                    </div>
-                </div>
-            )}
-        </div>
+        <Card shape={CardShape.sharp} color={CardColors.grey}>
+            <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
+                <Label bold={true} size={LabelSize.large}>
+                    {props.title}
+                </Label>
+                <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
+                    {itemView}
+                </Flex>
+                {!(props.isDisabled ?? true) && !addingMode && (
+                    <IconButton
+                        padding={ButtonPadding.paddingHalf}
+                        image={IconImage.add}
+                        text="Add"
+                        onClick={addButtonClickHandler}
+                    />
+                )}
+
+                {!(props.isDisabled ?? true) && addingMode && (
+                    <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignLeft}>
+                        <Input value={newItemStr} onChange={onNewInputChangeHandler} />
+                        <Flex>
+                            <Button onClick={onAddElementHandler}>
+                                Add element
+                            </Button>
+                            <IconButton
+                                shape={ButtonShape.roundedCorners}
+                                style={ButtonStyle.cancel}
+                                image={IconImage.close}
+                                onClick={closeButtonClickHandler}
+                            />
+                        </Flex>
+                    </Flex>
+                )}
+            </Flex>
+        </Card>
     );
 };
 
 const SimpleRow = <T,>(props: SimpleRowProps<T>) => {
-    const [isHover, setIsHover] = useState(false);
-
     const onTrashClickHandler = (x: React.MouseEvent<SVGElement, MouseEvent>) => {
         x.stopPropagation();
         props.onTrashClick?.(props.index);
@@ -93,27 +107,33 @@ const SimpleRow = <T,>(props: SimpleRowProps<T>) => {
         x.stopPropagation();
         props.onEditClick?.(props.index);
     };
-    
+
     const onClickHandler = () => {
-        props.onClick?.(props.index)
-    }
+        props.onClick?.(props.index);
+    };
 
     return (
-        <li className={classes.row} onClick={onClickHandler} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
-            <div>{props.itemAsString}</div>
-            {!props.isDisabled && (
-                <div>
-                    <FaEdit
-                        onClick={onEditClickHandler}
-                        className={isHover ? classes.editIcon : classes.editIconNotVisible}
-                    />
-                    <FaTrashAlt
-                        onClick={onTrashClickHandler}
-                        className={isHover ? classes.editIcon : classes.editIconNotVisible}
-                    />
-                </div>
-            )}
-        </li>
+        <Button shape={ButtonShape.roundedCorners} style={ButtonStyle.grey} onClick={onClickHandler}>
+            <Flex justify={FlexJustify.spaceBetween}>
+                <Label>{props.itemAsString}</Label>
+                {!props.isDisabled && (
+                    <Flex gapSize={FlexGapSize.gapSize0}>
+                        <IconButton
+                            padding={ButtonPadding.paddingQuarter}
+                            style={ButtonStyle.transparent}
+                            image={IconImage.edit}
+                            onClick={onEditClickHandler}
+                        />
+                        <IconButton
+                            padding={ButtonPadding.paddingQuarter}
+                            style={ButtonStyle.transparent}
+                            image={IconImage.remove}
+                            onClick={onTrashClickHandler}
+                        />
+                    </Flex>
+                )}
+            </Flex>
+        </Button>
     );
 };
 

@@ -1,62 +1,83 @@
-.base{
+.base {
     border-style: none;
     padding: 0.75em;
     cursor: pointer;
     height: auto;
 }
 
-.sharpCorners{
+.paddingZero {
+    padding: 0;
+}
+.paddingHalf {
+    padding: 0.5em;
+}
+.paddingQuarter {
+    padding: 0.25em;
+}
+.paddingTreeQuarters {
+    padding: 0.75em;
+}
+.paddingOne {
+    padding: 1em;
+}
+
+.sharpCorners {
     border-radius: 3px;
 }
-.roundedCorners{
+.roundedCorners {
     border-radius: 7px;
 }
-.elipse{
+.elipse {
     border-radius: 50%;
 }
 
-
-.accept{
+.accept {
     background-color: #1cbe3f;
     color: #e5edf1;
 }
-.accept:hover{
+.accept:hover {
     background-color: #2ccc4e;
     color: #e5edf1;
 }
-.default{
-    background-color: #026AA7;
-    color: #EBF3F8;
+.default {
+    background-color: #026aa7;
+    color: #ebf3f8;
 }
-.default:hover{
+.default:hover {
     background-color: #04649c;
     color: #e5edf1;
 }
-.cancel{
+.cancel {
     background-color: #d83b3b;
-    color: #EBF3F8;
+    color: #ebf3f8;
 }
-.cancel:hover{
+.cancel:hover {
     background-color: #d85353;
     color: #e5edf1;
 }
-.transparent{
+.transparent {
     background-color: transparent;
     color: gray;
 }
-.transparent:hover{
+.transparent:hover {
     opacity: 0.9;
     background-color: rgba(0, 0, 0, 0.05);
 }
+.grey {
+    background-color: #f4f5f7;
+    color: #888888;
+    box-shadow: 1px 1px 2px #888888;
+}
+.grey:hover {
+    background-color: #ebecf0;
+}
 
-
-
-.small{
+.small {
     font-size: small;
 }
-.medium{
+.medium {
     font-size: medium;
 }
-.large{
+.large {
     font-size: large;
 }

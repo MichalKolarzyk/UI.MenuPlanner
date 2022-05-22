@@ -11,12 +11,5 @@ const Template: ComponentStory<typeof StringList> = (args) => <StringList {...ar
 export const stepList = Template.bind({});
 stepList.args = {
     title: "steps",
-    items: ["Step1", "Super long step aaaaaaaaaaaaaaaa aaaaaaaaaaaa", "Step3"],
-};
-
-export const disabledList = Template.bind({});
-disabledList.args = {
-    isDisabled: true,
-    title: "steps",
-    items: ["Item 1", "Item 2"],
+    items: ["Step1", "Step2", "Step3"],
 };

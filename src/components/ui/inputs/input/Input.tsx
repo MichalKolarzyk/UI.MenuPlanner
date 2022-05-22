@@ -3,7 +3,7 @@ import classes from "./Input.module.css";
 
 const Input = (props: InputProps) => {
     let className = classes.base;
-    className += " " + classes[props.isValid ? "valid" : "invalid"]
+    className += " " + classes[(props.isValid ?? true) ? "valid" : "invalid"]
 
     if(props.type === InputType.enum){
         return <EnumInput className={className} options={props.options} onChange={props.onChange} value={props.value}/>
@@ -13,7 +13,7 @@ const Input = (props: InputProps) => {
 };
 
 type InputProps = {
-    type?: InputType | string;
+    type?: InputType;
     isValid?: boolean;
     value?: string;
     options?: Array<string>

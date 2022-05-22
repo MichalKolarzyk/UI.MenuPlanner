@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { InputType } from "../../inputs/input/Input";
 import SimpleForm, { FormFieldValidationResult } from "./SimpleForm";
 
 export default {
@@ -15,6 +16,7 @@ simpleForm.args = {
         id: 123,
         firstName: "Michał",
         lastName: "Kowalski",
+        workStarted: "21.10.2010",
         email: "michalkowalski@gmail.com",
         email2: "",
         age: 27,
@@ -24,7 +26,7 @@ simpleForm.args = {
         {
             property: "firstName",
             text: "Firstname",
-            type: "text",
+            type: InputType.text,
             onValidation: (item: string) => {
                 if(item.match(/\d+/g)){
                     return FormFieldValidationResult.invalidField("Firstname should not contain numbers")
@@ -47,6 +49,11 @@ simpleForm.args = {
                 }
                 return FormFieldValidationResult.ValidField
             }
+        },
+        {
+            property: "workStarted",
+            text: "Work started",
+            type: InputType.date
         },
         {
             property: "email",
@@ -77,7 +84,7 @@ simpleForm.args = {
         {
             property: "age",
             text: "Age",
-            type: "number",
+            type: InputType.number,
             onValidation: (item: number) => {
                 if(item > 150){
                     return new FormFieldValidationResult(false, "Age is too lagre")
@@ -88,7 +95,7 @@ simpleForm.args = {
         {
             property: "gender",
             text: "Gender",
-            type: "enum",
+            type: InputType.enum,
             options: [
                 "male",
                 "famale",

@@ -18,6 +18,12 @@
 .spaceBetween {
     justify-content: space-between;
 }
+.spaceEvenly {
+    justify-content: space-evenly;
+}
+.stretch {
+    justify-content: stretch;
+}
 
 .left {
     justify-content: flex-start;

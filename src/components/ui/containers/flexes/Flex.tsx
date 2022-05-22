@@ -34,7 +34,9 @@ export enum FlexJustify{
     left="left",
     right="right",
     center="center",
-    spaceBetween= "spaceBetween"
+    spaceBetween= "spaceBetween",
+    spaceEvenly= "spaceEvenly",
+    stretch= "stretch",
 }
 
 export enum FlexAlignItems{

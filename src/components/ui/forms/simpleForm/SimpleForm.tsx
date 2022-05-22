@@ -5,6 +5,7 @@ import Card, { CardColors } from "../../containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import LabelFrame from "../../frames/labelFrame/LabelFrame";
 import { IconImage, IconStyle } from "../../icons/Icon";
+import { InputType } from "../../inputs/input/Input";
 import LabelInput from "../../inputs/labelInput/LabelInput";
 
 const SimpleForm = (props: SimpleFormProps) => {
@@ -27,7 +28,7 @@ const SimpleForm = (props: SimpleFormProps) => {
     return (
         <LabelFrame upperLabel="Create employee">
             <Card color={CardColors.grey}>
-                <Flex alignItems={FlexAlignItems.alignLeft} justify={FlexJustify.spaceBetween}>
+                <Flex alignItems={FlexAlignItems.alignRight} justify={FlexJustify.spaceBetween}>
                     <Flex
                         style={FlexStyle.column}
                         alignItems={FlexAlignItems.alignUnset}
@@ -60,10 +61,9 @@ const SimpleForm = (props: SimpleFormProps) => {
                     <Flex>
                         <IconButton
                             shape={ButtonShape.roundedCorners}
-                            style={ButtonStyle.transparent}
+                            style={ButtonStyle.cancel}
                             image={IconImage.close}
-                            size={IconButtonSize.medium}
-                            text=""
+                            text="Cancel"
                         />
                     </Flex>
                 </Flex>
@@ -112,7 +112,7 @@ type FormFieldProps = {
 type FormFieldModel = {
     text: string;
     property: string;
-    type?: string;
+    type?: InputType;
     options?: Array<string>;
     onValidation?: (item: any) => FormFieldValidationResult;
 };

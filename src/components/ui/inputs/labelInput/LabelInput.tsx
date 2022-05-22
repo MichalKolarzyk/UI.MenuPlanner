@@ -11,12 +11,12 @@ const LabelInput = (props: LabelInputProps) => {
 };
 
 type LabelInputProps = {
-    type?: InputType | string;
+    type?: InputType ;
     isValid?: boolean;
     options?: Array<string>;
     label?: string;
     errorMessage?: string;
-    value: string;
+    value?: string;
     onChange?: (event: any) => void;
 };
 
