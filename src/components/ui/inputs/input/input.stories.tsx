@@ -10,5 +10,5 @@ const Template: ComponentStory<typeof Input> = (args) => <Input {...args}/>;
 
 export const input = Template.bind({});
 input.args = {
-
+    options: ["black", "red", "white"]
 };

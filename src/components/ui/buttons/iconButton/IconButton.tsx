@@ -1,4 +1,4 @@
-import Flex, { FlexGapSize, FlexStyle } from "../../containers/flexes/Flex";
+import Flex, { FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import Icon, { IconImage, IconSize, IconStyle } from "../../icons/Icon";
 import Label, { LabelSize, LabelStyle } from "../../labels/label/Label";
 import Button, { ButtonShape, ButtonStyle } from "../button/Button";
@@ -14,11 +14,19 @@ const IconButton = (props: IconButtonProps) => {
         labelSize = LabelSize.large;
     }
 
+    let iconStyle = IconStyle.white;
+    let labelStyle = LabelStyle.white;
+    if(props.style === ButtonStyle.transparent){
+        iconStyle = IconStyle.greay;
+        labelStyle = LabelStyle.grey;
+    }
+
+    
     return (
         <Button style={props.style} shape={props.shape}>
             <Flex style={FlexStyle.row} gapSize={FlexGapSize.gapSize1}>
-                {props.image && <Icon size={iconSize} image={props.image} style={IconStyle.white} />}
-                {props.text && <Label size={labelSize} style={LabelStyle.white}>
+                {props.image && <Icon style={iconStyle} size={iconSize} image={props.image} />}
+                {props.text && <Label size={labelSize} style={labelStyle}>
                     {props.text}
                 </Label>}
             </Flex>

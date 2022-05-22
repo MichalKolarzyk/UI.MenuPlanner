@@ -1,6 +1,16 @@
 .base{
     align-items: center;
     cursor: inherit;
+    font-style: normal;
+    font-weight: unset;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.italic{
+    font-style: italic;
 }
 
 .small{

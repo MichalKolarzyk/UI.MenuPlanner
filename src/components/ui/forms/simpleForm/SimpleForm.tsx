@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import Button, { ButtonShape, ButtonSize, ButtonStyle } from "../../buttons/button/Button";
-import IconButton from "../../buttons/iconButton/IconButton";
-import { IconImage } from "../../icons/Icon";
-import SimpleFormInput from "./SimpleFormInput";
+import { ButtonShape, ButtonStyle } from "../../buttons/button/Button";
+import IconButton, { IconButtonSize } from "../../buttons/iconButton/IconButton";
+import Card, { CardColors } from "../../containers/cards/card/Card";
+import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
+import LabelFrame from "../../frames/labelFrame/LabelFrame";
+import { IconImage, IconStyle } from "../../icons/Icon";
+import LabelInput from "../../inputs/labelInput/LabelInput";
 
 const SimpleForm = (props: SimpleFormProps) => {
     const [item, setItem] = useState(props.item);
@@ -22,33 +25,76 @@ const SimpleForm = (props: SimpleFormProps) => {
         <FormField field={f} value={item[f.property]} onValueUpdated={onValueUpdatedHandler} />
     ));
     return (
-        <form onSubmit={submitHandler}>
-            {formFields}
-            <IconButton shape={ButtonShape.roundedCorners} image={IconImage.save} style={ButtonStyle.accept} text="Submit"/>
-            <IconButton shape={ButtonShape.roundedCorners} image={IconImage.close} style={ButtonStyle.cancel} text="Cancel"/>
-        </form>
+        <LabelFrame upperLabel="Create employee">
+            <Card color={CardColors.grey}>
+                <Flex alignItems={FlexAlignItems.alignLeft} justify={FlexJustify.spaceBetween}>
+                    <Flex
+                        style={FlexStyle.column}
+                        alignItems={FlexAlignItems.alignUnset}
+                        gapSize={FlexGapSize.gapSize3}
+                    >
+                        <form onSubmit={submitHandler}>
+                            <Flex
+                                style={FlexStyle.column}
+                                alignItems={FlexAlignItems.alignUnset}
+                                gapSize={FlexGapSize.gapSize3}
+                            >
+                                <Flex
+                                    style={FlexStyle.column}
+                                    gapSize={FlexGapSize.gapSize1}
+                                    alignItems={FlexAlignItems.alignLeft}
+                                >
+                                    {formFields}
+                                </Flex>
+                                <Flex>
+                                    <IconButton
+                                        shape={ButtonShape.roundedCorners}
+                                        image={IconImage.save}
+                                        style={ButtonStyle.accept}
+                                        text="Submit"
+                                    />
+                                </Flex>
+                            </Flex>
+                        </form>
+                    </Flex>
+                    <Flex>
+                        <IconButton
+                            shape={ButtonShape.roundedCorners}
+                            style={ButtonStyle.transparent}
+                            image={IconImage.close}
+                            size={IconButtonSize.medium}
+                            text=""
+                        />
+                    </Flex>
+                </Flex>
+            </Card>
+        </LabelFrame>
     );
 };
 
 const FormField = (props: FormFieldProps) => {
-    const [state, setState] = useState<FormFieldValidationResult>();
+    const [isValid, setIsValid] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const inputChangeHanler = (event: any) => {
         const newValue = event.target.value;
         const result = props.field.onValidation?.(newValue);
-        setState(result);
+        setIsValid(result?.isValid ?? true);
+        setErrorMessage(result?.errorMessage ?? "");
         props.onValueUpdated(props.field, newValue);
     };
 
-    return <SimpleFormInput
-                onChange={inputChangeHanler}
-                value={props.value}
-                options={props.field.options}
-                type={props.field.type}
-                label={props.field.text}
-                errorMessage={state?.errorMessage}
-                isValid={state?.isValid}
-            />
+    return (
+        <LabelInput
+            onChange={inputChangeHanler}
+            value={props.value}
+            options={props.field.options}
+            type={props.field.type}
+            label={props.field.text}
+            errorMessage={errorMessage}
+            isValid={isValid}
+        />
+    );
 };
 
 type SimpleFormProps = {

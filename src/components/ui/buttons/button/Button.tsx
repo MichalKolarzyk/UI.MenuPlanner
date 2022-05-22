@@ -19,6 +19,7 @@ export type ButtonProps = {
 
 export enum ButtonStyle {
     default = "default",
+    transparent = "transparent",
     accept = "accept",
     cancel = "cancel",
 }
@@ -32,7 +33,7 @@ export enum ButtonSize {
 export enum ButtonShape {
     sharpCorners = "sharpCorners",
     roundedCorners = "roundedCorners",
-    elipse = "elipse"
+    elipse = "elipse",
 }
 
 export default Button;

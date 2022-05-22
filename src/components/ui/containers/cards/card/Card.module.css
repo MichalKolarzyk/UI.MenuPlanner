@@ -1,5 +1,4 @@
 .base {
-    display: flex;
     padding: 1em;
     box-shadow: 1px 1px 2px #888888;
 }
@@ -9,7 +8,7 @@
 }
 
 .grey {
-    background-color: rgb(226, 218, 218);
+    background-color: rgb(243, 243, 243);
 }
 
 .green {

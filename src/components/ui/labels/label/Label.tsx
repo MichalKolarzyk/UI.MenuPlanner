@@ -4,6 +4,8 @@ const Label = (props: LabelProps) =>{
     let className = classes.base;
     className += " " + classes[props.size ?? LabelSize.small]
     className += " " + classes[props.style ?? LabelStyle.black]
+    className += " " + classes[props.bold ? "bold" : ""]
+    className += " " + classes[props.italic ? "italic" : ""]
 
     return <label className={className}>{props.children}</label>
 }
@@ -13,6 +15,8 @@ export type LabelProps = {
     size?: LabelSize;
     style?: LabelStyle;
     onClick?: () => {};
+    bold?: boolean,
+    italic?: boolean,
 }
 
 export enum LabelSize {
