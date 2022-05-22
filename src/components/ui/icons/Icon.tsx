@@ -33,6 +33,7 @@ export enum IconImage {
 export enum IconStyle {
     greay = "gray",
     black = "black",
+    white = "white",
 }
 
 export enum IconSize {

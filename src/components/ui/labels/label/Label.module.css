@@ -1,0 +1,27 @@
+.base{
+    display:flex;
+    align-items: center;
+    cursor: inherit;
+}
+
+.small{
+    font-size: small;
+}
+
+.medium{
+    font-size: medium;
+}
+
+.large{
+    font-size: large;
+}
+
+.black{
+    color: black;
+}
+.grey{
+    color: gray;
+}
+.white{
+    color: white;
+}

@@ -1,0 +1,26 @@
+.base{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+}
+
+.row{
+    flex-direction: row;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.gapSize1{
+    gap: 0.5em;
+}
+
+.gapSize2{
+    gap: 1em;
+}
+
+.gapSize3{
+    gap: 2em;
+}

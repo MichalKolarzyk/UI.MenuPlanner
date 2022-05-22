@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import Button, { ButtonSize, ButtonStyle } from "../../buttons/button/Button";
+import Button, { ButtonShape, ButtonSize, ButtonStyle } from "../../buttons/button/Button";
+import IconButton from "../../buttons/iconButton/IconButton";
+import { IconImage } from "../../icons/Icon";
 import SimpleFormInput from "./SimpleFormInput";
 
 const SimpleForm = (props: SimpleFormProps) => {
@@ -22,8 +24,8 @@ const SimpleForm = (props: SimpleFormProps) => {
     return (
         <form onSubmit={submitHandler}>
             {formFields}
-            <Button style={ButtonStyle.accept}>Submit</Button>
-            <Button style={ButtonStyle.cancel}>Cancel</Button>
+            <IconButton shape={ButtonShape.roundedCorners} image={IconImage.save} style={ButtonStyle.accept} text="Submit"/>
+            <IconButton shape={ButtonShape.roundedCorners} image={IconImage.close} style={ButtonStyle.cancel} text="Cancel"/>
         </form>
     );
 };
