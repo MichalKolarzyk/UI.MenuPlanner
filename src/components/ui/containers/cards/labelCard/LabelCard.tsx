@@ -1,21 +1,24 @@
-import Label from "../../../labels/label/Label";
-import Flex, { FlexStyle } from "../../flexes/Flex";
-import Card, { CardColors, CardShape } from "../card/Card";
+import Label, { LabelStyle } from "../../../labels/label/Label";
+import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../flexes/Flex";
 
 const LabelCard = (props: LabelCardProps) => {
     return (
-        <Flex style={FlexStyle.column}>
-            <Label>{props.upperLabel}</Label>
-            <Card shape={props.shape} color={props.color}>{props.children}</Card>
-            <Label>{props.bottomLabel}</Label>
+        <Flex alignItems={FlexAlignItems.alignUnset} style={FlexStyle.column} gapSize={FlexGapSize.gapSize0}>
+            <Flex justify={FlexJustify.left}>
+                <Label style={props.upperLabelStyle}>{props.upperLabel}</Label>
+            </Flex>
+            {props.children}
+            <Flex justify={FlexJustify.right}>
+                <Label style={props.bottomLabelStyle}>{props.bottomLabel}</Label>
+            </Flex>
         </Flex>
     );
 };
 
 type LabelCardProps = {
-    shape?: CardShape,
-    color?: CardColors,
+    upperLabelStyle?: LabelStyle;
     upperLabel?: string;
+    bottomLabelStyle?: LabelStyle;
     bottomLabel?: string;
     children?: any;
 };

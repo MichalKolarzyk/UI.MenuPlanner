@@ -25,6 +25,7 @@ export enum LabelStyle {
     black = "black",
     grey = "grey",
     white = "white",
+    red = "red",
 }
 
 

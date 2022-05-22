@@ -1,26 +1,56 @@
-.base{
+.base {
     display: flex;
-    justify-content: center;
-    align-items: center;
     border-style: none;
 }
 
-.row{
+.alignUnset {
+    align-items: unset;
+}
+.alignRight {
+    align-items: flex-end;
+}
+.alignLeft {
+    align-items: flex-start;
+}
+.alignCenter {
+    align-items: center;
+}
+.spaceBetween {
+    justify-content: space-between;
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.right {
+    justify-content: flex-end;
+}
+
+.center {
+    justify-content: center;
+}
+
+.row {
     flex-direction: row;
 }
 
-.column{
+.column {
     flex-direction: column;
 }
 
-.gapSize1{
+.gapSize1 {
+    gap: 0em;
+}
+
+.gapSize1 {
     gap: 0.5em;
 }
 
-.gapSize2{
+.gapSize2 {
     gap: 1em;
 }
 
-.gapSize3{
+.gapSize3 {
     gap: 2em;
 }

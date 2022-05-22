@@ -1,5 +1,4 @@
 .base{
-    display:flex;
     align-items: center;
     cursor: inherit;
 }
@@ -24,4 +23,7 @@
 }
 .white{
     color: white;
+}
+.red{
+    color: red;
 }
