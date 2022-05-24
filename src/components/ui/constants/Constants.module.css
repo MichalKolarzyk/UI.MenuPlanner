@@ -1,0 +1,50 @@
+.fontsize_small{
+    font-size: small;   
+}
+.fontsize_medium{
+    font-size: medium;   
+}
+.fontsize_large{
+    font-size: large;   
+}
+
+.padding_Zero {
+    padding: 0;
+}
+.padding_Quarter {
+    padding: 0.25em;
+}
+.padding_Half {
+    padding: 0.5em;
+}
+.padding_TreeQuarters {
+    padding: 0.75em;
+}
+.padding_One {
+    padding: 1em;
+}
+
+.shape_sharp {
+    border-radius: 0px;
+}
+.shape_slightlyRounded{
+    border-radius: 3px;
+}
+.shape_rounded{
+    border-radius: 7px;
+}
+.shape_elipse{
+    border-radius: 50%;
+}
+
+.animation_spin{
+    animation: spin infinite 3s linear;
+}
+@keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

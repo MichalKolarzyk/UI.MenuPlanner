@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { ButtonShape, ButtonStyle } from "../../buttons/button/Button";
+import { ButtonStyle } from "../../buttons/button/Button";
 import IconButton, { IconButtonSize } from "../../buttons/iconButton/IconButton";
+import { ShapeEnum } from "../../constants/Constants";
 import Card, { CardColors } from "../../containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import LabelFrame from "../../frames/labelFrame/LabelFrame";
@@ -49,7 +50,7 @@ const SimpleForm = (props: SimpleFormProps) => {
                                 </Flex>
                                 <Flex>
                                     <IconButton
-                                        shape={ButtonShape.roundedCorners}
+                                        shape={ShapeEnum.slightlyRounded}
                                         image={IconImage.save}
                                         style={ButtonStyle.accept}
                                         text="Submit"
@@ -60,7 +61,7 @@ const SimpleForm = (props: SimpleFormProps) => {
                     </Flex>
                     <Flex>
                         <IconButton
-                            shape={ButtonShape.roundedCorners}
+                            shape={ShapeEnum.slightlyRounded}
                             style={ButtonStyle.cancel}
                             image={IconImage.close}
                             text="Cancel"

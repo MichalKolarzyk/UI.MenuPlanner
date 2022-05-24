@@ -1,34 +1,7 @@
 .base {
     border-style: none;
-    padding: 0.75em;
     cursor: pointer;
     height: auto;
-}
-
-.paddingZero {
-    padding: 0;
-}
-.paddingHalf {
-    padding: 0.5em;
-}
-.paddingQuarter {
-    padding: 0.25em;
-}
-.paddingTreeQuarters {
-    padding: 0.75em;
-}
-.paddingOne {
-    padding: 1em;
-}
-
-.sharpCorners {
-    border-radius: 3px;
-}
-.roundedCorners {
-    border-radius: 7px;
-}
-.elipse {
-    border-radius: 50%;
 }
 
 .accept {
@@ -70,14 +43,4 @@
 }
 .grey:hover {
     background-color: #ebecf0;
-}
-
-.small {
-    font-size: small;
-}
-.medium {
-    font-size: medium;
-}
-.large {
-    font-size: large;
 }

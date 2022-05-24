@@ -8,12 +8,12 @@ function App() {
     const apiMenuPlanner = new ApiMenuPlanner(config.API_MENU_PLANNER_URL);
     const [dish, setDish] = useState<DishModel>();
 
-    useEffect(() => {
-        apiMenuPlanner.getDish("627fa36e5435ede271d99fd5").then((value) => {
-            console.log(value);
-            setDish(value);
-        });
-    }, []);
+    // useEffect(() => {
+    //     apiMenuPlanner.getDish("627fa36e5435ede271d99fd5").then((value) => {
+    //         console.log(value);
+    //         setDish(value);
+    //     });
+    // }, []);
 
 
     return <div>{!!dish && <Dish dish={dish} />}</div>;

@@ -1,11 +1,12 @@
+import { FontsizeEnum, PaddingEnum, ShapeEnum, useClasses } from "../../constants/Constants";
 import classes from "./Button.module.css";
 
 const Button = (props: ButtonProps) => {
     let className = classes.base;
     className += " " + classes[props.style ?? ButtonStyle.default];
-    className += " " + classes[props.size ?? ButtonSize.small];
-    className += " " + classes[props.shape ?? ButtonShape.sharpCorners];
-    className += " " + classes[props.padding ?? ButtonPadding.paddingTreeQuarters];
+    className += " " + useClasses(props.size ?? FontsizeEnum.small);
+    className += " " + useClasses(props.shape ?? ShapeEnum.slightlyRounded);
+    className += " " + useClasses(props.padding ?? PaddingEnum.paddingTreeQuarters);
 
     return (
         <button className={className} onClick={props.onClick}>
@@ -14,13 +15,13 @@ const Button = (props: ButtonProps) => {
     );
 };
 
-export type ButtonProps = {
+export class ButtonProps {
     onClick?: () => void;
     children?: JSX.Element | string;
     style?: ButtonStyle;
-    size?: ButtonSize;
-    shape?: ButtonShape;
-    padding?: ButtonPadding;
+    size?: FontsizeEnum;
+    shape?: ShapeEnum;
+    padding?: PaddingEnum;
 };
 
 export enum ButtonStyle {
@@ -29,26 +30,6 @@ export enum ButtonStyle {
     accept = "accept",
     cancel = "cancel",
     grey = "grey",
-}
-
-export enum ButtonSize {
-    small = "small",
-    medium = "medium",
-    big = "large",
-}
-
-export enum ButtonShape {
-    sharpCorners = "sharpCorners",
-    roundedCorners = "roundedCorners",
-    elipse = "elipse",
-}
-
-export enum ButtonPadding {
-    paddingZero = "paddingZero",
-    paddingQuarter = "paddingQuarter",
-    paddingHalf = "paddingHalf",
-    paddingTreeQuarters = "paddingTreeQuarters",
-    paddingOne= "paddingOne",
 }
 
 export default Button;

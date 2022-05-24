@@ -1,11 +1,13 @@
 import classes from "./Icon.module.css";
 import React from "react";
 import * as FontAwesome from "react-icons/fa";
+import { AnimationEnum, useClasses } from "../constants/Constants";
 
-const Icon = (props: IconButtonProps) => {
+const Icon = (props: IconProps) => {
     let iconClassName = classes.base;
     iconClassName += " " + classes[props.style ?? IconStyle.black];
     iconClassName += " " + classes[props.size ?? IconSize.small];
+    iconClassName += " " + useClasses(props.animation ?? AnimationEnum.static);
 
     const image = props.image ?? IconImage.edit;
     const iconComponent = React.createElement(FontAwesome[image], {
@@ -15,10 +17,11 @@ const Icon = (props: IconButtonProps) => {
     return iconComponent
 };
 
-type IconButtonProps = {
+export class IconProps {
     image?: IconImage;
     size?: IconSize;
     style?: IconStyle;
+    animation?: AnimationEnum;
 };
 
 export enum IconImage {
@@ -27,6 +30,9 @@ export enum IconImage {
     save = "FaSave",
     add = "FaPlus",
     remove = "FaTrash",
+    sort="FaSort",
+    sortDown="FaSortDown",
+    spin="FaCircleNotch"
 }
 
 export enum IconStyle {

@@ -1,7 +1,8 @@
+import { AnimationEnum, PaddingEnum, ShapeEnum } from "../../constants/Constants";
 import Flex, { FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import Icon, { IconImage, IconSize, IconStyle } from "../../icons/Icon";
 import Label, { LabelSize, LabelStyle } from "../../labels/label/Label";
-import Button, { ButtonPadding, ButtonShape, ButtonStyle } from "../button/Button";
+import Button, { ButtonStyle } from "../button/Button";
 
 const IconButton = (props: IconButtonProps) => {
     let iconSize = IconSize.small;
@@ -28,7 +29,7 @@ const IconButton = (props: IconButtonProps) => {
     return (
         <Button padding={props.padding} onClick={props.onClick} style={props.style} shape={props.shape}>
             <Flex style={FlexStyle.row} gapSize={FlexGapSize.gapSize1}>
-                {props.image && <Icon style={iconStyle} size={iconSize} image={props.image} />}
+                {props.image && <Icon style={iconStyle} animation={props.iconAnimation} size={iconSize} image={props.image} />}
                 {props.text && <Label size={labelSize} style={labelStyle}>
                     {props.text}
                 </Label>}
@@ -37,13 +38,14 @@ const IconButton = (props: IconButtonProps) => {
     );
 };
 
-type IconButtonProps = {
+export class IconButtonProps {
     image?: IconImage;
     style?: ButtonStyle;
     size?: IconButtonSize;
-    shape?: ButtonShape;
+    shape?: ShapeEnum;
     text?: string;
-    padding?: ButtonPadding;
+    padding?: PaddingEnum;
+    iconAnimation?: AnimationEnum;
     onClick?: (event?: any) => void;
 };
 

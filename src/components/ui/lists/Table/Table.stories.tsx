@@ -18,6 +18,10 @@ table.args = {
     onRowClick: (row: any) => {console.log(row)}, 
     columns: [
         {
+            name:  "Id",
+            property: "id",
+        },
+        {
             name:  "Firstname",
             property: "firstName",
         },
@@ -44,7 +48,7 @@ table.args = {
             age: 55,
         },
         {
-            id: 2,
+            id: 12,
             firstName: "Rafał",
             lastName: "Marciński",
             age: 22,

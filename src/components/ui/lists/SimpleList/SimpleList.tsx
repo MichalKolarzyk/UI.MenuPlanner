@@ -2,10 +2,11 @@ import { ChangeEvent, useState } from "react";
 import Card, { CardColors, CardShape } from "../../containers/cards/card/Card";
 import Label, { LabelSize } from "../../labels/label/Label";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
-import IconButton, { IconButtonSize } from "../../buttons/iconButton/IconButton";
+import IconButton from "../../buttons/iconButton/IconButton";
 import { IconImage } from "../../icons/Icon";
 import Input from "../../inputs/input/Input";
-import Button, { ButtonPadding, ButtonShape, ButtonStyle } from "../../buttons/button/Button";
+import Button, { ButtonStyle } from "../../buttons/button/Button";
+import { PaddingEnum, ShapeEnum } from "../../constants/Constants";
 
 export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     const [addingMode, setAddingMode] = useState(false);
@@ -69,7 +70,7 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
                 </Flex>
                 {!(props.isDisabled ?? true) && !addingMode && (
                     <IconButton
-                        padding={ButtonPadding.paddingHalf}
+                        padding={PaddingEnum.paddingHalf}
                         image={IconImage.add}
                         text="Add"
                         onClick={addButtonClickHandler}
@@ -84,7 +85,7 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
                                 Add element
                             </Button>
                             <IconButton
-                                shape={ButtonShape.roundedCorners}
+                                shape={ShapeEnum.slightlyRounded}
                                 style={ButtonStyle.cancel}
                                 image={IconImage.close}
                                 onClick={closeButtonClickHandler}
@@ -113,19 +114,19 @@ const SimpleRow = <T,>(props: SimpleRowProps<T>) => {
     };
 
     return (
-        <Button shape={ButtonShape.roundedCorners} style={ButtonStyle.grey} onClick={onClickHandler}>
+        <Button shape={ShapeEnum.slightlyRounded} style={ButtonStyle.grey} onClick={onClickHandler}>
             <Flex justify={FlexJustify.spaceBetween}>
                 <Label>{props.itemAsString}</Label>
                 {!props.isDisabled && (
                     <Flex gapSize={FlexGapSize.gapSize0}>
                         <IconButton
-                            padding={ButtonPadding.paddingQuarter}
+                            padding={PaddingEnum.paddingQuarter}
                             style={ButtonStyle.transparent}
                             image={IconImage.edit}
                             onClick={onEditClickHandler}
                         />
                         <IconButton
-                            padding={ButtonPadding.paddingQuarter}
+                            padding={PaddingEnum.paddingQuarter}
                             style={ButtonStyle.transparent}
                             image={IconImage.remove}
                             onClick={onTrashClickHandler}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DishModel from "../../models/DishModel";
 import Ingreadient from "../../models/IngreadientModel";
-import { ButtonShape, ButtonStyle } from "../ui/buttons/button/Button";
+import { ButtonStyle } from "../ui/buttons/button/Button";
 import IconButton from "../ui/buttons/iconButton/IconButton";
 import Card, { CardColors, CardShape } from "../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../ui/containers/flexes/Flex";

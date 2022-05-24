@@ -10,13 +10,13 @@ const Label = (props: LabelProps) =>{
     return <label className={className}>{props.children}</label>
 }
 
-export type LabelProps = {
+export class LabelProps {
     children?: any;
     size?: LabelSize;
     style?: LabelStyle;
     onClick?: () => {};
-    bold?: boolean,
-    italic?: boolean,
+    bold?: boolean;
+    italic?: boolean;
 }
 
 export enum LabelSize {
