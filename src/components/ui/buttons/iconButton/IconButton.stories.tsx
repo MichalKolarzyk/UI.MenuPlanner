@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { PaddingEnum } from "../../constants/Constants";
-import { IconImage, IconStyle } from "../../icons/Icon";
+import { IconImage } from "../../icons/Icon";
 import { ButtonStyle } from "../button/Button";
 import IconButton from "./IconButton";
 

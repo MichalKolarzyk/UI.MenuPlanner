@@ -1,7 +1,7 @@
-import { AnimationEnum, PaddingEnum, ShapeEnum } from "../../constants/Constants";
-import Flex, { FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
-import Icon, { IconImage, IconSize, IconStyle } from "../../icons/Icon";
-import Label, { LabelSize, LabelStyle } from "../../labels/label/Label";
+import { AnimationEnum, ColorEnum, PaddingEnum, ShapeEnum } from "../../constants/Constants";
+import Flex, { FlexGapSize, FlexStyle } from "../../containers/flexes/Flex";
+import Icon, { IconImage, IconSize } from "../../icons/Icon";
+import Label, { LabelSize } from "../../labels/label/Label";
 import Button, { ButtonStyle } from "../button/Button";
 
 const IconButton = (props: IconButtonProps) => {
@@ -15,22 +15,22 @@ const IconButton = (props: IconButtonProps) => {
         labelSize = LabelSize.large;
     }
 
-    let iconStyle = IconStyle.white;
-    let labelStyle = LabelStyle.white;
+    let iconColor = ColorEnum.white;
+    let labelStyle = ColorEnum.white;
     if(props.style === ButtonStyle.transparent){
-        iconStyle = IconStyle.greay;
-        labelStyle = LabelStyle.grey;
+        iconColor = ColorEnum.gray;
+        labelStyle = ColorEnum.gray;
     } else if (props.style === ButtonStyle.grey){
-        iconStyle = IconStyle.greay;
-        labelStyle = LabelStyle.grey;    
+        iconColor = ColorEnum.gray;
+        labelStyle = ColorEnum.gray;    
     }
 
     
     return (
         <Button padding={props.padding} onClick={props.onClick} style={props.style} shape={props.shape}>
             <Flex style={FlexStyle.row} gapSize={FlexGapSize.gapSize1}>
-                {props.image && <Icon style={iconStyle} animation={props.iconAnimation} size={iconSize} image={props.image} />}
-                {props.text && <Label size={labelSize} style={labelStyle}>
+                {props.image && <Icon color={iconColor} animation={props.iconAnimation} size={iconSize} image={props.image} />}
+                {props.text && <Label size={labelSize} color={labelStyle}>
                     {props.text}
                 </Label>}
             </Flex>

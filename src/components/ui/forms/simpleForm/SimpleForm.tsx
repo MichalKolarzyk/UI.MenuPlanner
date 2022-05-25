@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { ButtonStyle } from "../../buttons/button/Button";
-import IconButton, { IconButtonSize } from "../../buttons/iconButton/IconButton";
+import IconButton from "../../buttons/iconButton/IconButton";
 import { ShapeEnum } from "../../constants/Constants";
 import Card, { CardColors } from "../../containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
-import LabelFrame from "../../frames/labelFrame/LabelFrame";
-import { IconImage, IconStyle } from "../../icons/Icon";
+import { IconImage } from "../../icons/Icon";
 import { InputType } from "../../inputs/input/Input";
 import LabelInput from "../../inputs/labelInput/LabelInput";
+import Label, { LabelSize } from "../../labels/label/Label";
 
 const SimpleForm = (props: SimpleFormProps) => {
     const [item, setItem] = useState(props.item);
@@ -27,49 +27,46 @@ const SimpleForm = (props: SimpleFormProps) => {
         <FormField field={f} value={item[f.property]} onValueUpdated={onValueUpdatedHandler} />
     ));
     return (
-        <LabelFrame upperLabel="Create employee">
-            <Card color={CardColors.grey}>
-                <Flex alignItems={FlexAlignItems.alignRight} justify={FlexJustify.spaceBetween}>
-                    <Flex
-                        style={FlexStyle.column}
-                        alignItems={FlexAlignItems.alignUnset}
-                        gapSize={FlexGapSize.gapSize3}
-                    >
-                        <form onSubmit={submitHandler}>
+        <Card color={CardColors.grey}>
+            <Flex alignItems={FlexAlignItems.alignRight} justify={FlexJustify.spaceBetween}>
+                <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize3}>
+                    <Label bold size={LabelSize.medium}>
+                        {props.title}
+                    </Label>
+                    <form onSubmit={submitHandler}>
+                        <Flex
+                            style={FlexStyle.column}
+                            alignItems={FlexAlignItems.alignUnset}
+                            gapSize={FlexGapSize.gapSize3}
+                        >
                             <Flex
                                 style={FlexStyle.column}
-                                alignItems={FlexAlignItems.alignUnset}
-                                gapSize={FlexGapSize.gapSize3}
+                                gapSize={FlexGapSize.gapSize1}
+                                alignItems={FlexAlignItems.alignLeft}
                             >
-                                <Flex
-                                    style={FlexStyle.column}
-                                    gapSize={FlexGapSize.gapSize1}
-                                    alignItems={FlexAlignItems.alignLeft}
-                                >
-                                    {formFields}
-                                </Flex>
-                                <Flex>
-                                    <IconButton
-                                        shape={ShapeEnum.slightlyRounded}
-                                        image={IconImage.save}
-                                        style={ButtonStyle.accept}
-                                        text="Submit"
-                                    />
-                                </Flex>
+                                {formFields}
                             </Flex>
-                        </form>
-                    </Flex>
-                    <Flex>
-                        <IconButton
-                            shape={ShapeEnum.slightlyRounded}
-                            style={ButtonStyle.cancel}
-                            image={IconImage.close}
-                            text="Cancel"
-                        />
-                    </Flex>
+                            <Flex>
+                                <IconButton
+                                    shape={ShapeEnum.slightlyRounded}
+                                    image={IconImage.save}
+                                    style={ButtonStyle.accept}
+                                    text="Submit"
+                                />
+                            </Flex>
+                        </Flex>
+                    </form>
                 </Flex>
-            </Card>
-        </LabelFrame>
+                <Flex>
+                    <IconButton
+                        shape={ShapeEnum.slightlyRounded}
+                        style={ButtonStyle.cancel}
+                        image={IconImage.close}
+                        text="Cancel"
+                    />
+                </Flex>
+            </Flex>
+        </Card>
     );
 };
 
@@ -89,6 +86,7 @@ const FormField = (props: FormFieldProps) => {
         <LabelInput
             onChange={inputChangeHanler}
             value={props.value}
+            image={props.field.image}
             options={props.field.options}
             type={props.field.type}
             label={props.field.text}
@@ -101,6 +99,7 @@ const FormField = (props: FormFieldProps) => {
 type SimpleFormProps = {
     item: any;
     fields: Array<FormFieldModel>;
+    title: string;
     onSubmit: (item: any) => void;
 };
 
@@ -114,6 +113,7 @@ type FormFieldModel = {
     text: string;
     property: string;
     type?: InputType;
+    image?: IconImage;
     options?: Array<string>;
     onValidation?: (item: any) => FormFieldValidationResult;
 };

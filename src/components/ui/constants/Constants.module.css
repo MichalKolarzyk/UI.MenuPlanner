@@ -1,3 +1,5 @@
+@import "../../../styles/style.css";
+
 .fontsize_small{
     font-size: small;   
 }
@@ -36,6 +38,19 @@
 .shape_elipse{
     border-radius: 50%;
 }
+
+.color_green { color: var(--color-green) }
+.color_greenL1{ color: var(--color-green-l1) }
+.color_blue{ color: var(--color-blue) }
+.color_blueL1{ color: var(--color-blue-l1) }
+.color_white{ color: var(--color-white) }
+.color_whiteL1{ color: var(--color-white-l1) }
+.color_gray{ color: var(--color-gray) }
+.color_red{ color: var(--color-red) }
+.color_redL1{ color: var(--color-red-l1) }
+.color_transparent{ color: var(--color-transparent) }
+.color_transparentD1{ color: var(--color-transparent-d1) }
+.color_transparentD1{ color: var(--color-black) }
 
 .animation_spin{
     animation: spin infinite 3s linear;

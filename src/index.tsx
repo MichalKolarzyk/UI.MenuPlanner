@@ -13,6 +13,7 @@ root.render(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Card color={CardColors.green}>Main<Outlet/></Card>}>
+                    <Route index element={<App></App>}/>
                     <Route path="home" element={<Card color={CardColors.grey}>Home</Card>} />
                     <Route path="teams" element={<Card color={CardColors.green}>Teams<Outlet/></Card>}>
                         <Route path=":teamId" element={<Card color={CardColors.green}>Team</Card>} />

@@ -8,7 +8,7 @@
 }
 
 .gray{
-    color: #888888;
+    color: var(--color-gray);
 }
 
 .black{

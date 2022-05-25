@@ -1,18 +1,20 @@
 import classes from "./Icon.module.css";
 import React from "react";
 import * as FontAwesome from "react-icons/fa";
-import { AnimationEnum, useClasses } from "../constants/Constants";
+import { AnimationEnum, ColorEnum, useClasses } from "../constants/Constants";
 
 const Icon = (props: IconProps) => {
     let iconClassName = classes.base;
-    iconClassName += " " + classes[props.style ?? IconStyle.black];
+    iconClassName += " " + useClasses(props.color ?? ColorEnum.black);
     iconClassName += " " + classes[props.size ?? IconSize.small];
     iconClassName += " " + useClasses(props.animation ?? AnimationEnum.static);
 
-    const image = props.image ?? IconImage.edit;
-    const iconComponent = React.createElement(FontAwesome[image], {
-        className: iconClassName,
-    });
+    let iconComponent = <></>
+    if(props.image){
+        iconComponent = React.createElement(FontAwesome[props.image], {
+            className: iconClassName,
+        });
+    }
 
     return iconComponent
 };
@@ -20,7 +22,7 @@ const Icon = (props: IconProps) => {
 export class IconProps {
     image?: IconImage;
     size?: IconSize;
-    style?: IconStyle;
+    color?: ColorEnum;
     animation?: AnimationEnum;
 };
 
@@ -32,13 +34,9 @@ export enum IconImage {
     remove = "FaTrash",
     sort="FaSort",
     sortDown="FaSortDown",
-    spin="FaCircleNotch"
-}
-
-export enum IconStyle {
-    greay = "gray",
-    black = "black",
-    white = "white",
+    spin="FaCircleNotch",
+    user="FaUserAlt",
+    envelope="FaEnvelope",
 }
 
 export enum IconSize {

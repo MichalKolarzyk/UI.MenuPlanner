@@ -1,5 +1,6 @@
-import Label, { LabelSize, LabelStyle } from "../../labels/label/Label";
+import Label, { LabelSize } from "../../labels/label/Label";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
+import { ColorEnum } from "../../constants/Constants";
 
 const LabelFrame = (props: LabelFrameProps) => {
     return (
@@ -9,7 +10,7 @@ const LabelFrame = (props: LabelFrameProps) => {
                     bold={props.upperLabelIsBold}
                     italic={props.upperLabelIsItalic}
                     size={props.upperLabelSize}
-                    style={props.upperLabelStyle}
+                    color={props.upperLabelStyle}
                 >
                     {props.upperLabel}
                 </Label>
@@ -20,7 +21,7 @@ const LabelFrame = (props: LabelFrameProps) => {
                     bold={props.bottomLabelIsBold}
                     italic={props.bottomLabelIsItalic}
                     size={props.bottomLabelSize}
-                    style={props.bottomLabelStyle}
+                    color={props.bottomLabelStyle}
                 >
                     {props.bottomLabel}
                 </Label>
@@ -30,12 +31,12 @@ const LabelFrame = (props: LabelFrameProps) => {
 };
 
 type LabelFrameProps = {
-    upperLabelStyle?: LabelStyle;
+    upperLabelStyle?: ColorEnum;
     upperLabel?: string;
     upperLabelIsBold?: boolean;
     upperLabelIsItalic?: boolean;
     upperLabelSize?: LabelSize;
-    bottomLabelStyle?: LabelStyle;
+    bottomLabelStyle?: ColorEnum;
     bottomLabel?: string;
     bottomLabelIsBold?: boolean;
     bottomLabelIsItalic?: boolean;

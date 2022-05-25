@@ -1,3 +1,5 @@
+@import "../../../../styles/style.css";
+
 .base {
     border-style: none;
     cursor: pointer;
@@ -5,42 +7,42 @@
 }
 
 .accept {
-    background-color: #1cbe3f;
-    color: #e5edf1;
+    background-color: var(--color-green);
+    color: var(--color-white);
 }
 .accept:hover {
-    background-color: #2ccc4e;
-    color: #e5edf1;
+    background-color: var(--color-green-l1);
+    color: var(--color-white);
 }
 .default {
-    background-color: #026aa7;
-    color: #ebf3f8;
+    background-color: var(--color-blue);
+    color: var(--color-white);
 }
 .default:hover {
-    background-color: #04649c;
-    color: #e5edf1;
+    background-color: var(--color-blue-l1);
+    color: var(--color-white);
 }
 .cancel {
-    background-color: #d83b3b;
-    color: #ebf3f8;
+    background-color: var(--color-red);
+    color: var(--color-white);
 }
 .cancel:hover {
-    background-color: #d85353;
-    color: #e5edf1;
+    background-color: var(--color-red-l1);
+    color: var(--color-white);
 }
 .transparent {
-    background-color: transparent;
-    color: gray;
+    background-color: var(--color-transparent);
+    color: var(--color-gray);
 }
 .transparent:hover {
     opacity: 0.9;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--color-transparent-d1);
 }
 .grey {
-    background-color: #f4f5f7;
-    color: #888888;
-    box-shadow: 1px 1px 2px #888888;
+    background-color: var(--color-white);
+    color: var(--color-gray);
+    box-shadow: var(--box-shadow)
 }
 .grey:hover {
-    background-color: #ebecf0;
+    background-color: var(--color-white-l1);
 }

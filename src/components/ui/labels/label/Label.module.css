@@ -3,6 +3,7 @@
     cursor: inherit;
     font-style: normal;
     font-weight: unset;
+    pointer-events: none;
 }
 
 .bold{

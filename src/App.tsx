@@ -1,22 +1,28 @@
-import { useEffect, useState } from "react";
-import ApiMenuPlanner from "./api/ApiMenuPlanner";
-import Dish from "./components/dish/Dish";
-import config from "./config.json";
-import DishModel from "./models/DishModel";
+import React from "react";
 
 function App() {
-    const apiMenuPlanner = new ApiMenuPlanner(config.API_MENU_PLANNER_URL);
-    const [dish, setDish] = useState<DishModel>();
-
-    // useEffect(() => {
-    //     apiMenuPlanner.getDish("627fa36e5435ede271d99fd5").then((value) => {
-    //         console.log(value);
-    //         setDish(value);
-    //     });
-    // }, []);
+    const submitHadler = (event: any, message: string) => {
+        if (event) {
+            event.preventDefault();
+        }
+        console.log(event.target);
+    };
 
 
-    return <div>{!!dish && <Dish dish={dish} />}</div>;
+    const changeHandler = (event: any) => {
+        console.log(event.target);
+    };
+
+
+    return (
+        <form onSubmit={(event:any) => submitHadler(event, "st")}>
+            <div>
+                <input onChange={changeHandler} name="numberOfGuests1" type="number"></input>
+                <input onChange={changeHandler} name="numberOfGuests2" type="number"></input>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    );
 }
 
 export default App;

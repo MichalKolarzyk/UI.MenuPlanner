@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { IconImage } from "../../icons/Icon";
 import { InputType } from "../../inputs/input/Input";
 import SimpleForm, { FormFieldValidationResult } from "./SimpleForm";
 
@@ -11,6 +12,7 @@ const Template: ComponentStory<typeof SimpleForm> = (args) => <SimpleForm {...ar
 
 export const simpleForm = Template.bind({});
 simpleForm.args = {
+    title: "Create Employee",
     onSubmit: (item: any) => {console.log(item)},
     item: {
         id: 123,
@@ -27,6 +29,7 @@ simpleForm.args = {
             property: "firstName",
             text: "Firstname",
             type: InputType.text,
+            image: IconImage.user,
             onValidation: (item: string) => {
                 if(item.match(/\d+/g)){
                     return FormFieldValidationResult.invalidField("Firstname should not contain numbers")
@@ -58,6 +61,7 @@ simpleForm.args = {
         {
             property: "email",
             text: "Email",
+            image: IconImage.envelope,
             onValidation: (item: string) => {
                 if(!item.includes("@")){
                     return FormFieldValidationResult.invalidField("Email should contain @ character")
@@ -71,6 +75,7 @@ simpleForm.args = {
         {
             property: "email2",
             text: "Email 2",
+            image: IconImage.envelope,
             onValidation: (item: string) => {
                 if(!item.includes("@")){
                     return FormFieldValidationResult.invalidField("Email should contain @ character")
