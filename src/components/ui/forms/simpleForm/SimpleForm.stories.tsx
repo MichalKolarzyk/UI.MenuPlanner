@@ -17,8 +17,8 @@ simpleForm.args = {
     item: {
         id: 123,
         firstName: "Michał",
-        lastName: "Kowalski",
-        workStarted: "21.10.2010",
+        lastName: "",
+        workStarted: "2022-10-21",
         email: "michalkowalski@gmail.com",
         email2: "",
         age: 27,
@@ -31,6 +31,9 @@ simpleForm.args = {
             type: InputType.text,
             image: IconImage.user,
             onValidation: (item: string) => {
+                if(item.length < 3){
+                    return FormFieldValidationResult.invalidField("Firstname should have at list 3 characters")
+                }
                 if(item.match(/\d+/g)){
                     return FormFieldValidationResult.invalidField("Firstname should not contain numbers")
                 }
@@ -44,6 +47,9 @@ simpleForm.args = {
             property: "lastName",
             text: "LastName",
             onValidation: (item: string) => {
+                if(item.length < 3){
+                    return FormFieldValidationResult.invalidField("Lastname should have at list 3 characters")
+                }
                 if(item.match(/\d+/g)){
                     return FormFieldValidationResult.invalidField("Lastname should not contain numbers")
                 }

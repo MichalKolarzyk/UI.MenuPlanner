@@ -13,7 +13,7 @@ const LabelInput = (props: LabelInputProps) => {
                     <Label>{props.label}</Label>
                 </Flex>
             </Flex>
-            <Input onChange={props.onChange} options={props.options} type={props.type} isValid={props.isValid}></Input>
+            <Input value={props.value} onChange={props.onChange} options={props.options} type={props.type} isValid={props.isValid}></Input>
             <Flex justify={FlexJustify.right}>
                 <Label color={ColorEnum.redL1}>{props.errorMessage}</Label>
             </Flex>

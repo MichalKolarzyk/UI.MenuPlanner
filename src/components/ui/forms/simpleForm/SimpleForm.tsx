@@ -11,8 +11,13 @@ import Label, { LabelSize } from "../../labels/label/Label";
 
 const SimpleForm = (props: SimpleFormProps) => {
     const [item, setItem] = useState(props.item);
+    const fields = props.fields;
 
-    const onValueUpdatedHandler = (field: FormFieldModel, newValue: any) => {
+    const onFieldChangeHandler = (field: FormFieldModel, newValue: any) => {
+        const result = field.onValidation?.(newValue) ?? FormFieldValidationResult.ValidField;
+        field.isValid = result.isValid;
+        field.errorMessage = result.errorMessage;
+    
         const newItem = { ...item };
         newItem[field.property] = newValue;
         setItem(newItem);
@@ -20,11 +25,26 @@ const SimpleForm = (props: SimpleFormProps) => {
 
     const submitHandler = (event: any) => {
         event.preventDefault();
-        props.onSubmit(item);
+        fields.map(f => onFieldChangeHandler(f, item[f.property]));
+        if(!fields.some(f => f.isValid === false)){
+            props.onSubmit(item);
+        }
+        else{
+            props.onSubmitFail
+        }
     };
 
-    const formFields = props.fields.map((f) => (
-        <FormField field={f} value={item[f.property]} onValueUpdated={onValueUpdatedHandler} />
+    const formFields = fields.map((f) => (
+        <LabelInput
+            onChange={(event) => onFieldChangeHandler(f, event.target.value)}
+            value={item[f.property]}
+            image={f.image}
+            options={f.options}
+            type={f.type}
+            label={f.text}
+            errorMessage={f.errorMessage}
+            isValid={f.isValid}
+        />
     ));
     return (
         <Card color={CardColors.grey}>
@@ -70,43 +90,12 @@ const SimpleForm = (props: SimpleFormProps) => {
     );
 };
 
-const FormField = (props: FormFieldProps) => {
-    const [isValid, setIsValid] = useState(true);
-    const [errorMessage, setErrorMessage] = useState("");
-
-    const inputChangeHanler = (event: any) => {
-        const newValue = event.target.value;
-        const result = props.field.onValidation?.(newValue);
-        setIsValid(result?.isValid ?? true);
-        setErrorMessage(result?.errorMessage ?? "");
-        props.onValueUpdated(props.field, newValue);
-    };
-
-    return (
-        <LabelInput
-            onChange={inputChangeHanler}
-            value={props.value}
-            image={props.field.image}
-            options={props.field.options}
-            type={props.field.type}
-            label={props.field.text}
-            errorMessage={errorMessage}
-            isValid={isValid}
-        />
-    );
-};
-
 type SimpleFormProps = {
     item: any;
     fields: Array<FormFieldModel>;
     title: string;
     onSubmit: (item: any) => void;
-};
-
-type FormFieldProps = {
-    value: any;
-    field: FormFieldModel;
-    onValueUpdated: (field: FormFieldModel, newValue: any) => void;
+    onSubmitFail: () => void;
 };
 
 type FormFieldModel = {
@@ -115,6 +104,8 @@ type FormFieldModel = {
     type?: InputType;
     image?: IconImage;
     options?: Array<string>;
+    isValid?: boolean;
+    errorMessage?: string;
     onValidation?: (item: any) => FormFieldValidationResult;
 };
 
