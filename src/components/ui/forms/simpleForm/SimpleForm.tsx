@@ -119,7 +119,6 @@ export class FormFieldValidationResult {
     }
 
     static ValidField: FormFieldValidationResult = { isValid: true, errorMessage: "" };
-
     static invalidField = (errorMessage: string) => new FormFieldValidationResult(false, errorMessage);
 }
 

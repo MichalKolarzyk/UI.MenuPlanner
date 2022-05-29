@@ -4,14 +4,16 @@ const Card = (props: CardProps) => {
     let className = classes.base;
     className += " " + classes[props.color ?? CardColors.white]
     className += " " + classes[props.shape ?? CardShape.sharp]
+    className += " " + props.className;
 
-    return <div className={className}>{props.children}</div>
+    return <div  className={className}>{props.children}</div>
 }
 
 type CardProps = {
     shape?: CardShape,
     color?: CardColors,
-    children?: any
+    children?: any,
+    className?: string,
 }
 
 export enum CardShape{
