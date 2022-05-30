@@ -5,15 +5,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import Card, { CardColors } from "./components/ui/containers/cards/card/Card";
+import { store } from "./redux";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+
+const app = <Provider store={store}><App/></Provider>
 
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Card color={CardColors.green}>Main<Outlet/></Card>}>
-                    <Route index element={<App></App>}/>
+                    <Route index element={app}/>
                     <Route path="home" element={<Card color={CardColors.grey}>Home</Card>} />
                     <Route path="teams" element={<Card color={CardColors.green}>Teams<Outlet/></Card>}>
                         <Route path=":teamId" element={<Card color={CardColors.green}>Team</Card>} />

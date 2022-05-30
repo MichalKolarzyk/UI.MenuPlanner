@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 import DishModel from "../models/DishModel";
 import RecipeModel from "../models/RecipeModel";
 
@@ -12,24 +12,14 @@ export default class ApiMenuPlanner {
         });
     }
 
-    async getDish(id: string) {
-        try {
-            const response = await this.axiosInstance.get(`/api/dish/${id}`, {});
-            return response.data as DishModel;
-        } catch (error) {
-            console.log(error);
-        }
+    getDish(id: string): Promise<AxiosResponse<DishModel>> {
+        return this.axiosInstance.get(`/api/dish/${id}`, {});
     }
 
-    async createRecipe(recipe: RecipeModel) {
-        try {
-            const response = await this.axiosInstance.post("/api/recipe", {
-                body: recipe,
-            });
-            console.log(response);
-        } catch (error) {
-            console.log(error);
-        }
+    createRecipe(recipe: RecipeModel): Promise<AxiosResponse<RecipeModel, RecipeModel>> {
+        return this.axiosInstance.post<RecipeModel>("/api/recipe", {
+            body: recipe,
+        });
     }
 
     // getTest() {
