@@ -21,14 +21,4 @@ export default class ApiMenuPlanner {
             body: recipe,
         });
     }
-
-    // getTest() {
-    //     this.axiosInstance.get("").then(response => {
-    //         console.log(response);
-    //     }).then(error => {
-    //         console.log(error)
-    //     }).then(() => {
-    //         //always executed
-    //     })
-    // }
 }

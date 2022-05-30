@@ -12,24 +12,19 @@ import { SimpleList, StringList } from "../ui/lists/SimpleList/SimpleList";
 
 const Dish = (props: DishProps) => {
     const [editMode, setEditMode] = useState(false);
-    const [dishBeforeEdit, setDishBeforeEdit] = useState(props.dish);
-    const [dish, setDish] = useState(props.dish);
+    const dish = props.dish
 
     const onEditClickHandler = () => {
         setEditMode(true);
-        setDishBeforeEdit({ ...dish });
-        console.log(dishBeforeEdit);
     };
 
     const onCancelClickHandler = () => {
-        console.log(dishBeforeEdit);
         setEditMode(false);
-        setDish(dish);
+        props.onCancel?.();
     };
 
     const onSaveClickHandler = () => {
         setEditMode(false);
-        setDishBeforeEdit({ ...dish });
     };
 
     const onStepListUpdated = (updatedSteps: Array<string>) => {
@@ -38,7 +33,6 @@ const Dish = (props: DishProps) => {
             return;
         }
         newDish.recipe.steps = updatedSteps;
-        setDish(newDish);
     };
 
     const onIngreadientListUpdated = (updateIngredients: Array<Ingreadient>) => {
@@ -47,7 +41,6 @@ const Dish = (props: DishProps) => {
             return;
         }
         newDish.recipe.ingreadients = updateIngredients;
-        setDish(newDish);
     };
 
     const onEditStepHandler = (index: number) => {
@@ -79,6 +72,7 @@ const Dish = (props: DishProps) => {
         }
         return ingreadient;
     };
+
     if (!dish) {
         return (
             <Card shape={CardShape.sharp} color={CardColors.white}>
@@ -147,8 +141,8 @@ const Dish = (props: DishProps) => {
 
 type DishProps = {
     dish?: DishModel;
-    onSave?: () => {};
-    onCancel?: () => {};
+    onSave?: () => void;
+    onCancel?: () => void;
 };
 
 export default Dish;
