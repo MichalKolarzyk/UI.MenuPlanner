@@ -3,9 +3,10 @@ import DishModel from "../../models/DishModel";
 import Ingreadient from "../../models/IngreadientModel";
 import { ButtonStyle } from "../ui/buttons/button/Button";
 import IconButton from "../ui/buttons/iconButton/IconButton";
+import { AnimationEnum } from "../ui/constants/Constants";
 import Card, { CardColors, CardShape } from "../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../ui/containers/flexes/Flex";
-import { IconImage } from "../ui/icons/Icon";
+import Icon, { IconImage } from "../ui/icons/Icon";
 import Label, { LabelSize } from "../ui/labels/label/Label";
 import { SimpleList, StringList } from "../ui/lists/SimpleList/SimpleList";
 
@@ -33,7 +34,7 @@ const Dish = (props: DishProps) => {
 
     const onStepListUpdated = (updatedSteps: Array<string>) => {
         const newDish = { ...dish };
-        if(!newDish.recipe){
+        if (!newDish.recipe) {
             return;
         }
         newDish.recipe.steps = updatedSteps;
@@ -42,7 +43,7 @@ const Dish = (props: DishProps) => {
 
     const onIngreadientListUpdated = (updateIngredients: Array<Ingreadient>) => {
         const newDish = { ...dish };
-        if(!newDish.recipe){
+        if (!newDish.recipe) {
             return;
         }
         newDish.recipe.ingreadients = updateIngredients;
@@ -50,14 +51,14 @@ const Dish = (props: DishProps) => {
     };
 
     const onEditStepHandler = (index: number) => {
-        if(!dish.recipe){
+        if (!dish?.recipe) {
             return;
         }
         console.log(dish.recipe.steps?.[index]);
     };
 
     const onEditIngreadientHandler = (index: number) => {
-        if(!dish.recipe){
+        if (!dish?.recipe) {
             return;
         }
         console.log(dish.recipe.ingreadients?.[index]);
@@ -78,6 +79,15 @@ const Dish = (props: DishProps) => {
         }
         return ingreadient;
     };
+    if (!dish) {
+        return (
+            <Card shape={CardShape.sharp} color={CardColors.white}>
+                <Flex justify={FlexJustify.center}>
+                    <Icon image={IconImage.spin} animation={AnimationEnum.spin} />
+                </Flex>
+            </Card>
+        );
+    }
 
     return (
         <Card shape={CardShape.sharp} color={CardColors.white}>
@@ -86,7 +96,13 @@ const Dish = (props: DishProps) => {
                     <Label bold={true} size={LabelSize.large}>
                         {dish.recipe?.title ?? ""}
                     </Label>
-                    {!editMode && <IconButton onClick={onEditClickHandler} style={ButtonStyle.transparent} image={IconImage.edit}/>}
+                    {!editMode && (
+                        <IconButton
+                            onClick={onEditClickHandler}
+                            style={ButtonStyle.transparent}
+                            image={IconImage.edit}
+                        />
+                    )}
                 </Flex>
                 <Label size={LabelSize.medium}>{dish.recipe?.description ?? ""}</Label>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize2}>
@@ -108,17 +124,29 @@ const Dish = (props: DishProps) => {
                         onRowEditClick={onEditIngreadientHandler}
                     />
                 </Flex>
-                {editMode && <Flex justify={FlexJustify.spaceBetween}>
-                    <IconButton image={IconImage.save} style={ButtonStyle.accept} onClick={onSaveClickHandler} text="Submit"/>
-                    <IconButton image={IconImage.close} style={ButtonStyle.cancel} onClick={onCancelClickHandler} text="Cancel"/>
-                </Flex>}
+                {editMode && (
+                    <Flex justify={FlexJustify.spaceBetween}>
+                        <IconButton
+                            image={IconImage.save}
+                            style={ButtonStyle.accept}
+                            onClick={onSaveClickHandler}
+                            text="Submit"
+                        />
+                        <IconButton
+                            image={IconImage.close}
+                            style={ButtonStyle.cancel}
+                            onClick={onCancelClickHandler}
+                            text="Cancel"
+                        />
+                    </Flex>
+                )}
             </Flex>
         </Card>
     );
 };
 
 type DishProps = {
-    dish: DishModel;
+    dish?: DishModel;
     onSave?: () => {};
     onCancel?: () => {};
 };
