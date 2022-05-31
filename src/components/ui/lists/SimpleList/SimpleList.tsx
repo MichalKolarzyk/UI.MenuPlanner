@@ -22,17 +22,16 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     };
 
     const onTrashClickHandler = (index: number) => {
-        items?.splice(index);
+        props.onDeleteClick?.(index);
     };
 
     const onEditClickHandler = (index: number) => {
-        props.onRowEditClick?.(index);
+        props.onEditClick?.(index);
     };
 
     const onAddElementHandler = () => {
         if (newItemStr !== null && newItemStr !== "") {
-            const newItem = props.createNewItem(newItemStr);
-            items?.push(newItem);
+            props.onAddNewItem(newItemStr);
         }
         setNewItemStr("");
         setAddingMode(false);
@@ -77,9 +76,7 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
                     <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignLeft}>
                         <Input value={newItemStr} onChange={onNewInputChangeHandler} />
                         <Flex>
-                            <Button onClick={onAddElementHandler}>
-                                Add element
-                            </Button>
+                            <Button onClick={onAddElementHandler}>Add element</Button>
                             <IconButton
                                 shape={ShapeEnum.slightlyRounded}
                                 style={ButtonStyle.cancel}
@@ -136,23 +133,28 @@ const SimpleRow = <T,>(props: SimpleRowProps<T>) => {
 
 export const StringList = (props: StringListProps) => {
     return (
-        <SimpleList
-            itemToString={(item: string) => item}
-            createNewItem={(item: string) => item}
-            title={props.title}
-            isDisabled={props.isDisabled}
-            items={props.items}
-            onRowEditClick={props.onRowEditClick}
-            onRowClick={props.onRowClick}
-        />
+        // <SimpleList
+        //     itemToString={(item: string) => item}
+        //     onAddNewItem={props.onAddNewItem}
+        //     title={props.title}
+        //     isDisabled={props.isDisabled}
+        //     items={props.items}
+        //     onEditClick={props.onEditClick}
+        //     onRowClick={props.onRowClick}
+        //     onDeleteClick={props.onDeleteClick}
+        // />
+
+        <SimpleList {...props} itemToString={(item: string) => item} />
     );
 };
 type StringListProps = {
     title: string;
     items?: Array<string>;
     isDisabled?: boolean;
-    onRowEditClick?: (index: number) => void;
+    onEditClick?: (index: number) => void;
     onRowClick?: (index: number) => void;
+    onAddNewItem: (newItem: string) => void;
+    onDeleteClick?: (index: number) => void;
 };
 
 type SimpleListProps<T> = {
@@ -160,8 +162,9 @@ type SimpleListProps<T> = {
     items?: Array<T>;
     isDisabled?: boolean;
     itemToString: (item: T) => string;
-    createNewItem: (itemAsStr: string) => T;
-    onRowEditClick?: (index: number) => void;
+    onAddNewItem: (newItem: string) => void;
+    onEditClick?: (index: number) => void;
+    onDeleteClick?: (index: number) => void;
     onRowClick?: (index: number) => void;
 };
 

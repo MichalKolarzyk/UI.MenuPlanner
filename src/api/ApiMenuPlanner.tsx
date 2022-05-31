@@ -16,6 +16,10 @@ export default class ApiMenuPlanner {
         return this.axiosInstance.get(`/api/dish/${id}`, {});
     }
 
+    getRecipe(id: string): Promise<AxiosResponse<RecipeModel>>{
+        return this.axiosInstance.get(`/api/recipe/${id}`, {});
+    }
+
     createRecipe(recipe: RecipeModel): Promise<AxiosResponse<RecipeModel, RecipeModel>> {
         return this.axiosInstance.post<RecipeModel>("/api/recipe", {
             body: recipe,

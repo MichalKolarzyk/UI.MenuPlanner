@@ -1,10 +1,10 @@
 import Ingreadient from "./IngreadientModel"
 
-type Recipe = {
+type RecipeModel = {
     title: string,
     description: string,
     ingreadients?: Array<Ingreadient>
     steps?: Array<string>
 }
 
-export default Recipe
+export default RecipeModel

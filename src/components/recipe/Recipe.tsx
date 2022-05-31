@@ -1,6 +1,9 @@
-import { useState } from "react";
-import DishModel from "../../models/DishModel";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Ingreadient from "../../models/IngreadientModel";
+import RecipeModel from "../../models/RecipeModel";
+import { AppDispatch, RootState } from "../../redux";
+import { addStep, fetchRecipe, removeStep } from "../../redux/actions/recipeActions";
 import { ButtonStyle } from "../ui/buttons/button/Button";
 import IconButton from "../ui/buttons/iconButton/IconButton";
 import { AnimationEnum } from "../ui/constants/Constants";
@@ -10,35 +13,42 @@ import Icon, { IconImage } from "../ui/icons/Icon";
 import Label, { LabelSize } from "../ui/labels/label/Label";
 import { SimpleList, StringList } from "../ui/lists/SimpleList/SimpleList";
 
-const Dish = (props: DishProps) => {
+const Recipe = (props: RecipeProps) => {
     const [editMode, setEditMode] = useState(false);
-    const dish = props.dish
+    const recipe = useSelector<RootState, RecipeModel | undefined>((state) => state.recipe.recipe);
+    const dispach = useDispatch<AppDispatch>();
+    const recipeId = props.recipeId
+
+    useEffect(() => {
+        dispach(fetchRecipe(recipeId));
+    }, [dispach]);
+
 
     const onEditClickHandler = () => {
         setEditMode(true);
     };
 
     const onCancelClickHandler = () => {
+        dispach(fetchRecipe(recipeId));
         setEditMode(false);
-        props.onCancel?.();
     };
 
     const onSaveClickHandler = () => {
         setEditMode(false);
     };
 
-    const onEditStepHandler = (index: number) => {
-        if (!dish?.recipe) {
+    const editStepHandler = (index: number) => {
+        if (!recipe) {
             return;
         }
-        console.log(dish.recipe.steps?.[index]);
+        console.log(recipe.steps?.[index]);
     };
 
     const onEditIngreadientHandler = (index: number) => {
-        if (!dish?.recipe) {
+        if (!recipe) {
             return;
         }
-        console.log(dish.recipe.ingreadients?.[index]);
+        console.log(recipe.ingreadients?.[index]);
     };
 
     const newIngreadientCreatedHandler = (itemAsStr: string) => {
@@ -57,7 +67,15 @@ const Dish = (props: DishProps) => {
         return ingreadient;
     };
 
-    if (!dish) {
+    const addNewStepHandler = (itemStr: string) => {
+        dispach(addStep(itemStr));
+    }
+
+    const deleteStepHandler = (index: number) => {
+        dispach(removeStep(index))
+    }
+
+    if (!recipe) {
         return (
             <Card shape={CardShape.sharp} color={CardColors.white}>
                 <Flex justify={FlexJustify.center}>
@@ -72,7 +90,7 @@ const Dish = (props: DishProps) => {
             <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize2}>
                 <Flex justify={FlexJustify.spaceBetween}>
                     <Label bold={true} size={LabelSize.large}>
-                        {dish.recipe?.title ?? ""}
+                        {recipe?.title ?? ""}
                     </Label>
                     {!editMode && (
                         <IconButton
@@ -82,22 +100,24 @@ const Dish = (props: DishProps) => {
                         />
                     )}
                 </Flex>
-                <Label size={LabelSize.medium}>{dish.recipe?.description ?? ""}</Label>
+                <Label size={LabelSize.medium}>{recipe?.description ?? ""}</Label>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize2}>
                     <StringList
                         title="Steps"
-                        items={dish.recipe?.steps}
+                        items={recipe?.steps}
                         isDisabled={!editMode}
-                        onRowEditClick={onEditStepHandler}
-                        onRowClick={onEditStepHandler}
+                        onEditClick={editStepHandler}
+                        onAddNewItem={addNewStepHandler}
+                        onDeleteClick={deleteStepHandler}
+                        onRowClick={editStepHandler}
                     />
                     <SimpleList
                         title="Ingreadients"
-                        items={dish.recipe?.ingreadients}
+                        items={recipe?.ingreadients}
                         isDisabled={!editMode}
                         itemToString={(item) => `${item?.name}: ${item?.amount}`}
-                        createNewItem={newIngreadientCreatedHandler}
-                        onRowEditClick={onEditIngreadientHandler}
+                        onAddNewItem={newIngreadientCreatedHandler}
+                        onEditClick={onEditIngreadientHandler}
                     />
                 </Flex>
                 {editMode && (
@@ -121,10 +141,8 @@ const Dish = (props: DishProps) => {
     );
 };
 
-type DishProps = {
-    dish?: DishModel;
-    onSave?: () => void;
-    onCancel?: () => void;
+type RecipeProps = {
+    recipeId?: string;
 };
 
-export default Dish;
+export default Recipe;
