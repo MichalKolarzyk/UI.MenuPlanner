@@ -8,7 +8,6 @@ function App() {
     const dispach = useDispatch<AppDispatch>();
     const onCancelHandler = () => {
         dispach(fetchDish("627fa36e5435ede271d99fd5"));
-        
     }
 
     useEffect(() => {
@@ -16,7 +15,6 @@ function App() {
     }, [dispach]);
 
     const dish = useSelector<RootState, DishModel | undefined>((state) => state.dish.dish);
-
     return <Dish dish={dish} onCancel={onCancelHandler}></Dish>;
 }
 

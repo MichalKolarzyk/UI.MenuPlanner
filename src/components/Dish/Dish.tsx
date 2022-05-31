@@ -27,22 +27,6 @@ const Dish = (props: DishProps) => {
         setEditMode(false);
     };
 
-    const onStepListUpdated = (updatedSteps: Array<string>) => {
-        const newDish = { ...dish };
-        if (!newDish.recipe) {
-            return;
-        }
-        newDish.recipe.steps = updatedSteps;
-    };
-
-    const onIngreadientListUpdated = (updateIngredients: Array<Ingreadient>) => {
-        const newDish = { ...dish };
-        if (!newDish.recipe) {
-            return;
-        }
-        newDish.recipe.ingreadients = updateIngredients;
-    };
-
     const onEditStepHandler = (index: number) => {
         if (!dish?.recipe) {
             return;
@@ -105,7 +89,6 @@ const Dish = (props: DishProps) => {
                         items={dish.recipe?.steps}
                         isDisabled={!editMode}
                         onRowEditClick={onEditStepHandler}
-                        onListUpdated={onStepListUpdated}
                         onRowClick={onEditStepHandler}
                     />
                     <SimpleList
@@ -114,7 +97,6 @@ const Dish = (props: DishProps) => {
                         isDisabled={!editMode}
                         itemToString={(item) => `${item?.name}: ${item?.amount}`}
                         createNewItem={newIngreadientCreatedHandler}
-                        onListUpdated={onIngreadientListUpdated}
                         onRowEditClick={onEditIngreadientHandler}
                     />
                 </Flex>

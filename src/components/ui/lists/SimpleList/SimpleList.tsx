@@ -10,8 +10,8 @@ import { PaddingEnum, ShapeEnum } from "../../constants/Constants";
 
 export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     const [addingMode, setAddingMode] = useState(false);
-    const [items, setItems] = useState(props.items === undefined ? new Array<T>() : props.items);
     const [newItemStr, setNewItemStr] = useState("");
+    const items = props.items;
 
     const addButtonClickHandler = () => {
         setAddingMode(true);
@@ -22,9 +22,7 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     };
 
     const onTrashClickHandler = (index: number) => {
-        const newItems = items.filter((item, i) => i != index);
-        setItems(newItems);
-        props.onListUpdated?.(newItems);
+        items?.splice(index);
     };
 
     const onEditClickHandler = (index: number) => {
@@ -34,9 +32,7 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     const onAddElementHandler = () => {
         if (newItemStr !== null && newItemStr !== "") {
             const newItem = props.createNewItem(newItemStr);
-            const newItems = [...items, newItem];
-            setItems(newItems);
-            props.onListUpdated?.(newItems);
+            items?.push(newItem);
         }
         setNewItemStr("");
         setAddingMode(false);
@@ -146,7 +142,6 @@ export const StringList = (props: StringListProps) => {
             title={props.title}
             isDisabled={props.isDisabled}
             items={props.items}
-            onListUpdated={props.onListUpdated}
             onRowEditClick={props.onRowEditClick}
             onRowClick={props.onRowClick}
         />
@@ -156,7 +151,6 @@ type StringListProps = {
     title: string;
     items?: Array<string>;
     isDisabled?: boolean;
-    onListUpdated?: (items: Array<string>) => void;
     onRowEditClick?: (index: number) => void;
     onRowClick?: (index: number) => void;
 };
@@ -167,7 +161,6 @@ type SimpleListProps<T> = {
     isDisabled?: boolean;
     itemToString: (item: T) => string;
     createNewItem: (itemAsStr: string) => T;
-    onListUpdated?: (items: Array<T>) => void;
     onRowEditClick?: (index: number) => void;
     onRowClick?: (index: number) => void;
 };
