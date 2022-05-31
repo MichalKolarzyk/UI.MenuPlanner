@@ -7,12 +7,15 @@ import Label, { LabelSize } from "../../labels/label/Label";
 import classes from "./Table.module.css";
 
 const Table = (props: TableProps) => {
-    const [items, setItems] = useState(props.items);
+    const items = props.items;
     const [columns, setColumns] = useState(props.columns);
 
     const sortHandler = (column: Column) => {
-        const newItems = [...items.sort((a, b) => columnSort(column, a, b))];
-        setItems(newItems);
+        if(!items){
+            return;
+        }
+        //const newItems = [...items.sort((a, b) => columnSort(column, a, b))];
+        //setItems(newItems);
 
         const newColumns = [...columns];
         newColumns.map((c) => (c.name == column.name ? (c.sorted = true) : (c.sorted = false)));
@@ -27,10 +30,16 @@ const Table = (props: TableProps) => {
         return column.sorter(a[column.property], b[column.property]);
     };
 
+    if(!items){
+        return <div>Loading...</div>
+    }
+
     const header = columns.map((col, index) => (
         <th className={classes.headerCell} key={index}>
             <Flex>
-            <Label size={LabelSize.medium} bold italic>{col.name}</Label>
+                <Label size={LabelSize.medium} bold italic>
+                    {col.name}
+                </Label>
                 <IconButton
                     onClick={() => sortHandler(col)}
                     image={col.sorted ? IconImage.sortDown : IconImage.sort}
@@ -40,16 +49,14 @@ const Table = (props: TableProps) => {
         </th>
     ));
     return (
-        <>
-            <table className={classes.table}>
-                <thead className={classes.header}>{header}</thead>
-                <tbody>
-                    {items.map((item, index) => (
-                        <TableRow key={index} item={item} onRowClick={props.onRowClick} columns={props.columns} />
-                    ))}
-                </tbody>
-            </table>
-        </>
+        <table className={classes.table}>
+            <thead className={classes.header}>{header}</thead>
+            <tbody>
+                {items.map((item, index) => (
+                    <TableRow key={index} item={item} onRowClick={props.onRowClick} columns={props.columns} />
+                ))}
+            </tbody>
+        </table>
     );
 };
 
@@ -69,7 +76,7 @@ const TableRow = (props: RowProps) => {
 };
 
 type TableProps = {
-    items: Array<any>;
+    items?: Array<any>;
     columns: Array<Column>;
     defaultSorter: (a: any, b: any) => number;
     onRowClick?: (row: any) => void;

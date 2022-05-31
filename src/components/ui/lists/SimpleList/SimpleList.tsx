@@ -55,39 +55,37 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     ));
 
     return (
-        <Card shape={CardShape.sharp} color={CardColors.grey}>
+        <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
+            <Label bold size={LabelSize.large}>
+                {props.title}
+            </Label>
             <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-                <Label bold={true} size={LabelSize.large}>
-                    {props.title}
-                </Label>
-                <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-                    {itemView}
-                </Flex>
-                {!(props.isDisabled ?? true) && !addingMode && (
-                    <IconButton
-                        padding={PaddingEnum.paddingHalf}
-                        image={IconImage.add}
-                        text="Add"
-                        onClick={addButtonClickHandler}
-                    />
-                )}
-
-                {!(props.isDisabled ?? true) && addingMode && (
-                    <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignLeft}>
-                        <Input value={newItemStr} onChange={onNewInputChangeHandler} />
-                        <Flex>
-                            <Button onClick={onAddElementHandler}>Add element</Button>
-                            <IconButton
-                                shape={ShapeEnum.slightlyRounded}
-                                style={ButtonStyle.cancel}
-                                image={IconImage.close}
-                                onClick={closeButtonClickHandler}
-                            />
-                        </Flex>
-                    </Flex>
-                )}
+                {itemView}
             </Flex>
-        </Card>
+            {!(props.isDisabled ?? true) && !addingMode && (
+                <IconButton
+                    padding={PaddingEnum.paddingHalf}
+                    image={IconImage.add}
+                    text="Add"
+                    onClick={addButtonClickHandler}
+                />
+            )}
+
+            {!(props.isDisabled ?? true) && addingMode && (
+                <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignLeft}>
+                    <Input value={newItemStr} onChange={onNewInputChangeHandler} />
+                    <Flex>
+                        <Button onClick={onAddElementHandler}>Add element</Button>
+                        <IconButton
+                            shape={ShapeEnum.slightlyRounded}
+                            style={ButtonStyle.cancel}
+                            image={IconImage.close}
+                            onClick={closeButtonClickHandler}
+                        />
+                    </Flex>
+                </Flex>
+            )}
+        </Flex>
     );
 };
 
@@ -132,20 +130,7 @@ const SimpleRow = <T,>(props: SimpleRowProps<T>) => {
 };
 
 export const StringList = (props: StringListProps) => {
-    return (
-        // <SimpleList
-        //     itemToString={(item: string) => item}
-        //     onAddNewItem={props.onAddNewItem}
-        //     title={props.title}
-        //     isDisabled={props.isDisabled}
-        //     items={props.items}
-        //     onEditClick={props.onEditClick}
-        //     onRowClick={props.onRowClick}
-        //     onDeleteClick={props.onDeleteClick}
-        // />
-
-        <SimpleList {...props} itemToString={(item: string) => item} />
-    );
+    return <SimpleList {...props} itemToString={(item: string) => item} />;
 };
 type StringListProps = {
     title: string;

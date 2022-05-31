@@ -1,6 +1,13 @@
 import { apiMenuPlanner } from "../../../api";
 import RecipeModel from "../../../models/RecipeModel";
-import { SET_RECIPE, ADD_STEP, REMOVE_STEP } from "../../actionTypes";
+import { SET_RECIPE, ADD_STEP, REMOVE_STEP, SET_RECIPES } from "../../actionTypes";
+
+export const setRecipes = (payload: Array<RecipeModel>) => {
+    return {
+        type: SET_RECIPES,
+        payload,
+    };
+};
 
 export const setRecipe = (payload: RecipeModel) => {
     return {
@@ -22,6 +29,24 @@ export const removeStep = (payload: number) => {
         payload,
     }
 }
+
+export const patchRecipe = (recipe? : RecipeModel) => {
+    return async (dispach : any) => {
+        if(!recipe){
+            return;
+        }
+        const response = await apiMenuPlanner.patchRecipe(recipe);
+        //dispach(setRecipe(response.data));
+    };
+}
+
+export const fetchRecipes = () => {
+    return async (dispach : any) => {
+        const response = await apiMenuPlanner.getRecipes();
+
+        dispach(setRecipes(response.data));
+    };
+};
 
 export const fetchRecipe = (id?: string) => {
     return async (dispach : any) => {

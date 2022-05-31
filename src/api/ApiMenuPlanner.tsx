@@ -20,9 +20,15 @@ export default class ApiMenuPlanner {
         return this.axiosInstance.get(`/api/recipe/${id}`, {});
     }
 
+    getRecipes(): Promise<AxiosResponse<Array<RecipeModel>>>{
+        return this.axiosInstance.get(`/api/recipe`, {});
+    }
+
+    patchRecipe(recipe: RecipeModel): Promise<AxiosResponse<string>> {
+        return this.axiosInstance.put<string>("/api/recipe", recipe);
+    }
+
     createRecipe(recipe: RecipeModel): Promise<AxiosResponse<RecipeModel, RecipeModel>> {
-        return this.axiosInstance.post<RecipeModel>("/api/recipe", {
-            body: recipe,
-        });
+        return this.axiosInstance.post<RecipeModel>("/api/recipe", recipe);
     }
 }
