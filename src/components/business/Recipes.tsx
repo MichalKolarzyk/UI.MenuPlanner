@@ -39,7 +39,6 @@ const Recipes = () => {
                 ]}
                 items={recipes}
             />
-            <Outlet />
         </Flex>
     );
 };

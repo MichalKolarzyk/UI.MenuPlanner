@@ -1,6 +1,5 @@
 .base {
-    padding: 1em;
-    box-shadow: 1px 1px 2px #888888;
+
 }
 
 .white {
@@ -14,10 +13,13 @@
 .green {
     background-color: #a6f5b7;
 }
+.transparent{
+    background-color: transparent;
+}
 
 .sharp {
-    border-radius: 3px;
+    border-radius: 0px;
 }
 .roundedCorners {
-    border-radius: 7px;
+    border-radius: 4px;
 }

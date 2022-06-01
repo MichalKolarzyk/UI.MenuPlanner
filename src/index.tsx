@@ -11,6 +11,8 @@ import Login from "./components/business/Login";
 import Recipes from "./components/business/Recipes";
 import Recipe from "./components/business/Recipe";
 import Registration from "./components/business/Registration";
+import Main from "./components/business/Main";
+import EditStep from "./components/business/EditStep";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -21,10 +23,12 @@ root.render(
                 <Routes>
                     <Route path="login" element={<Login/>}/>
                     <Route path="registration" element={<Registration/>}/>
-                    <Route path="" element={<Card><Label bold size={LabelSize.large}>Main</Label><Outlet/></Card>}>
-                        <Route path="recipes" element={<Recipes/>} >
-                            <Route path=":recipeId" element={<Recipe/>} />
+                    <Route path="" element={<Main/>}>
+                        <Route path="recipes" element={<Recipes/>} />
+                        <Route path="recipes/:recipeId" element={<Recipe/>} >
+                            <Route path="step/:stepIndex" element={<EditStep />}/>
                         </Route>
+
                         <Route path="teams" element={<Card color={CardColors.green}>Teams<Outlet/></Card>}>
                             <Route path=":id" element={<Card color={CardColors.green}>Team</Card>} />
                             <Route path="new" element={<Card color={CardColors.green}>New team form</Card>} />

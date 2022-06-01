@@ -26,6 +26,11 @@ export enum ShapeEnum {
     elipse = "shape_elipse",
 }
 
+export enum BoxShadowEnum{
+    None = "boxshadow_none",
+    light = "boxshadow_light"
+}
+
 export enum ColorEnum {
     green = "color_green",
     greenL1= "color_greenL1",

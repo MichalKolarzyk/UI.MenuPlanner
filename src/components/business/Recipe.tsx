@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import Ingreadient from "../../models/IngreadientModel";
 import RecipeModel from "../../models/RecipeModel";
 import { AppDispatch, RootState } from "../../redux";
 import { addStep, fetchRecipe, patchRecipe, removeStep } from "../../redux/actions/recipeActions";
 import { ButtonStyle } from "../ui/buttons/button/Button";
 import IconButton from "../ui/buttons/iconButton/IconButton";
-import { AnimationEnum } from "../ui/constants/Constants";
+import { AnimationEnum, PaddingEnum } from "../ui/constants/Constants";
+import Card from "../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../ui/containers/flexes/Flex";
 import Icon, { IconImage } from "../ui/icons/Icon";
 import Label, { LabelSize } from "../ui/labels/label/Label";
@@ -15,6 +16,7 @@ import { SimpleList, StringList } from "../ui/lists/SimpleList/SimpleList";
 
 const Recipe = () => {
     const [editMode, setEditMode] = useState(false);
+    const navigator = useNavigate();
     const { recipeId } = useParams();
     const recipe = useSelector<RootState, RecipeModel | undefined>((state) => state.recipe.recipe);
     const dispach = useDispatch<AppDispatch>();
@@ -43,7 +45,7 @@ const Recipe = () => {
         if (!recipe) {
             return;
         }
-        console.log(recipe.steps?.[index]);
+        navigator(`step/${index}`)
     };
 
     const onEditIngreadientHandler = (index: number) => {
@@ -87,6 +89,7 @@ const Recipe = () => {
 
     return (
         <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize2}>
+            <Outlet/>
             <Flex justify={FlexJustify.spaceBetween}>
                 <Label bold={true} size={LabelSize.large}>
                     {recipe?.title ?? ""}

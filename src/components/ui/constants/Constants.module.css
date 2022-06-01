@@ -39,6 +39,14 @@
     border-radius: 50%;
 }
 
+.boxshadow_none{
+    box-shadow: none;
+}
+
+.boxshadow_light{
+    box-shadow: 1px 1px 2px #888888;
+}
+
 .color_green { color: var(--color-green) }
 .color_greenL1{ color: var(--color-green-l1) }
 .color_blue{ color: var(--color-blue) }
