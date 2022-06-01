@@ -47,6 +47,12 @@
     box-shadow: 1px 1px 2px #888888;
 }
 
+.zIndex0{z-index: 0;}
+.zIndex10{z-index: 10;}
+.zIndex20{z-index: 20;}
+.zIndex30{z-index: 30;}
+.zIndex40{z-index: 40;}
+
 .color_green { color: var(--color-green) }
 .color_greenL1{ color: var(--color-green-l1) }
 .color_blue{ color: var(--color-blue) }
@@ -69,5 +75,19 @@
     }
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  .animation_slideDown{
+    animation: slide-down 100ms ease-out forwards;
+  }
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-2em);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }

@@ -10,7 +10,7 @@ const Main = () => {
 
     return (
         <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-            <Card color={CardColors.grey} boxShadow={BoxShadowEnum.None} padding={PaddingEnum.paddingZero}>
+            <Card color={CardColors.grey} boxShadow={BoxShadowEnum.none} padding={PaddingEnum.paddingZero}>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
                     <Flex justify={FlexJustify.center}>
                         <Label italic size={LabelSize.large}>

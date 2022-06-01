@@ -1,6 +1,6 @@
 import { apiMenuPlanner } from "../../../api";
 import RecipeModel from "../../../models/RecipeModel";
-import { SET_RECIPE, ADD_STEP, REMOVE_STEP, SET_RECIPES } from "../../actionTypes";
+import { SET_RECIPE, ADD_STEP, REMOVE_STEP, SET_RECIPES, UPDATE_STEP } from "../../actionTypes";
 
 export const setRecipes = (payload: Array<RecipeModel>) => {
     return {
@@ -20,6 +20,13 @@ export const addStep = (payload: string) => {
     return {
         type: ADD_STEP,
         payload,
+    }
+}
+
+export const updateStep = (index: number, value: string) => {
+    return {
+        type: UPDATE_STEP,
+        payload: {index: index, value: value}
     }
 }
 

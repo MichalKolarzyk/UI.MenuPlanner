@@ -1,5 +1,5 @@
 import RecipeModel from "../../models/RecipeModel";
-import { ADD_STEP, SET_RECIPE, REMOVE_STEP, SET_RECIPES } from "../actionTypes";
+import { ADD_STEP, SET_RECIPE, REMOVE_STEP, SET_RECIPES, UPDATE_STEP } from "../actionTypes";
 
 export class RecipeReducerState {
     recipe?: RecipeModel;
@@ -27,6 +27,16 @@ const recipeReducer = (state: RecipeReducerState = initialState, action: any) : 
                 recipe: {
                     ...state.recipe,
                     steps: [...state.recipe?.steps ?? [], payload]
+                } as RecipeModel
+            }
+        case UPDATE_STEP:
+            return{
+                ...state,
+                recipe: {
+                    ...state.recipe,
+                    steps: state.recipe?.steps?.map?.((item, index) => {
+                        return index === payload.index ? payload.value : item 
+                    })
                 } as RecipeModel
             }
         case REMOVE_STEP:

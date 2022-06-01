@@ -1,4 +1,4 @@
-import { BoxShadowEnum, PaddingEnum, useClasses } from '../../../constants/Constants';
+import { BoxShadowEnum, PaddingEnum, useClasses, ZIndexEnum } from '../../../constants/Constants';
 import classes from './Card.module.css'
 
 const Card = (props: CardProps) => {

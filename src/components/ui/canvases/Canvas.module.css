@@ -1,0 +1,42 @@
+.base {
+    position: fixed;
+}
+
+.transparent{
+  background-color: transparent;
+}
+
+.lightOpacity{
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.extraSmall {
+  top: 5vh;
+  left: 35%;
+  width: 30%;
+}
+
+.small {
+  top: 5vh;
+  left: 30%;
+  width: 40%;
+}
+
+.medium {
+    top: 5vh;
+    left: 15%;
+    width: 70%;
+}
+
+.large {
+    top: 5vh;
+    left: 5%;
+    width: 90%;
+}
+
+.fullscreen {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}

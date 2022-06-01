@@ -1,12 +1,14 @@
 import ReactDOM from "react-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import RecipeModel from "../../models/RecipeModel";
 import { overlayPortal } from "../../portals";
 import { RootState } from "../../redux";
-import Backdrop from "../ui/backdrops/Backdrop";
-import Card from "../ui/containers/cards/card/Card";
-import Flex, { FlexAlignItems, FlexJustify, FlexStyle } from "../ui/containers/flexes/Flex";
+import { updateStep } from "../../redux/actions/recipeActions";
+import Canvas, { CanvasOpacity, CanvasSize } from "../ui/canvases/Canvas";
+import { AnimationEnum, ZIndexEnum } from "../ui/constants/Constants";
+import Card, { CardColors } from "../ui/containers/cards/card/Card";
+import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../ui/containers/flexes/Flex";
 import Input from "../ui/inputs/input/Input";
 import Label, { LabelSize } from "../ui/labels/label/Label";
 
@@ -15,8 +17,14 @@ const EditStep = () => {
     const index: number = Number(stepIndex);
     const recipe = useSelector<RootState, RecipeModel | undefined>((state) => state.recipe.recipe);
     const navigate = useNavigate();
+    const dispach = useDispatch();
     const backdropClick = () => {
         navigate("../");
+    };
+
+    const inputChangeHandler = (event: any) => {
+        const newValue = event.target.value;
+        dispach(updateStep(index, newValue));
     };
 
     const portal = overlayPortal;
@@ -25,16 +33,19 @@ const EditStep = () => {
     }
 
     const element = (
-        <Backdrop onClick={backdropClick}>
-            <Flex style={FlexStyle.column} justify={FlexJustify.center} alignItems={FlexAlignItems.alignCenter}>
+        <>
+            <Canvas zIndex={ZIndexEnum.zIndex20} onClick={backdropClick} />
+            <Canvas zIndex={ZIndexEnum.zIndex30} size={CanvasSize.small} animation={AnimationEnum.slideDown}>
                 <Card>
-                    <Flex style={FlexStyle.column}>
-                        <Label size={LabelSize.medium} bold >Edit step</Label>
-                        <Input value={recipe?.steps?.[index]} />
+                    <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize2}>
+                        <Label size={LabelSize.medium} bold>
+                            Edit step
+                        </Label>
+                        <Input value={recipe?.steps?.[index]} onChange={inputChangeHandler} />
                     </Flex>
                 </Card>
-            </Flex>
-        </Backdrop>
+            </Canvas>
+        </>
     );
     return ReactDOM.createPortal(element, portal);
 };

@@ -3,6 +3,7 @@ import classes from "./Constants.module.css";
 export enum AnimationEnum {
     static = "",
     spin = "animation_spin",
+    slideDown="animation_slideDown",
 }
 
 export enum FontsizeEnum {
@@ -27,8 +28,16 @@ export enum ShapeEnum {
 }
 
 export enum BoxShadowEnum{
-    None = "boxshadow_none",
+    none = "boxshadow_none",
     light = "boxshadow_light"
+}
+
+export enum ZIndexEnum{
+    zIndex0 = "zIndex0",
+    zIndex10 = "zIndex10",
+    zIndex20 = "zIndex20",
+    zIndex30 = "zIndex30",
+    zIndex40 = "zIndex40",
 }
 
 export enum ColorEnum {
