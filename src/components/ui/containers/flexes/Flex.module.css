@@ -15,6 +15,10 @@
 .alignCenter {
     align-items: center;
 }
+
+.alignStretch{
+    align-items: stretch;
+}
 .spaceBetween {
     justify-content: space-between;
 }

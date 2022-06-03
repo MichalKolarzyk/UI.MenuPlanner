@@ -4,7 +4,7 @@ import IconButton from "../ui/buttons/iconButton/IconButton";
 import Canvas, { CanvasSize } from "../ui/canvases/Canvas";
 import { AnimationEnum } from "../ui/constants/Constants";
 import Card, { CardColors } from "../ui/containers/cards/card/Card";
-import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../ui/containers/flexes/Flex";
+import Flex, { FlexAlignItems, FlexGapSize, FlexStyle } from "../ui/containers/flexes/Flex";
 import { IconImage } from "../ui/icons/Icon";
 import { InputType } from "../ui/inputs/input/Input";
 import LabelInput from "../ui/inputs/labelInput/LabelInput";

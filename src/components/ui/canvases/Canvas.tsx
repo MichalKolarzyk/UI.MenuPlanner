@@ -3,8 +3,10 @@ import classes from "./Canvas.module.css";
 
 const Canvas = (props: CanvasProps) => {
     let className = classes.base;
+    className += " " + classes[props.position ?? CanvasPosition.fixed];
     className += " " + classes[props.size ?? CanvasSize.fullscreen];
     className += " " + classes[props.opacity ?? CanvasOpacity.light];
+    className += " " + classes[props.hight ?? CanvasHight.hightNone];
     className += " " + useClasses(props.zIndex ?? ZIndexEnum.zIndex20);
     className += " " + useClasses(props.animation ?? AnimationEnum.static);
 
@@ -22,6 +24,8 @@ export class CanvasProps {
     size?: CanvasSize;
     opacity?: CanvasOpacity;
     animation?: AnimationEnum;
+    position?: CanvasPosition;
+    hight?: CanvasHight;
 }
 
 export enum CanvasSize {
@@ -38,7 +42,16 @@ export enum CanvasOpacity{
 }
 
 export enum CanvasPosition{
-
+    unset = "unset",
+    fixed = "fixed",
+}
+export enum CanvasHight {
+    hightNone = "",
+    hight20 = "hight20",
+    hight40 = "hight40",
+    hight60 = "hight60",
+    hight80 = "hight80",
+    hight100 = "hight100",
 }
 
 export default Canvas;

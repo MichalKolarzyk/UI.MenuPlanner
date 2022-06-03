@@ -4,7 +4,7 @@ import Label, { LabelSize } from "../../labels/label/Label";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import IconButton from "../../buttons/iconButton/IconButton";
 import { IconImage } from "../../icons/Icon";
-import Input from "../../inputs/input/Input";
+import Input, { InputType } from "../../inputs/input/Input";
 import Button, { ButtonStyle } from "../../buttons/button/Button";
 import { PaddingEnum, ShapeEnum } from "../../constants/Constants";
 
@@ -73,7 +73,7 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
 
             {!(props.isDisabled ?? true) && addingMode && (
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignLeft}>
-                    <Input value={newItemStr} onChange={onNewInputChangeHandler} />
+                    <Input type={InputType.textarea} value={newItemStr} onChange={onNewInputChangeHandler} />
                     <Flex>
                         <Button onClick={onAddElementHandler}>Add element</Button>
                         <IconButton

@@ -27,7 +27,7 @@ const IconButton = (props: IconButtonProps) => {
 
     
     return (
-        <Button padding={props.padding} onClick={props.onClick} style={props.style} shape={props.shape}>
+        <Button submit={props.submit} padding={props.padding} onClick={props.onClick} style={props.style} shape={props.shape}>
             <Flex style={FlexStyle.row} gapSize={FlexGapSize.gapSize1}>
                 {props.image && <Icon color={iconColor} animation={props.iconAnimation} size={iconSize} image={props.image} />}
                 {props.text && <Label size={labelSize} color={labelStyle}>
@@ -47,6 +47,7 @@ export class IconButtonProps {
     padding?: PaddingEnum;
     iconAnimation?: AnimationEnum;
     onClick?: (event?: any) => void;
+    submit?: boolean;
 };
 
 export enum IconButtonSize {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ButtonStyle } from "../../buttons/button/Button";
 import IconButton from "../../buttons/iconButton/IconButton";
-import { ShapeEnum } from "../../constants/Constants";
+import { PaddingEnum, ShapeEnum } from "../../constants/Constants";
 import Card, { CardColors } from "../../containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import { IconImage } from "../../icons/Icon";
@@ -17,7 +17,7 @@ const SimpleForm = (props: SimpleFormProps) => {
         const result = field.onValidation?.(newValue) ?? FormFieldValidationResult.ValidField;
         field.isValid = result.isValid;
         field.errorMessage = result.errorMessage;
-    
+
         const newItem = { ...item };
         newItem[field.property] = newValue;
         setItem(newItem);
@@ -25,16 +25,18 @@ const SimpleForm = (props: SimpleFormProps) => {
 
     const submitHandler = (event: any) => {
         event.preventDefault();
-        fields.map(f => onFieldChangeHandler(f, item[f.property]));
-        if(!fields.some(f => f.isValid === false)){
-            props.onSubmit(item);
+        if (!fields) {
+            return;
         }
-        else{
-            props.onSubmitFail
+        fields.map((f) => onFieldChangeHandler(f, item[f.property]));
+        if (!fields.some((f) => f.isValid === false)) {
+            props.onSubmit?.(item);
+        } else {
+            props.onSubmitFail?.();
         }
     };
 
-    const formFields = fields.map((f) => (
+    const formFields = fields?.map((f) => (
         <LabelInput
             onChange={(event) => onFieldChangeHandler(f, event.target.value)}
             value={item[f.property]}
@@ -47,55 +49,54 @@ const SimpleForm = (props: SimpleFormProps) => {
         />
     ));
     return (
-        <Card color={CardColors.grey}>
-            <Flex alignItems={FlexAlignItems.alignRight} justify={FlexJustify.spaceBetween}>
-                <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize3}>
-                    <Label bold size={LabelSize.medium}>
-                        {props.title}
-                    </Label>
-                    <form onSubmit={submitHandler}>
+        <Card color={CardColors.grey} padding={PaddingEnum.paddingOne}>
+            <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize3}>
+                <Label bold size={LabelSize.medium}>
+                    {props.title}
+                </Label>
+                <form onSubmit={submitHandler}>
+                    <Flex
+                        style={FlexStyle.column}
+                        alignItems={FlexAlignItems.alignUnset}
+                        gapSize={FlexGapSize.gapSize3}
+                    >
                         <Flex
                             style={FlexStyle.column}
+                            gapSize={FlexGapSize.gapSize1}
                             alignItems={FlexAlignItems.alignUnset}
-                            gapSize={FlexGapSize.gapSize3}
                         >
-                            <Flex
-                                style={FlexStyle.column}
-                                gapSize={FlexGapSize.gapSize1}
-                                alignItems={FlexAlignItems.alignLeft}
-                            >
-                                {formFields}
-                            </Flex>
-                            <Flex>
-                                <IconButton
-                                    shape={ShapeEnum.slightlyRounded}
-                                    image={IconImage.save}
-                                    style={ButtonStyle.accept}
-                                    text="Submit"
-                                />
-                            </Flex>
+                            {formFields}
                         </Flex>
-                    </form>
-                </Flex>
-                <Flex>
-                    <IconButton
-                        shape={ShapeEnum.slightlyRounded}
-                        style={ButtonStyle.cancel}
-                        image={IconImage.close}
-                        text="Cancel"
-                    />
-                </Flex>
+                        <Flex justify={FlexJustify.spaceBetween}>
+                            <IconButton
+                                shape={ShapeEnum.slightlyRounded}
+                                image={IconImage.save}
+                                style={ButtonStyle.accept}
+                                text="Submit"
+                                submit
+                            />
+                            <IconButton
+                                shape={ShapeEnum.slightlyRounded}
+                                onClick={props.onCancelClick}
+                                style={ButtonStyle.cancel}
+                                image={IconImage.close}
+                                text="Cancel"
+                            />
+                        </Flex>
+                    </Flex>
+                </form>
             </Flex>
         </Card>
     );
 };
 
 type SimpleFormProps = {
-    item: any;
-    fields: Array<FormFieldModel>;
-    title: string;
-    onSubmit: (item: any) => void;
-    onSubmitFail: () => void;
+    item?: any;
+    fields?: Array<FormFieldModel>;
+    title?: string;
+    onSubmit?: (item: any) => void;
+    onSubmitFail?: () => void;
+    onCancelClick?: () => void;
 };
 
 type FormFieldModel = {

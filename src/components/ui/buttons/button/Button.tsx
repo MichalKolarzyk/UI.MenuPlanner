@@ -10,7 +10,7 @@ const Button = (props: ButtonProps) => {
     className += " " + useClasses(props.padding ?? PaddingEnum.paddingTreeQuarters);
 
     return (
-        <button className={className} onClick={props.onClick}>
+        <button type={props.submit ? "submit" : "button"} className={className} onClick={props.onClick}>
             {props.children}
         </button>
     );
@@ -23,6 +23,7 @@ export class ButtonProps {
     size?: FontsizeEnum;
     shape?: ShapeEnum;
     padding?: PaddingEnum;
+    submit?: boolean
 };
 
 export enum ButtonStyle {

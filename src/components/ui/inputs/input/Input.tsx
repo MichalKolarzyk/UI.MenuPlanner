@@ -1,15 +1,19 @@
 import EnumInput from "./enumInput/EnumInput";
 import classes from "./Input.module.css";
+import TextareaInput from "./textareaInput/TextareaInput";
 
 const Input = (props: InputProps) => {
     let className = classes.base;
     className += " " + classes[(props.isValid ?? true) ? "valid" : "invalid"]
 
     if(props.type === InputType.enum){
-        return <EnumInput className={className} options={props.options} onChange={props.onChange} value={props.value}/>
+        return <EnumInput disabled={props.disabled} className={className} options={props.options} onChange={props.onChange} value={props.value}/>
+    }
+    else if(props.type === InputType.textarea){
+        return <TextareaInput disabled={props.disabled} className={className} onChange={props.onChange} value={props.value}/>
     }
 
-    return <input onChange={props.onChange} value={props.value} className={className} type={props.type}/>;
+    return <input disabled={props.disabled} onChange={props.onChange} value={props.value} className={className} type={props.type}/>;
 };
 
 type InputProps = {
@@ -18,6 +22,7 @@ type InputProps = {
     value?: string;
     options?: Array<string>
     onChange?: (event: any) => void
+    disabled?: boolean;
 };
 
 export enum InputType {
@@ -27,6 +32,7 @@ export enum InputType {
     password = "password",
     email = "email",
     text = "text",
+    textarea = "textarea",
 }
 
 export default Input;
