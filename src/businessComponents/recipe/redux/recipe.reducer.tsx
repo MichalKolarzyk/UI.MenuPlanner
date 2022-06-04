@@ -1,16 +1,13 @@
-import RecipeModel from "../../models/RecipeModel";
+import RecipeModel from "../../../models/RecipeModel";
 import {
-    ADD_STEP,
+    ADD_RECIPE_STEP,
     SET_RECIPE,
-    REMOVE_STEP,
-    SET_RECIPES,
-    UPDATE_STEP,
+    REMOVE_RECIPE_STEP,
+    UPDATE_RECIPE_STEP,
     SET_RECIPE_EDIT_MODE,
     SET_RECIPE_IS_LOADING,
-    SET_CREATED_RECIPE,
-    DELETE_RECIPE,
-    SET_SORTED_BY,
-} from "../actionTypes";
+    SET_NEWRECIPE,
+} from "../../../redux/actionTypes";
 
 export class RecipeReducerState {
     recipe?: RecipeModel;
@@ -26,17 +23,12 @@ export const initialState = new RecipeReducerState();
 const recipeReducer = (state: RecipeReducerState = initialState, action: any): RecipeReducerState => {
     const { payload, type } = action;
     switch (type) {
-        case SET_RECIPES:
-            return {
-                ...state,
-                recipes: payload,
-            };
         case SET_RECIPE:
             return {
                 ...state,
                 recipe: payload,
             };
-        case ADD_STEP:
+        case ADD_RECIPE_STEP:
             return {
                 ...state,
                 recipe: {
@@ -44,7 +36,7 @@ const recipeReducer = (state: RecipeReducerState = initialState, action: any): R
                     steps: [...(state.recipe?.steps ?? []), payload],
                 } as RecipeModel,
             };
-        case UPDATE_STEP:
+        case UPDATE_RECIPE_STEP:
             return {
                 ...state,
                 recipe: {
@@ -54,7 +46,7 @@ const recipeReducer = (state: RecipeReducerState = initialState, action: any): R
                     }),
                 } as RecipeModel,
             };
-        case REMOVE_STEP:
+        case REMOVE_RECIPE_STEP:
             return {
                 ...state,
                 recipe: {
@@ -72,16 +64,10 @@ const recipeReducer = (state: RecipeReducerState = initialState, action: any): R
                 ...state,
                 isLoading: payload,
             };
-        case SET_CREATED_RECIPE: {
+        case SET_NEWRECIPE: {
             return {
                 ...state,
                 createdRecipe: payload,
-            };
-        }
-        case SET_SORTED_BY: {
-            return {
-                ...state,
-                sortedBy: payload,
             };
         }
         default:

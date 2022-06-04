@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import DishModel from "../models/DishModel";
 import RecipeModel from "../models/RecipeModel";
-import { RecipeRequest } from "./Requests";
+import { RecipeRequest } from "./requests";
 
 export default class ApiMenuPlanner {
     axiosInstance: AxiosInstance;

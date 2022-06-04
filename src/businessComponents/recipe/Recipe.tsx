@@ -4,7 +4,7 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 import Ingreadient from "../../models/IngreadientModel";
 import RecipeModel from "../../models/RecipeModel";
 import { AppDispatch, RootState } from "../../redux";
-import { addStep, deleteRecipe, fetchRecipe, patchRecipe, removeStep, setEditMode } from "../../redux/actions/recipeActions";
+import { addStep, deleteRecipe, fetchRecipe, patchRecipe, removeStep, setEditMode } from "./redux/recipeActions";
 import { ButtonStyle } from "../../ui/buttons/button/Button";
 import IconButton from "../../ui/buttons/iconButton/IconButton";
 import { AnimationEnum, PaddingEnum } from "../../ui/constants/Constants";

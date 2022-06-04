@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import RecipeModel from "../../models/RecipeModel";
 import { overlayPortal } from "../../portals";
 import { RootState } from "../../redux";
-import { updateStep } from "../../redux/actions/recipeActions";
+import { updateStep } from "../recipe/redux/recipeActions";
 import Canvas, { CanvasOpacity, CanvasSize } from "../../ui/canvases/Canvas";
 import { AnimationEnum, ZIndexEnum } from "../../ui/constants/Constants";
 import Card, { CardColors } from "../../ui/containers/cards/card/Card";

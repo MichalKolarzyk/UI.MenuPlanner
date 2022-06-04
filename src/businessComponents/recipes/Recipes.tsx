@@ -1,10 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
-import Sorter from "../../helpers/Sorters";
 import RecipeModel from "../../models/RecipeModel";
 import { AppDispatch, RootState } from "../../redux";
-import { fetchRecipes, setSortedBy } from "../../redux/actions/recipeActions";
 import { ButtonStyle } from "../../ui/buttons/button/Button";
 import IconButton from "../../ui/buttons/iconButton/IconButton";
 import { AnimationEnum, PaddingEnum } from "../../ui/constants/Constants";
@@ -13,13 +11,14 @@ import Flex, { FlexAlignItems, FlexJustify, FlexStyle } from "../../ui/container
 import Icon, { IconImage } from "../../ui/icons/Icon";
 import Label, { LabelSize } from "../../ui/labels/label/Label";
 import Table, { Column } from "../../ui/lists/Table/Table";
+import { fetchRecipes, setSortedBy } from "./redux/recipesActions";
 
 const Recipes = () => {
     const dispach = useDispatch<AppDispatch>();
     const navigate = useNavigate();
 
-    const recipes = useSelector<RootState, Array<RecipeModel> | undefined>((state) => state.recipe.recipes);
-    const sortedBy = useSelector<RootState, string | undefined>((state) => state.recipe.sortedBy);
+    const recipes = useSelector<RootState, Array<RecipeModel> | undefined>((state) => state.recipes.recipes);
+    const sortedBy = useSelector<RootState, string | undefined>((state) => state.recipes.sortedBy);
 
     const rowClickHandler = (row: any) => {
         navigate(row.id);

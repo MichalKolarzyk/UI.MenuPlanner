@@ -1,13 +1,13 @@
 @import "../../styles/style.css";
 
-.fontsize_small{
-    font-size: small;   
+.fontsize_small {
+    font-size: small;
 }
-.fontsize_medium{
-    font-size: medium;   
+.fontsize_medium {
+    font-size: medium;
 }
-.fontsize_large{
-    font-size: large;   
+.fontsize_large {
+    font-size: large;
 }
 
 .padding_Zero {
@@ -29,65 +29,99 @@
 .shape_sharp {
     border-radius: 0px;
 }
-.shape_slightlyRounded{
+.shape_slightlyRounded {
     border-radius: 3px;
 }
-.shape_rounded{
+.shape_rounded {
     border-radius: 7px;
 }
-.shape_elipse{
+.shape_elipse {
     border-radius: 50%;
 }
 
-.boxshadow_none{
+.boxshadow_none {
     box-shadow: none;
 }
 
-.boxshadow_light{
+.boxshadow_light {
     box-shadow: 1px 1px 2px #888888;
 }
 
-.zIndex0{z-index: 0;}
-.zIndex10{z-index: 10;}
-.zIndex20{z-index: 20;}
-.zIndex30{z-index: 30;}
-.zIndex40{z-index: 40;}
+.zIndex0 {
+    z-index: 0;
+}
+.zIndex10 {
+    z-index: 10;
+}
+.zIndex20 {
+    z-index: 20;
+}
+.zIndex30 {
+    z-index: 30;
+}
+.zIndex40 {
+    z-index: 40;
+}
 
-.color_green { color: var(--color-green) }
-.color_greenL1{ color: var(--color-green-l1) }
-.color_blue{ color: var(--color-blue) }
-.color_blueL1{ color: var(--color-blue-l1) }
-.color_white{ color: var(--color-white) }
-.color_whiteL1{ color: var(--color-white-l1) }
-.color_gray{ color: var(--color-gray) }
-.color_red{ color: var(--color-red) }
-.color_redL1{ color: var(--color-red-l1) }
-.color_transparent{ color: var(--color-transparent) }
-.color_transparentD1{ color: var(--color-transparent-d1) }
-.color_transparentD1{ color: var(--color-black) }
+.color_green {
+    color: var(--color-green);
+}
+.color_greenL1 {
+    color: var(--color-green-l1);
+}
+.color_blue {
+    color: var(--color-blue);
+}
+.color_blueL1 {
+    color: var(--color-blue-l1);
+}
+.color_white {
+    color: var(--color-white);
+}
+.color_whiteL1 {
+    color: var(--color-white-l1);
+}
+.color_gray {
+    color: var(--color-gray);
+}
+.color_red {
+    color: var(--color-red);
+}
+.color_redL1 {
+    color: var(--color-red-l1);
+}
+.color_transparent {
+    color: var(--color-transparent);
+}
+.color_transparentD1 {
+    color: var(--color-transparent-d1);
+}
+.color_transparentD1 {
+    color: var(--color-black);
+}
 
-.animation_spin{
+.animation_spin {
     animation: spin infinite 3s linear;
 }
 @keyframes spin {
     from {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
 
-  .animation_slideDown{
+.animation_slideDown {
     animation: slide-down 100ms ease-out forwards;
-  }
-  @keyframes slide-down {
+}
+@keyframes slide-down {
     from {
-      opacity: 0;
-      transform: translateY(-2em);
+        opacity: 0;
+        transform: translateY(-2em);
     }
     to {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
+}
