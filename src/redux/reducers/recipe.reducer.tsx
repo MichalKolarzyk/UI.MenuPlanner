@@ -1,5 +1,5 @@
 import RecipeModel from "../../models/RecipeModel";
-import { ADD_STEP, SET_RECIPE, REMOVE_STEP, SET_RECIPES, UPDATE_STEP, SET_RECIPE_EDIT_MODE, SET_RECIPE_IS_LOADING, SET_CREATED_RECIPE } from "../actionTypes";
+import { ADD_STEP, SET_RECIPE, REMOVE_STEP, SET_RECIPES, UPDATE_STEP, SET_RECIPE_EDIT_MODE, SET_RECIPE_IS_LOADING, SET_CREATED_RECIPE, DELETE_RECIPE } from "../actionTypes";
 
 export class RecipeReducerState {
     recipe?: RecipeModel;

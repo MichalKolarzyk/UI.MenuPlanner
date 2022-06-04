@@ -11,7 +11,7 @@ const Label = (props: LabelProps) =>{
     return <label className={className}>{props.children}</label>
 }
 
-export class LabelProps {
+export interface LabelProps {
     children?: any;
     size?: LabelSize;
     color?: ColorEnum;

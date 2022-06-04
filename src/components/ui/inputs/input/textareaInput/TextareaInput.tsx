@@ -8,7 +8,7 @@ const TextareaInput = (props: TextareaInputProps) => {
     return <textarea disabled={props.disabled} className={className} value={props.value} onChange={props.onChange}></textarea>;
 };
 
-export class TextareaInputProps {
+export interface TextareaInputProps {
     value?: string;
     onChange?: (event: any) => void;
     className?: string;

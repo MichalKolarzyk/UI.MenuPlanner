@@ -16,7 +16,7 @@ const Input = (props: InputProps) => {
     return <input disabled={props.disabled} onChange={props.onChange} value={props.value} className={className} type={props.type}/>;
 };
 
-type InputProps = {
+export interface InputProps {
     type?: InputType;
     isValid?: boolean;
     value?: string;

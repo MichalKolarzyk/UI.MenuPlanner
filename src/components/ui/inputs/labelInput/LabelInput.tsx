@@ -21,7 +21,7 @@ const LabelInput = (props: LabelInputProps) => {
     );
 };
 
-export class LabelInputProps {
+export interface LabelInputProps {
     type?: InputType;
     isValid?: boolean;
     options?: Array<string>;

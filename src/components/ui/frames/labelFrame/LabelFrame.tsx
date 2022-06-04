@@ -30,7 +30,7 @@ const LabelFrame = (props: LabelFrameProps) => {
     );
 };
 
-type LabelFrameProps = {
+export interface LabelFrameProps {
     upperLabelStyle?: ColorEnum;
     upperLabel?: string;
     upperLabelIsBold?: boolean;

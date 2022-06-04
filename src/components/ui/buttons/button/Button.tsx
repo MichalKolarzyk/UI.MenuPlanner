@@ -16,7 +16,7 @@ const Button = (props: ButtonProps) => {
     );
 };
 
-export class ButtonProps {
+export interface ButtonProps {
     onClick?: () => void;
     children?: JSX.Element | string;
     style?: ButtonStyle;

@@ -19,7 +19,7 @@ const Icon = (props: IconProps) => {
     return iconComponent
 };
 
-export class IconProps {
+export interface IconProps {
     image?: IconImage;
     size?: IconSize;
     color?: ColorEnum;

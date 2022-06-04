@@ -42,10 +42,8 @@ const Recipe = () => {
     };
 
     const deleteClickHandler = () => {
-        alert("are you sure");
-        console.log("CLICKED")
-        // dispach(deleteRecipe(recipeId))
-        // navigator("../recipes")
+        dispach(deleteRecipe(recipeId))
+        navigator("../recipes")
     }
 
     const editStepHandler = (index: number) => {

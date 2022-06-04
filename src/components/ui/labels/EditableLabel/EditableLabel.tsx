@@ -1,14 +1,16 @@
 import { InputType } from "zlib";
-import { LabelProps } from "../label/Label";
+import LabelInput, { LabelInputProps } from "../../inputs/labelInput/LabelInput";
 
-const EditableLabel = () => { 
-
+const EditableLabel = (props: EditableLabelProps) => { 
+    if(props.inEditMode){
+        return <LabelInput {...props}/>
+    }
+    else{
+        
+    }
 }
 
 
-export class EditableLabelProps extends LabelProps{
-    inputType?: InputType
+export interface EditableLabelProps extends LabelInputProps{
     inEditMode?: boolean
-    onChange?: (event: any) => void
-    value?: string
 }

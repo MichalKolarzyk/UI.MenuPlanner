@@ -38,7 +38,7 @@ const IconButton = (props: IconButtonProps) => {
     );
 };
 
-export class IconButtonProps {
+export interface IconButtonProps {
     image?: IconImage;
     style?: ButtonStyle;
     size?: IconButtonSize;
