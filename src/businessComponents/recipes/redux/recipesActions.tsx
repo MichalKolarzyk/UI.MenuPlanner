@@ -2,14 +2,15 @@ import { apiMenuPlanner } from "../../../api";
 import { RecipeRequest } from "../../../api/requests";
 import RecipeModel from "../../../models/RecipeModel";
 import {
-    SET_RECIPE_IS_LOADING,
     SET_RECIPES,
+    SET_RECIPES_IS_LOADING,
+    SET_RECIPES_SKIP,
     SET_RECIPES_SORTED_BY,
 } from "../../../redux/actionTypes";
 
 export const setIsLoading = (isLoading: boolean) => {
     return {
-        type: SET_RECIPE_IS_LOADING,
+        type: SET_RECIPES_IS_LOADING,
         payload: isLoading,
     };
 };
@@ -28,13 +29,27 @@ export const setSortedBy = (sortedBy?: string) => {
     };
 };
 
+export const setRecipesSkip = (skip?: number) => {
+    return{
+        type: SET_RECIPES_SKIP,
+        payload: skip,
+    }
+}
+
+export const setRecipesTake = (take?: number) => {
+    return{
+        type: SET_RECIPES_SKIP,
+        payload: take,
+    }
+}
+
 export const fetchRecipes = () => {
     return async (dispach: any, getState: any) => {
         const request: RecipeRequest = {
-            skip: 0,
+            skip: getState().recipes.skip,
             sortBy: getState().recipes.sortedBy,
             tagIds: undefined,
-            take: 100,
+            take: getState().recipes.take,
         };
         const response = await apiMenuPlanner.getRecipes(request);
 

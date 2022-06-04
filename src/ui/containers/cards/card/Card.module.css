@@ -9,10 +9,14 @@
     background-color: rgb(243, 243, 243);
 }
 
+.blue {
+    background-color: var(--color-blue-l1);
+}
+
 .green {
     background-color: #a6f5b7;
 }
-.transparent{
+.transparent {
     background-color: transparent;
 }
 
@@ -22,3 +26,7 @@
 .roundedCorners {
     border-radius: 4px;
 }
+.roundedCorners2 {
+    border-radius: 10px;
+}
+

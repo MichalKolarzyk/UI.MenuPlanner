@@ -23,13 +23,15 @@ type CardProps = {
 
 export enum CardShape{
     sharp = "sharp",
-    roundedCorners = "roundedCorners"
+    roundedCorners = "roundedCorners",
+    roundedCorners2 = "roundedCorners2"
 }
 
 export enum CardColors{
     white= "white",
     grey= "grey",
     green= "green",
+    blue= "blue",
     transparent="transparent"
 }
 
