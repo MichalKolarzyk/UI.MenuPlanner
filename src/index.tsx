@@ -3,17 +3,17 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import Card, { CardColors } from "./components/ui/containers/cards/card/Card";
+import Card, { CardColors } from "./ui/containers/cards/card/Card";
 import { store } from "./redux";
 import { Provider } from "react-redux";
-import Label, { LabelSize } from "./components/ui/labels/label/Label";
-import Login from "./components/business/Login";
-import Recipes from "./components/business/Recipes";
-import Recipe from "./components/business/Recipe";
-import Registration from "./components/business/Registration";
-import Main from "./components/business/Main";
-import EditStep from "./components/business/EditStep";
-import NewRecipe from "./components/business/NewRecipe";
+import Label, { LabelSize } from "./ui/labels/label/Label";
+import Login from "./businessComponents/login/Login";
+import Recipes from "./businessComponents/recipes/Recipes";
+import Recipe from "./businessComponents/recipe/Recipe";
+import Registration from "./businessComponents/registration/Registration";
+import Main from "./businessComponents/main/Main";
+import EditStep from "./businessComponents/editStep/EditStep";
+import NewRecipe from "./businessComponents/newRecipe/NewRecipe";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 

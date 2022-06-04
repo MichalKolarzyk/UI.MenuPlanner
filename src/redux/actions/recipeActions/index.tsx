@@ -1,4 +1,3 @@
-import { RootState } from "../..";
 import { apiMenuPlanner } from "../../../api";
 import { RecipeRequest } from "../../../api/Requests";
 import RecipeModel from "../../../models/RecipeModel";

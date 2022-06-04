@@ -14,7 +14,6 @@ const Table = (props: TableProps) => {
         if(!items){
             return;
         }
-
         const newColumns = [...columns];
         newColumns.map((c) => (c.name == column.name ? (c.sorted = true) : (c.sorted = false)));
         setColumns(newColumns);

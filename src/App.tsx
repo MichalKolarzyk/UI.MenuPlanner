@@ -1,4 +1,4 @@
-import Recipe from "./components/business/Recipe";
+import Recipe from "./businessComponents/recipe/Recipe";
 
 function App() {
 

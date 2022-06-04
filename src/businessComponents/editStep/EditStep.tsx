@@ -5,12 +5,12 @@ import RecipeModel from "../../models/RecipeModel";
 import { overlayPortal } from "../../portals";
 import { RootState } from "../../redux";
 import { updateStep } from "../../redux/actions/recipeActions";
-import Canvas, { CanvasOpacity, CanvasSize } from "../ui/canvases/Canvas";
-import { AnimationEnum, ZIndexEnum } from "../ui/constants/Constants";
-import Card, { CardColors } from "../ui/containers/cards/card/Card";
-import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../ui/containers/flexes/Flex";
-import Input, { InputType } from "../ui/inputs/input/Input";
-import Label, { LabelSize } from "../ui/labels/label/Label";
+import Canvas, { CanvasOpacity, CanvasSize } from "../../ui/canvases/Canvas";
+import { AnimationEnum, ZIndexEnum } from "../../ui/constants/Constants";
+import Card, { CardColors } from "../../ui/containers/cards/card/Card";
+import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
+import Input, { InputType } from "../../ui/inputs/input/Input";
+import Label, { LabelSize } from "../../ui/labels/label/Label";
 
 const EditStep = () => {
     const { stepIndex } = useParams();

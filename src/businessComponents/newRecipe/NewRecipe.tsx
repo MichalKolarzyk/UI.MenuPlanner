@@ -6,10 +6,10 @@ import RecipeModel from "../../models/RecipeModel";
 import { overlayPortal } from "../../portals";
 import { AppDispatch, RootState } from "../../redux";
 import { createRecipe, setCreatedRecipe, setRecipe } from "../../redux/actions/recipeActions";
-import Canvas, { CanvasOpacity, CanvasSize } from "../ui/canvases/Canvas";
-import { ZIndexEnum } from "../ui/constants/Constants";
-import SimpleForm, { FormFieldValidationResult } from "../ui/forms/simpleForm/SimpleForm";
-import { InputType } from "../ui/inputs/input/Input";
+import Canvas, { CanvasOpacity, CanvasSize } from "../../ui/canvases/Canvas";
+import { ZIndexEnum } from "../../ui/constants/Constants";
+import SimpleForm, { FormFieldValidationResult } from "../../ui/forms/simpleForm/SimpleForm";
+import { InputType } from "../../ui/inputs/input/Input";
 
 const NewRecipe = () => {
     const dispach = useDispatch<AppDispatch>();

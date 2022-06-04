@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Sorter from "../../../../helpers/Sorters";
+import Sorter from "../../../helpers/Sorters";
 import Table from "./Table";
 
 export default {

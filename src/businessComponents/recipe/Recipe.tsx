@@ -5,14 +5,14 @@ import Ingreadient from "../../models/IngreadientModel";
 import RecipeModel from "../../models/RecipeModel";
 import { AppDispatch, RootState } from "../../redux";
 import { addStep, deleteRecipe, fetchRecipe, patchRecipe, removeStep, setEditMode } from "../../redux/actions/recipeActions";
-import { ButtonStyle } from "../ui/buttons/button/Button";
-import IconButton from "../ui/buttons/iconButton/IconButton";
-import { AnimationEnum, PaddingEnum } from "../ui/constants/Constants";
-import Card from "../ui/containers/cards/card/Card";
-import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../ui/containers/flexes/Flex";
-import Icon, { IconImage } from "../ui/icons/Icon";
-import Label, { LabelSize } from "../ui/labels/label/Label";
-import { SimpleList, StringList } from "../ui/lists/SimpleList/SimpleList";
+import { ButtonStyle } from "../../ui/buttons/button/Button";
+import IconButton from "../../ui/buttons/iconButton/IconButton";
+import { AnimationEnum, PaddingEnum } from "../../ui/constants/Constants";
+import Card from "../../ui/containers/cards/card/Card";
+import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
+import Icon, { IconImage } from "../../ui/icons/Icon";
+import Label, { LabelSize } from "../../ui/labels/label/Label";
+import { SimpleList, StringList } from "../../ui/lists/SimpleList/SimpleList";
 
 const Recipe = () => {
     const navigator = useNavigate();

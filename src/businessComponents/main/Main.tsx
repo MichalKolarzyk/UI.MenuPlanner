@@ -1,9 +1,9 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import Button from "../ui/buttons/button/Button";
-import { BoxShadowEnum, PaddingEnum, ShapeEnum } from "../ui/constants/Constants";
-import Card, { CardColors } from "../ui/containers/cards/card/Card";
-import Flex, { FlexAlignItems, FlexJustify, FlexStyle } from "../ui/containers/flexes/Flex";
-import Label, { LabelSize } from "../ui/labels/label/Label";
+import Button from "../../ui/buttons/button/Button";
+import { BoxShadowEnum, PaddingEnum, ShapeEnum } from "../../ui/constants/Constants";
+import Card, { CardColors } from "../../ui/containers/cards/card/Card";
+import Flex, { FlexAlignItems, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
+import Label, { LabelSize } from "../../ui/labels/label/Label";
 
 const Main = () => {
     const navigate = useNavigate();
