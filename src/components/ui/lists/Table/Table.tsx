@@ -14,20 +14,12 @@ const Table = (props: TableProps) => {
         if(!items){
             return;
         }
-        //const newItems = [...items.sort((a, b) => columnSort(column, a, b))];
-        //setItems(newItems);
 
         const newColumns = [...columns];
         newColumns.map((c) => (c.name == column.name ? (c.sorted = true) : (c.sorted = false)));
         setColumns(newColumns);
-        console.log(newColumns);
-    };
 
-    const columnSort = (column: Column, a: any, b: any) => {
-        if (column.sorter === undefined || column.sorter === null) {
-            return props.defaultSorter(a[column.property], b[column.property]);
-        }
-        return column.sorter(a[column.property], b[column.property]);
+        props.onColumnSort?.(column);
     };
 
     if(!items){
@@ -78,8 +70,8 @@ const TableRow = (props: RowProps) => {
 type TableProps = {
     items?: Array<any>;
     columns: Array<Column>;
-    defaultSorter: (a: any, b: any) => number;
     onRowClick?: (row: any) => void;
+    onColumnSort?: (column: Column) => void;
 };
 
 type RowProps = {
@@ -88,11 +80,10 @@ type RowProps = {
     onRowClick?: (row: any) => void;
 };
 
-type Column = {
+export type Column = {
     name: string;
     property: string;
     sorted?: boolean;
-    sorter?: (a: any, b: any) => number;
 };
 
 export default Table;

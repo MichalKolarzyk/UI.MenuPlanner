@@ -4,23 +4,22 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Sorter from "../../helpers/Sorters";
 import RecipeModel from "../../models/RecipeModel";
 import { AppDispatch, RootState } from "../../redux";
-import { fetchRecipes } from "../../redux/actions/recipeActions";
+import { fetchRecipes, setSortedBy } from "../../redux/actions/recipeActions";
 import { ButtonStyle } from "../ui/buttons/button/Button";
 import IconButton from "../ui/buttons/iconButton/IconButton";
-import { PaddingEnum } from "../ui/constants/Constants";
+import { AnimationEnum, PaddingEnum } from "../ui/constants/Constants";
 import Card from "../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexJustify, FlexStyle } from "../ui/containers/flexes/Flex";
-import { IconImage } from "../ui/icons/Icon";
+import Icon, { IconImage } from "../ui/icons/Icon";
 import Label, { LabelSize } from "../ui/labels/label/Label";
-import Table from "../ui/lists/Table/Table";
+import Table, { Column } from "../ui/lists/Table/Table";
 
 const Recipes = () => {
     const dispach = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    useEffect(() => {
-        dispach(fetchRecipes());
-    }, [dispach]);
+
     const recipes = useSelector<RootState, Array<RecipeModel> | undefined>((state) => state.recipe.recipes);
+    const sortedBy = useSelector<RootState, string | undefined>((state) => state.recipe.sortedBy);
 
     const rowClickHandler = (row: any) => {
         navigate(row.id);
@@ -28,22 +27,43 @@ const Recipes = () => {
 
     const newRecipeClick = () => {
         navigate("newRecipe");
+    };
+
+    const columnSortHandler = (column: Column) => {
+        dispach(setSortedBy(column.name));
+    };
+
+    useEffect(() => {
+        dispach(fetchRecipes());
+    }, [dispach, sortedBy]);
+
+    if (!recipes) {
+        return (
+            <Flex justify={FlexJustify.center}>
+                <Icon image={IconImage.spin} animation={AnimationEnum.spin} />
+            </Flex>
+        );
     }
 
     return (
         <Card padding={PaddingEnum.paddingOne}>
             <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-                <Outlet/>
+                <Outlet />
                 <Flex justify={FlexJustify.spaceBetween}>
                     <Label bold size={LabelSize.large}>
                         Recipes
                     </Label>
-                    <IconButton onClick={newRecipeClick} style={ButtonStyle.accept} image={IconImage.add} text="New Recipe"/>
+                    <IconButton
+                        onClick={newRecipeClick}
+                        style={ButtonStyle.accept}
+                        image={IconImage.add}
+                        text="New Recipe"
+                    />
                 </Flex>
 
                 <Table
+                    onColumnSort={columnSortHandler}
                     onRowClick={rowClickHandler}
-                    defaultSorter={Sorter.stringSorter}
                     columns={[
                         {
                             name: "Title",

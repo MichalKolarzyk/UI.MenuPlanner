@@ -1,4 +1,6 @@
+import { RootState } from "../..";
 import { apiMenuPlanner } from "../../../api";
+import { RecipeRequest } from "../../../api/Requests";
 import RecipeModel from "../../../models/RecipeModel";
 import {
     SET_RECIPE,
@@ -9,6 +11,7 @@ import {
     SET_RECIPE_EDIT_MODE,
     SET_RECIPE_IS_LOADING,
     SET_CREATED_RECIPE,
+    SET_SORTED_BY,
 } from "../../actionTypes";
 
 export const setIsLoading = (isLoading: boolean)=>{
@@ -67,6 +70,13 @@ export const setEditMode = (editMode?: boolean) => {
     };
 };
 
+export const setSortedBy = (sortedBy?: string) => {
+    return {
+        type: SET_SORTED_BY,
+        payload: sortedBy,
+    }
+}
+
 export const patchRecipe = (recipe?: RecipeModel) => {
     return async (dispach: any) => {
         if (!recipe) {
@@ -78,8 +88,14 @@ export const patchRecipe = (recipe?: RecipeModel) => {
 };
 
 export const fetchRecipes = () => {
-    return async (dispach: any) => {
-        const response = await apiMenuPlanner.getRecipes();
+    return async (dispach: any, getState: any) => {
+        const request : RecipeRequest  ={
+            skip: 0,
+            sortBy: getState().recipe.sortedBy,
+            tagIds: undefined,
+            take: 100,
+        }
+        const response = await apiMenuPlanner.getRecipes(request);
 
         dispach(setRecipes(response.data));
     };

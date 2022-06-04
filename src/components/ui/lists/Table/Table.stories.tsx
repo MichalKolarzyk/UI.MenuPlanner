@@ -14,7 +14,6 @@ const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;
 
 export const table = Template.bind({});
 table.args = {
-    defaultSorter: Sorter.stringSorter,
     onRowClick: (row: any) => {console.log(row)}, 
     columns: [
         {
@@ -36,7 +35,6 @@ table.args = {
         {
             name: "Age",
             property: "age",
-            sorter: Sorter.numberSorter
         },
     ],
     items: [

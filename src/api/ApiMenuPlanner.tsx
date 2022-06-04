@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import DishModel from "../models/DishModel";
 import RecipeModel from "../models/RecipeModel";
+import { RecipeRequest } from "./Requests";
 
 export default class ApiMenuPlanner {
     axiosInstance: AxiosInstance;
@@ -20,8 +21,8 @@ export default class ApiMenuPlanner {
         return this.axiosInstance.get(`/api/recipe/${id}`, {});
     }
 
-    getRecipes(): Promise<AxiosResponse<Array<RecipeModel>>>{
-        return this.axiosInstance.get(`/api/recipe`, {});
+    getRecipes(request: RecipeRequest): Promise<AxiosResponse<Array<RecipeModel>>>{
+        return this.axiosInstance.post("/api/recipe", request);
     }
 
     patchRecipe(recipe: RecipeModel): Promise<AxiosResponse<string>> {
@@ -29,7 +30,7 @@ export default class ApiMenuPlanner {
     }
 
     addRecipe(recipe: RecipeModel): Promise<AxiosResponse<RecipeModel>> {
-        return this.axiosInstance.post<RecipeModel>("/api/recipe", recipe);
+        return this.axiosInstance.post<RecipeModel>("/api/recipe/new", recipe);
     }
 
     deleteRecipe(id: string) {

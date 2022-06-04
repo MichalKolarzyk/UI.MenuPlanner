@@ -1,5 +1,16 @@
 import RecipeModel from "../../models/RecipeModel";
-import { ADD_STEP, SET_RECIPE, REMOVE_STEP, SET_RECIPES, UPDATE_STEP, SET_RECIPE_EDIT_MODE, SET_RECIPE_IS_LOADING, SET_CREATED_RECIPE, DELETE_RECIPE } from "../actionTypes";
+import {
+    ADD_STEP,
+    SET_RECIPE,
+    REMOVE_STEP,
+    SET_RECIPES,
+    UPDATE_STEP,
+    SET_RECIPE_EDIT_MODE,
+    SET_RECIPE_IS_LOADING,
+    SET_CREATED_RECIPE,
+    DELETE_RECIPE,
+    SET_SORTED_BY,
+} from "../actionTypes";
 
 export class RecipeReducerState {
     recipe?: RecipeModel;
@@ -7,6 +18,7 @@ export class RecipeReducerState {
     createdRecipe?: RecipeModel;
     editMode?: boolean = false;
     isLoading?: boolean = false;
+    sortedBy?: string;
 }
 
 export const initialState = new RecipeReducerState();
@@ -51,20 +63,26 @@ const recipeReducer = (state: RecipeReducerState = initialState, action: any): R
                 } as RecipeModel,
             };
         case SET_RECIPE_EDIT_MODE:
-            return{
+            return {
                 ...state,
                 editMode: payload,
-            }
+            };
         case SET_RECIPE_IS_LOADING:
-            return{
+            return {
                 ...state,
                 isLoading: payload,
-            }
-        case SET_CREATED_RECIPE:{
-            return{
+            };
+        case SET_CREATED_RECIPE: {
+            return {
                 ...state,
-                createdRecipe: payload
-            }
+                createdRecipe: payload,
+            };
+        }
+        case SET_SORTED_BY: {
+            return {
+                ...state,
+                sortedBy: payload,
+            };
         }
         default:
             return state;
