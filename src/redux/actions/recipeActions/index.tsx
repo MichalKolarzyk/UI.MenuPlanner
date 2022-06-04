@@ -7,8 +7,8 @@ import {
     SET_RECIPES,
     UPDATE_STEP,
     SET_RECIPE_EDIT_MODE,
-    CREATE_RECIPE as ADD_RECIPE,
     SET_RECIPE_IS_LOADING,
+    SET_CREATED_RECIPE,
 } from "../../actionTypes";
 
 export const setIsLoading = (isLoading: boolean)=>{
@@ -25,19 +25,19 @@ export const setRecipes = (payload: Array<RecipeModel>) => {
     };
 };
 
-export const addRecipe = (payload: RecipeModel) => {
-    return {
-        type: ADD_RECIPE,
-        payload
-    };
-};
-
 export const setRecipe = (payload?: RecipeModel) => {
     return {
         type: SET_RECIPE,
         payload,
     };
 };
+
+export const setCreatedRecipe = (payload?: RecipeModel) => {
+    return {
+        type: SET_CREATED_RECIPE,
+        payload,
+    }
+} 
 
 export const addStep = (payload: string) => {
     return {
@@ -85,6 +85,15 @@ export const fetchRecipes = () => {
     };
 };
 
+export const deleteRecipe = (id?: string) => {
+    return async (dispach: any) => {
+        if(!id){
+            return;
+        }
+        const response = await apiMenuPlanner.deleteRecipe(id);
+    }
+}
+
 export const createRecipe = (recipe?: RecipeModel) => {
     return async (dispach: any) => {
         if(!recipe){
@@ -92,7 +101,7 @@ export const createRecipe = (recipe?: RecipeModel) => {
         }
         dispach(setIsLoading(true))
         const response = await apiMenuPlanner.addRecipe(recipe);
-        dispach(setRecipe(response.data));
+        dispach(setCreatedRecipe(response.data));
         dispach(setIsLoading(false))
     }
 }

@@ -4,7 +4,7 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 import Ingreadient from "../../models/IngreadientModel";
 import RecipeModel from "../../models/RecipeModel";
 import { AppDispatch, RootState } from "../../redux";
-import { addStep, fetchRecipe, patchRecipe, removeStep, setEditMode } from "../../redux/actions/recipeActions";
+import { addStep, deleteRecipe, fetchRecipe, patchRecipe, removeStep, setEditMode } from "../../redux/actions/recipeActions";
 import { ButtonStyle } from "../ui/buttons/button/Button";
 import IconButton from "../ui/buttons/iconButton/IconButton";
 import { AnimationEnum, PaddingEnum } from "../ui/constants/Constants";
@@ -40,6 +40,13 @@ const Recipe = () => {
         dispach(patchRecipe(recipe));
         dispach(setEditMode(false));
     };
+
+    const deleteClickHandler = () => {
+        alert("are you sure");
+        console.log("CLICKED")
+        // dispach(deleteRecipe(recipeId))
+        // navigator("../recipes")
+    }
 
     const editStepHandler = (index: number) => {
         if (!recipe) {
@@ -130,6 +137,12 @@ const Recipe = () => {
                             style={ButtonStyle.accept}
                             onClick={submitClickHandler}
                             text="Submit"
+                        />
+                        <IconButton
+                            image={IconImage.remove}
+                            style={ButtonStyle.cancel}
+                            onClick={deleteClickHandler}
+                            text="Delete"
                         />
                         <IconButton
                             image={IconImage.close}

@@ -31,4 +31,8 @@ export default class ApiMenuPlanner {
     addRecipe(recipe: RecipeModel): Promise<AxiosResponse<RecipeModel>> {
         return this.axiosInstance.post<RecipeModel>("/api/recipe", recipe);
     }
+
+    deleteRecipe(id: string) {
+        return this.axiosInstance.delete(`/api/recipe?id=${id}`)
+    }
 }

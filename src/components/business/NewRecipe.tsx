@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import RecipeModel from "../../models/RecipeModel";
 import { overlayPortal } from "../../portals";
 import { AppDispatch, RootState } from "../../redux";
-import { createRecipe, setRecipe } from "../../redux/actions/recipeActions";
+import { createRecipe, setCreatedRecipe, setRecipe } from "../../redux/actions/recipeActions";
 import Canvas, { CanvasOpacity, CanvasSize } from "../ui/canvases/Canvas";
 import { ZIndexEnum } from "../ui/constants/Constants";
 import SimpleForm, { FormFieldValidationResult } from "../ui/forms/simpleForm/SimpleForm";
@@ -15,23 +15,26 @@ const NewRecipe = () => {
     const dispach = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const portal = overlayPortal;
-    const recipe = useSelector<RootState, RecipeModel | undefined>(state => state.recipe.recipe);
-    const isLoading = useSelector<RootState, boolean | undefined>(state => state.recipe.isLoading);
+    const createdRecipe = useSelector<RootState, RecipeModel | undefined>(state => state.recipe.createdRecipe);
 
     const goBack = () => {
         navigate("../");
     };
 
     useEffect(() => {
-        if(isLoading || !recipe ){
+        if(!createdRecipe ){
             return;
         }
-        navigate(`../${recipe.id}`)
-    },[dispach])
+        navigate(`../${createdRecipe.id}`)
 
-    const submitHandler = (item: any) => {
+        return () => {
+            dispach(setCreatedRecipe(undefined));
+        }
+    },[createdRecipe])
+
+    const submitHandler = async (item: any) => {
         const newRecipe = item as RecipeModel;
-        dispach(createRecipe(newRecipe));
+        await dispach(createRecipe(newRecipe));
     }
 
 

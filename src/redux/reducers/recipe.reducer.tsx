@@ -1,9 +1,10 @@
 import RecipeModel from "../../models/RecipeModel";
-import { ADD_STEP, SET_RECIPE, REMOVE_STEP, SET_RECIPES, UPDATE_STEP, SET_RECIPE_EDIT_MODE, SET_RECIPE_IS_LOADING } from "../actionTypes";
+import { ADD_STEP, SET_RECIPE, REMOVE_STEP, SET_RECIPES, UPDATE_STEP, SET_RECIPE_EDIT_MODE, SET_RECIPE_IS_LOADING, SET_CREATED_RECIPE } from "../actionTypes";
 
 export class RecipeReducerState {
     recipe?: RecipeModel;
     recipes?: Array<RecipeModel>;
+    createdRecipe?: RecipeModel;
     editMode?: boolean = false;
     isLoading?: boolean = false;
 }
@@ -59,6 +60,12 @@ const recipeReducer = (state: RecipeReducerState = initialState, action: any): R
                 ...state,
                 isLoading: payload,
             }
+        case SET_CREATED_RECIPE:{
+            return{
+                ...state,
+                createdRecipe: payload
+            }
+        }
         default:
             return state;
     }
