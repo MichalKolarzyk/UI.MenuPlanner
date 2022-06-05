@@ -3,6 +3,7 @@ import dishReducer from "./reducers/dish.reducer";
 import recipeReducer from "../businessComponents/recipe/redux/recipe.reducer";
 import userReducer from "./reducers/user.reducer";
 import recipesReducer from "../businessComponents/recipes/redux/recipes.reducer";
+import registrationReducer from "../businessComponents/registration/redux/registration.reducer";
 
 export const store = configureStore({
     reducer:{
@@ -10,6 +11,7 @@ export const store = configureStore({
         dish: dishReducer,
         recipe: recipeReducer,
         recipes: recipesReducer,
+        registration: registrationReducer,
     }
     
 })

@@ -37,6 +37,7 @@ export enum IconImage {
     spin="FaCircleNotch",
     user="FaUserAlt",
     envelope="FaEnvelope",
+    minus="FaMinus"
 }
 
 export enum IconSize {

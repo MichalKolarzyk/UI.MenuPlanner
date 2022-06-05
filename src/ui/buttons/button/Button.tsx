@@ -29,6 +29,7 @@ export interface ButtonProps {
 export enum ButtonStyle {
     default = "default",
     transparent = "transparent",
+    transparentWhite = "transparentWhite",
     accept = "accept",
     cancel = "cancel",
     grey = "grey",

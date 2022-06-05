@@ -8,7 +8,7 @@ import { AppDispatch, RootState } from "../../redux";
 import { createRecipe, setCreatedRecipe, setRecipe } from "../recipe/redux/recipeActions";
 import Canvas, { CanvasOpacity, CanvasSize } from "../../ui/canvases/Canvas";
 import { ZIndexEnum } from "../../ui/constants/Constants";
-import SimpleForm, { FormFieldValidationResult } from "../../ui/forms/simpleForm/SimpleForm";
+import SimpleForm, { FormFieldValidationResult, SimpleFormButtonStyle } from "../../ui/forms/simpleForm/SimpleForm";
 import { InputType } from "../../ui/inputs/input/Input";
 
 const NewRecipe = () => {
@@ -49,7 +49,8 @@ const NewRecipe = () => {
             <Canvas opacity={CanvasOpacity.light} size={CanvasSize.extraSmall} zIndex={ZIndexEnum.zIndex30}>
                 <SimpleForm
                     onSubmit={submitHandler}
-                    onCancelClick={goBack}
+                    onSecondChoiceClick={goBack}
+                    simpleFormButtonStyle={SimpleFormButtonStyle.sumbitCancel}
                     title="New Recipe"
                     item={{
                         title: "",

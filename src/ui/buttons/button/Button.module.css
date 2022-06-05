@@ -34,6 +34,10 @@
     background-color: var(--color-transparent);
     color: var(--color-gray);
 }
+.transparentWhite {
+    background-color: var(--color-transparent);
+    color: var(--color-white);
+}
 .transparent:hover {
     opacity: 0.9;
     background-color: var(--color-transparent-d1);

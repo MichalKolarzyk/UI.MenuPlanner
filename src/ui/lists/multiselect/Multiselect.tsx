@@ -19,8 +19,8 @@ const Multiselect = (props: MultiselectProps) => {
                 </Label>
                 <IconButton
                     onClick={() => props.onItemClick?.(props.itemKey?.(item), !isSelected(item))}
-                    image={isSelected(item) ? IconImage.remove : IconImage.add}
-                    style={ButtonStyle.transparent}
+                    image={isSelected(item) ? IconImage.minus : IconImage.add}
+                    style={isSelected(item) ? ButtonStyle.transparentWhite : ButtonStyle.transparent}
                     shape={ShapeEnum.elipse}
                 />
             </Flex>

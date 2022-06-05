@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import DishModel from "../models/DishModel";
 import RecipeModel from "../models/RecipeModel";
-import { TagModel } from "./models";
+import { TagModel, UserModel } from "./models";
 import { RecipeRequest } from "./requests";
 
 export default class ApiMenuPlanner {
@@ -40,5 +40,9 @@ export default class ApiMenuPlanner {
 
     getTags() : Promise<AxiosResponse<Array<TagModel>>> {
         return this.axiosInstance.get<Array<TagModel>>("/api/tag")
+    }
+
+    registerUser(newUser: UserModel) {
+        return this.axiosInstance.post("/api/user", newUser)
     }
 }
