@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
+import { TagModel } from "../../api/models";
 import RecipeModel from "../../models/RecipeModel";
 import { AppDispatch, RootState } from "../../redux";
 import { ButtonStyle } from "../../ui/buttons/button/Button";
@@ -10,8 +11,9 @@ import Card from "../../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import Icon, { IconImage } from "../../ui/icons/Icon";
 import Label, { LabelSize } from "../../ui/labels/label/Label";
+import Multiselect from "../../ui/lists/multiselect/Multiselect";
 import Table, { Column } from "../../ui/lists/Table/Table";
-import { fetchRecipes, setRecipesSkip, setSortedBy } from "./redux/recipesActions";
+import { fetchRecipes, fetchTags, setRecipesSelectedTags, setRecipesSkip, setSortedBy } from "./redux/recipesActions";
 
 const Recipes = () => {
     const dispach = useDispatch<AppDispatch>();
@@ -21,7 +23,8 @@ const Recipes = () => {
     const sortedBy = useSelector<RootState, string | undefined>((state) => state.recipes.sortedBy);
     const skip = useSelector<RootState, number | undefined>((state) => state.recipes.skip);
     const take = useSelector<RootState, number | undefined>((state) => state.recipes.take);
-
+    const tags = useSelector<RootState, Array<TagModel> | undefined>((state) => state.recipes.tags);
+    const selectedTags = useSelector<RootState, Array<number> | undefined>((state) => state.recipes.selectedTags);
 
     const rowClickHandler = (row: any) => {
         navigate(row.id);
@@ -37,19 +40,31 @@ const Recipes = () => {
 
     const nextClickHandler = () => {
         dispach(setRecipesSkip((skip ?? 0) + (take ?? 10)));
-    }
+    };
 
     const previousClickHandler = () => {
-        let newSkip = (skip ?? 0) - (take ?? 10)
-        if(newSkip < 0){
-            newSkip = 0
+        let newSkip = (skip ?? 0) - (take ?? 10);
+        if (newSkip < 0) {
+            newSkip = 0;
         }
         dispach(setRecipesSkip(newSkip));
-    }
+    };
+
+    const onTagMultiselectClick = (index: number, isSelected: boolean) => {
+        let newSelectedTags;
+        newSelectedTags = [...selectedTags ?? []]
+        if (isSelected) {
+            newSelectedTags.push(index);
+        } else {
+            newSelectedTags = newSelectedTags.filter(t => t !== index);
+        }
+        console.log(newSelectedTags);
+        dispach(setRecipesSelectedTags(newSelectedTags));
+    };
 
     useEffect(() => {
-        console.log("USE EFECT")
         dispach(fetchRecipes());
+        dispach(fetchTags());
     }, [dispach, sortedBy, skip]);
 
     if (!recipes) {
@@ -64,6 +79,7 @@ const Recipes = () => {
         <Card padding={PaddingEnum.paddingOne}>
             <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize3}>
                 <Outlet />
+
                 <Flex justify={FlexJustify.spaceBetween}>
                     <Label bold size={LabelSize.large}>
                         Recipes
@@ -75,7 +91,13 @@ const Recipes = () => {
                         text="New Recipe"
                     />
                 </Flex>
-
+                <Multiselect
+                    title="Tags"
+                    items={tags}
+                    selectedIndexes={selectedTags}
+                    itemToString={(t) => t.name}
+                    onItemClick={onTagMultiselectClick}
+                />
                 <Table
                     onColumnSort={columnSortHandler}
                     onRowClick={rowClickHandler}
@@ -92,8 +114,8 @@ const Recipes = () => {
                     items={recipes}
                 />
                 <Flex justify={FlexJustify.spaceBetween}>
-                    <IconButton onClick={previousClickHandler} text="Previous"/>
-                    <IconButton onClick={nextClickHandler} text="Next"/>
+                    <IconButton onClick={previousClickHandler} text="Previous" />
+                    <IconButton onClick={nextClickHandler} text="Next" />
                 </Flex>
             </Flex>
         </Card>

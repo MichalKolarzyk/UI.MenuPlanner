@@ -18,7 +18,7 @@ const Multiselect = (props: MultiselectProps) => {
                     {props.itemToString?.(item)}
                 </Label>
                 <IconButton
-                    onClick={() => props.onItemClick?.(item, !isSelected(index))}
+                    onClick={() => props.onItemClick?.(index, !isSelected(index))}
                     image={isSelected(index) ? IconImage.remove : IconImage.add}
                     style={ButtonStyle.transparent}
                     shape={ShapeEnum.elipse}
@@ -40,9 +40,10 @@ const Multiselect = (props: MultiselectProps) => {
 interface MultiselectProps {
     items?: Array<any>;
     selectedIndexes?: Array<number>;
+    itemKey?: (item: any) => any;
     title?: string;
     itemToString?: (item: any) => string;
-    onItemClick?: (item: any, selected: boolean) => void;
+    onItemClick?: (index: number, selected: boolean) => void;
 }
 
 export default Multiselect;

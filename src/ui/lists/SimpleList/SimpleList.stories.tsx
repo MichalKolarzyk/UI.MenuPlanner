@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { StringList } from "./SimpleList";
 
 export default {
-    title: "UI/SimpleList",
+    title: "UI/Lists/SimpleList",
     component: StringList,
 } as ComponentMeta<typeof StringList>;
 

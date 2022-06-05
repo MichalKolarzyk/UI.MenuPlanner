@@ -1,3 +1,4 @@
+import { TagModel } from "../../../api/models";
 import RecipeModel from "../../../models/RecipeModel";
 import {
     SET_RECIPES,
@@ -5,6 +6,8 @@ import {
     SET_RECIPES_IS_LOADING,
     SET_RECIPES_SKIP,
     SET_RECIPES_TAKE,
+    SET_RECIPES_SELECTED_TAGS,
+    SET_RECIPES_TAGS,
 } from "../../../redux/actionTypes";
 
 export class RecipeReducerState {
@@ -13,6 +16,8 @@ export class RecipeReducerState {
     sortedBy?: string;
     skip?: number = 0;
     take?: number = 5;
+    tags?: Array<TagModel>;
+    selectedTags?: Array<number>;
 }
 
 export const initialState = new RecipeReducerState();
@@ -46,6 +51,18 @@ const recipesReducer = (state: RecipeReducerState = initialState, action: any): 
             return{
                 ...state,
                 take: payload,
+            }
+        }
+        case SET_RECIPES_SELECTED_TAGS: {
+            return {
+                ...state,
+                selectedTags: payload
+            }
+        }
+        case SET_RECIPES_TAGS: {
+            return {
+                ...state,
+                tags: payload
             }
         }
         default:

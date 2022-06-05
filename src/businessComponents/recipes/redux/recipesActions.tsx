@@ -1,11 +1,14 @@
 import { apiMenuPlanner } from "../../../api";
+import { TagModel } from "../../../api/models";
 import { RecipeRequest } from "../../../api/requests";
 import RecipeModel from "../../../models/RecipeModel";
 import {
     SET_RECIPES,
     SET_RECIPES_IS_LOADING,
+    SET_RECIPES_SELECTED_TAGS,
     SET_RECIPES_SKIP,
     SET_RECIPES_SORTED_BY,
+    SET_RECIPES_TAGS,
 } from "../../../redux/actionTypes";
 
 export const setIsLoading = (isLoading: boolean) => {
@@ -40,6 +43,27 @@ export const setRecipesTake = (take?: number) => {
     return{
         type: SET_RECIPES_SKIP,
         payload: take,
+    }
+}
+
+export const setRecipesTags = (tags?: Array<TagModel>) => {
+    return {
+        type: SET_RECIPES_TAGS,
+        payload: tags,
+    }
+}
+
+export const setRecipesSelectedTags = (tagsIndexes?: Array<number>) => {
+    return {
+        type: SET_RECIPES_SELECTED_TAGS,
+        payload: tagsIndexes,
+    }
+}
+
+export const fetchTags = () => {
+    return async (dispach: any) => {
+        const response = await apiMenuPlanner.getTags();
+        dispach(setRecipesTags(response.data))
     }
 }
 

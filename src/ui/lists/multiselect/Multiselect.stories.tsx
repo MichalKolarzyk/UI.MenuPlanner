@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Multiselect from "./Multiselect";
 
 export default {
-    title: "UI/Multiselect",
+    title: "UI/Lists/Multiselect",
     component: Multiselect,
 } as ComponentMeta<typeof Multiselect>;
 

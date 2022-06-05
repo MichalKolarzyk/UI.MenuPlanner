@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import DishModel from "../models/DishModel";
 import RecipeModel from "../models/RecipeModel";
+import { TagModel } from "./models";
 import { RecipeRequest } from "./requests";
 
 export default class ApiMenuPlanner {
@@ -35,5 +36,9 @@ export default class ApiMenuPlanner {
 
     deleteRecipe(id: string) {
         return this.axiosInstance.delete(`/api/recipe?id=${id}`)
+    }
+
+    getTags() : Promise<AxiosResponse<Array<TagModel>>> {
+        return this.axiosInstance.get<Array<TagModel>>("/api/tag")
     }
 }

@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Table from "./Table";
 
 export default {
-    title: "UI/Table",
+    title: "UI/Lists/Table",
     component: Table,
     argTypes: {
         backgroundColor: { control: "color" },
@@ -13,7 +13,6 @@ const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;
 
 export const table = Template.bind({});
 table.args = {
-    onRowClick: (row: any) => {console.log(row)}, 
     columns: [
         {
             name:  "Id",
