@@ -17,7 +17,7 @@ export class RecipeReducerState {
     skip?: number = 0;
     take?: number = 5;
     tags?: Array<TagModel>;
-    selectedTags?: Array<number>;
+    selectedTagsIds?: Array<string>;
 }
 
 export const initialState = new RecipeReducerState();
@@ -56,7 +56,7 @@ const recipesReducer = (state: RecipeReducerState = initialState, action: any): 
         case SET_RECIPES_SELECTED_TAGS: {
             return {
                 ...state,
-                selectedTags: payload
+                selectedTagsIds: payload
             }
         }
         case SET_RECIPES_TAGS: {

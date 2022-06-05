@@ -24,7 +24,7 @@ const Recipes = () => {
     const skip = useSelector<RootState, number | undefined>((state) => state.recipes.skip);
     const take = useSelector<RootState, number | undefined>((state) => state.recipes.take);
     const tags = useSelector<RootState, Array<TagModel> | undefined>((state) => state.recipes.tags);
-    const selectedTags = useSelector<RootState, Array<number> | undefined>((state) => state.recipes.selectedTags);
+    const selectedTagsIds = useSelector<RootState, Array<string> | undefined>((state) => state.recipes.selectedTagsIds);
 
     const rowClickHandler = (row: any) => {
         navigate(row.id);
@@ -50,22 +50,21 @@ const Recipes = () => {
         dispach(setRecipesSkip(newSkip));
     };
 
-    const onTagMultiselectClick = (index: number, isSelected: boolean) => {
-        let newSelectedTags;
-        newSelectedTags = [...selectedTags ?? []]
+    const onTagMultiselectClick = (key: any, isSelected: boolean) => {
+        let newSelectedTagsIds;
+        newSelectedTagsIds = [...selectedTagsIds ?? []]
         if (isSelected) {
-            newSelectedTags.push(index);
+            newSelectedTagsIds.push(key);
         } else {
-            newSelectedTags = newSelectedTags.filter(t => t !== index);
+            newSelectedTagsIds = newSelectedTagsIds.filter(t => t !== key);
         }
-        console.log(newSelectedTags);
-        dispach(setRecipesSelectedTags(newSelectedTags));
+        dispach(setRecipesSelectedTags(newSelectedTagsIds));
     };
 
     useEffect(() => {
         dispach(fetchRecipes());
         dispach(fetchTags());
-    }, [dispach, sortedBy, skip]);
+    }, [dispach, sortedBy, skip, selectedTagsIds]);
 
     if (!recipes) {
         return (
@@ -94,7 +93,8 @@ const Recipes = () => {
                 <Multiselect
                     title="Tags"
                     items={tags}
-                    selectedIndexes={selectedTags}
+                    seletedKeys={selectedTagsIds}
+                    itemKey={(item) => item.id}
                     itemToString={(t) => t.name}
                     onItemClick={onTagMultiselectClick}
                 />

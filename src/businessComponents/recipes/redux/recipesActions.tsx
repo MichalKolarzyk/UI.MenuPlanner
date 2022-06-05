@@ -53,10 +53,10 @@ export const setRecipesTags = (tags?: Array<TagModel>) => {
     }
 }
 
-export const setRecipesSelectedTags = (tagsIndexes?: Array<number>) => {
+export const setRecipesSelectedTags = (selectedTagsIds?: Array<string>) => {
     return {
         type: SET_RECIPES_SELECTED_TAGS,
-        payload: tagsIndexes,
+        payload: selectedTagsIds,
     }
 }
 
@@ -72,7 +72,7 @@ export const fetchRecipes = () => {
         const request: RecipeRequest = {
             skip: getState().recipes.skip,
             sortBy: getState().recipes.sortedBy,
-            tagIds: undefined,
+            tagIds: getState().recipes.selectedTagsIds,
             take: getState().recipes.take,
         };
         const response = await apiMenuPlanner.getRecipes(request);
