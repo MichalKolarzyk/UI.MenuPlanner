@@ -1,3 +1,4 @@
+import { TagModel } from "../api/models"
 import Ingreadient from "./IngreadientModel"
 
 type RecipeModel = {
@@ -6,6 +7,7 @@ type RecipeModel = {
     description: string,
     ingreadients?: Array<Ingreadient>
     steps?: Array<string>
+    tagIds?: Array<string>
 }
 
 export default RecipeModel

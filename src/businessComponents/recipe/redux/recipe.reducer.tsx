@@ -1,9 +1,11 @@
 import RecipeModel from "../../../models/RecipeModel";
 import {
-    ADD_RECIPE_STEP,
     SET_RECIPE,
+    ADD_RECIPE_STEP,
     REMOVE_RECIPE_STEP,
     UPDATE_RECIPE_STEP,
+    ADD_RECIPE_TAG,
+    REMOVE_RECIPE_TAG,
     SET_RECIPE_IS_LOADING,
     SET_RECIPE_DELETED_SUCCESFULLY,
     SET_NEWRECIPE,
@@ -12,7 +14,6 @@ import {
 
 export class RecipeReducerState {
     recipe?: RecipeModel;
-    recipes?: Array<RecipeModel>;
     createdRecipe?: RecipeModel;
     mode?: RecipeReducerModes;
     isLoading?: boolean = false;
@@ -82,6 +83,24 @@ const recipeReducer = (state: RecipeReducerState = initialState, action: any): R
             return {
                 ...state,
                 deletedSuccesfully: payload,
+            };
+        }
+        case ADD_RECIPE_TAG: {
+            return{
+                ...state,
+                recipe: {
+                    ...state.recipe,
+                    tagIds: [...(state.recipe?.tagIds ?? []), payload],
+                } as RecipeModel,
+            }
+        }
+        case REMOVE_RECIPE_TAG:{
+            return {
+                ...state,
+                recipe: {
+                    ...state.recipe,
+                    tagIds: [...(state.recipe?.tagIds?.filter((item) => item !== payload) ?? [])],
+                } as RecipeModel,
             };
         }
         default:

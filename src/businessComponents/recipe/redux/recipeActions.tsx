@@ -8,6 +8,8 @@ import {
     REMOVE_RECIPE_STEP,
     SET_RECIPE_MODE,
     SET_RECIPE_DELETED_SUCCESFULLY,
+    ADD_RECIPE_TAG,
+    REMOVE_RECIPE_TAG,
 } from "../../../redux/actionTypes";
 import { RecipeReducerModes } from "./recipe.reducer";
 
@@ -52,6 +54,21 @@ export const setRecipeMode = (mode?: RecipeReducerModes) => {
         payload: mode,
     };
 };
+
+export const addRecipeTag = (tagId?: string) => {
+    return {
+        type: ADD_RECIPE_TAG,
+        payload: tagId,
+    };
+};
+
+export const removeRecipeTag = (tagId?: string) => {
+    return {
+        type: REMOVE_RECIPE_TAG,
+        payload: tagId,
+    };
+};
+
 export const setRecipeDeletedSuccesfully = (deletedSuccesfully?: boolean) => {
     return {
         type: SET_RECIPE_DELETED_SUCCESFULLY,

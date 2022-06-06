@@ -5,10 +5,12 @@ import Ingreadient from "../../models/IngreadientModel";
 import RecipeModel from "../../models/RecipeModel";
 import { AppDispatch, RootState } from "../../redux";
 import {
+    addRecipeTag,
     addStep,
     deleteRecipe,
     fetchRecipe,
     patchRecipe,
+    removeRecipeTag,
     removeStep,
     setRecipeDeletedSuccesfully,
     setRecipeMode,
@@ -22,6 +24,9 @@ import Icon, { IconImage } from "../../ui/icons/Icon";
 import Label, { LabelSize } from "../../ui/labels/label/Label";
 import { SimpleList, StringList } from "../../ui/lists/SimpleList/SimpleList";
 import { RecipeReducerModes } from "./redux/recipe.reducer";
+import Multiselect from "../../ui/lists/multiselect/Multiselect";
+import { TagModel } from "../../api/models";
+import { fetchTags } from "../recipes/redux/recipesActions";
 
 const Recipe = () => {
     const navigator = useNavigate();
@@ -29,6 +34,7 @@ const Recipe = () => {
     const recipe = useSelector<RootState, RecipeModel | undefined>((state) => state.recipe.recipe);
     const mode = useSelector<RootState, RecipeReducerModes | undefined>((state) => state.recipe.mode);
     const deletedSuccesfully = useSelector<RootState, boolean | undefined>((state) => state.recipe.deletedSuccesfully);
+    const tags = useSelector<RootState, Array<TagModel> | undefined>((state) => state.recipes.tags);
     const dispach = useDispatch<AppDispatch>();
 
     useEffect(() => {
@@ -38,6 +44,7 @@ const Recipe = () => {
 
     useEffect(() => {
         dispach(setRecipeDeletedSuccesfully(false));
+        dispach(fetchTags());
     }, [])
 
     const onEditClickHandler = () => {
@@ -77,6 +84,14 @@ const Recipe = () => {
         }
         console.log(recipe.ingreadients?.[index]);
     };
+
+    const tagClickHandler = (key: string, selected: boolean) => {
+        if(selected){
+            dispach(addRecipeTag(key))
+        }else{
+            dispach(removeRecipeTag(key));
+        }
+    }
 
     const newIngreadientCreatedHandler = (itemAsStr: string) => {
         let ingreadient: Ingreadient = {
@@ -171,6 +186,15 @@ const Recipe = () => {
                         onAddNewItem={newIngreadientCreatedHandler}
                         onEditClick={onEditIngreadientHandler}
                     />
+                    <Multiselect
+                        isDisabled={mode !== RecipeReducerModes.edit}
+                        items={tags}
+                        itemToString={(t: TagModel) => t.name || " "}
+                        itemKey={(t: TagModel) => t.id}
+                        seletedKeys={recipe.tagIds}
+                        title="Tags"
+                        onItemClick={tagClickHandler}
+                    />
                 </Flex>
                 {mode === RecipeReducerModes.edit && (
                     <Flex justify={FlexJustify.spaceBetween}>
@@ -213,5 +237,6 @@ const Recipe = () => {
         </Card>
     );
 };
+
 
 export default Recipe;
