@@ -21,17 +21,17 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
         setAddingMode(false);
     };
 
-    const onTrashClickHandler = (index: number) => {
+    const onTrashClickHandler = (index?: number) => {
         props.onDeleteClick?.(index);
     };
 
-    const onEditClickHandler = (index: number) => {
+    const onEditClickHandler = (index?: number) => {
         props.onEditClick?.(index);
     };
 
     const onAddElementHandler = () => {
         if (newItemStr !== null && newItemStr !== "") {
-            props.onAddNewItem(newItemStr);
+            props.onAddNewItem?.(newItemStr);
         }
         setNewItemStr("");
         setAddingMode(false);
@@ -44,7 +44,7 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     const itemView = items?.map((item, index) => (
         <SimpleRow
             key={index}
-            itemAsString={props.itemToString(item)}
+            itemAsString={props.itemToString?.(item)}
             onEditClick={onEditClickHandler}
             onTrashClick={onTrashClickHandler}
             item={item}
@@ -133,32 +133,32 @@ export const StringList = (props: StringListProps) => {
     return <SimpleList {...props} itemToString={(item: string) => item} />;
 };
 type StringListProps = {
-    title: string;
+    title?: string;
     items?: Array<string>;
     isDisabled?: boolean;
-    onEditClick?: (index: number) => void;
-    onRowClick?: (index: number) => void;
-    onAddNewItem: (newItem: string) => void;
-    onDeleteClick?: (index: number) => void;
+    onEditClick?: (index?: number) => void;
+    onRowClick?: (index?: number) => void;
+    onAddNewItem?: (newItem: string) => void;
+    onDeleteClick?: (index?: number) => void;
 };
 
 type SimpleListProps<T> = {
-    title: string;
+    title?: string;
     items?: Array<T>;
     isDisabled?: boolean;
-    itemToString: (item: T) => string;
-    onAddNewItem: (newItem: string) => void;
-    onEditClick?: (index: number) => void;
-    onDeleteClick?: (index: number) => void;
-    onRowClick?: (index: number) => void;
+    itemToString?: (item: T) => string;
+    onAddNewItem?: (newItem: string) => void;
+    onEditClick?: (index?: number) => void;
+    onDeleteClick?: (index?: number) => void;
+    onRowClick?: (index?: number) => void;
 };
 
 type SimpleRowProps<T> = {
-    item: T;
-    itemAsString: string;
-    index: number;
+    item?: T;
+    itemAsString?: string;
+    index?: number;
     isDisabled?: boolean;
-    onTrashClick?: (index: number) => void;
-    onEditClick?: (index: number) => void;
-    onClick?: (index: number) => void;
+    onTrashClick?: (index?: number) => void;
+    onEditClick?: (index?: number) => void;
+    onClick?: (index?: number) => void;
 };

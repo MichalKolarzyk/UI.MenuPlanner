@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ButtonStyle } from "../../buttons/button/Button";
 import IconButton from "../../buttons/iconButton/IconButton";
 import { ColorEnum, PaddingEnum, ShapeEnum } from "../../constants/Constants";
-import Card, { CardColors } from "../../containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import { IconImage } from "../../icons/Icon";
 import { InputType } from "../../inputs/input/Input";
@@ -34,6 +33,7 @@ const SimpleForm = (props: SimpleFormProps) => {
         } else {
             props.onSubmitFail?.();
         }
+        setItem(props.item)
     };
 
     let buttonElements;

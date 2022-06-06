@@ -9,5 +9,5 @@ export default {
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args}>Hello</Button>;
 export const button = Template.bind({});
 button.args = {
-    onClick: () => {console.log("click")}
+    
 };

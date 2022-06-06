@@ -10,6 +10,7 @@ import {
     SET_RECIPE_DELETED_SUCCESFULLY,
     ADD_RECIPE_TAG,
     REMOVE_RECIPE_TAG,
+    SET_RECIPE_SUBMITED_SUCCESFULLY,
 } from "../../../redux/actionTypes";
 import { RecipeReducerModes } from "./recipe.reducer";
 
@@ -76,6 +77,13 @@ export const setRecipeDeletedSuccesfully = (deletedSuccesfully?: boolean) => {
     };
 };
 
+export const setRecipeSubmitedSuccesfully = (submitedSuccesfully?: boolean) => {
+    return {
+        type: SET_RECIPE_SUBMITED_SUCCESFULLY,
+        payload: submitedSuccesfully,
+    };
+}
+
 export const patchRecipe = (recipe?: RecipeModel) => {
     return async (dispach: any) => {
         if (!recipe) {
@@ -100,8 +108,10 @@ export const fetchRecipe = (id?: string) => {
         if (!id) {
             return;
         }
+        dispach(setIsLoading(true))
         const response = await apiMenuPlanner.getRecipe(id);
-
         dispach(setRecipe(response.data));
+        dispach(setIsLoading(false))
+        dispach(setRecipeSubmitedSuccesfully(true))
     };
 };

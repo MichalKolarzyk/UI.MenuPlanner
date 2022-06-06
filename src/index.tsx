@@ -8,11 +8,11 @@ import { store } from "./redux";
 import { Provider } from "react-redux";
 import Login from "./businessComponents/login/Login";
 import Recipes from "./businessComponents/recipes/Recipes";
-import Recipe from "./businessComponents/recipe/Recipe";
 import Registration from "./businessComponents/registration/Registration";
 import Main from "./businessComponents/main/Main";
 import EditStep from "./businessComponents/editStep/EditStep";
 import NewRecipe from "./businessComponents/newRecipe/NewRecipe";
+import RecipeController from "./businessComponents/recipe/RecipeController";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -27,7 +27,7 @@ root.render(
                         <Route path="recipes" element={<Recipes />}>
                             <Route path="newRecipe" element={<NewRecipe />} />
                         </Route>
-                        <Route path="recipes/:recipeId" element={<Recipe />}>
+                        <Route path="recipes/:recipeId" element={<RecipeController />}>
                             <Route path="step/:stepIndex" element={<EditStep />} />
                         </Route>
 

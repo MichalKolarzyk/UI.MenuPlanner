@@ -1,20 +1,5 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import Ingreadient from "../../models/IngreadientModel";
 import RecipeModel from "../../models/RecipeModel";
-import { AppDispatch, RootState } from "../../redux";
-import {
-    addRecipeTag,
-    addStep,
-    deleteRecipe,
-    fetchRecipe,
-    patchRecipe,
-    removeRecipeTag,
-    removeStep,
-    setRecipeDeletedSuccesfully,
-    setRecipeMode,
-} from "./redux/recipeActions";
 import { ButtonStyle } from "../../ui/buttons/button/Button";
 import IconButton from "../../ui/buttons/iconButton/IconButton";
 import { AnimationEnum, ColorEnum, PaddingEnum } from "../../ui/constants/Constants";
@@ -26,102 +11,11 @@ import { SimpleList, StringList } from "../../ui/lists/SimpleList/SimpleList";
 import { RecipeReducerModes } from "./redux/recipe.reducer";
 import Multiselect from "../../ui/lists/multiselect/Multiselect";
 import { TagModel } from "../../api/models";
-import { fetchTags } from "../recipes/redux/recipesActions";
 
-const Recipe = () => {
-    const navigator = useNavigate();
-    const { recipeId } = useParams();
-    const recipe = useSelector<RootState, RecipeModel | undefined>((state) => state.recipe.recipe);
-    const mode = useSelector<RootState, RecipeReducerModes | undefined>((state) => state.recipe.mode);
-    const deletedSuccesfully = useSelector<RootState, boolean | undefined>((state) => state.recipe.deletedSuccesfully);
-    const tags = useSelector<RootState, Array<TagModel> | undefined>((state) => state.recipes.tags);
-    const dispach = useDispatch<AppDispatch>();
+const Recipe = (props: RecipeProps) => {
+    const recipeMode = props.recipeMode ?? RecipeReducerModes.default;
 
-    useEffect(() => {
-        dispach(fetchRecipe(recipeId));
-        dispach(setRecipeMode(RecipeReducerModes.default));
-    }, [dispach, recipeId]);
-
-    useEffect(() => {
-        dispach(setRecipeDeletedSuccesfully(false));
-        dispach(fetchTags());
-    }, [])
-
-    const onEditClickHandler = () => {
-        dispach(setRecipeMode(RecipeReducerModes.edit));
-    };
-
-    const onCancelClickHandler = () => {
-        dispach(fetchRecipe(recipeId));
-        dispach(setRecipeMode(RecipeReducerModes.default));
-    };
-
-    const submitClickHandler = () => {
-        console.log(recipe);
-        dispach(patchRecipe(recipe));
-        dispach(setRecipeMode(RecipeReducerModes.default));
-    };
-
-    const deleteClickHandler = () => {
-        dispach(deleteRecipe(recipeId));
-        dispach(setRecipeDeletedSuccesfully(true));
-    };
-
-    const recipesClickHandler = () => {
-        navigator("../recipes");
-    }
-
-    const editStepHandler = (index: number) => {
-        if (!recipe) {
-            return;
-        }
-        navigator(`step/${index}`);
-    };
-
-    const onEditIngreadientHandler = (index: number) => {
-        if (!recipe) {
-            return;
-        }
-        console.log(recipe.ingreadients?.[index]);
-    };
-
-    const tagClickHandler = (key: string, selected: boolean) => {
-        if(selected){
-            dispach(addRecipeTag(key))
-        }else{
-            dispach(removeRecipeTag(key));
-        }
-    }
-
-    const newIngreadientCreatedHandler = (itemAsStr: string) => {
-        let ingreadient: Ingreadient = {
-            amount: 1,
-            name: itemAsStr,
-        };
-
-        if (itemAsStr.includes(":")) {
-            const elements = itemAsStr.split(":");
-            if (elements.length === 2 && !isNaN(Number(elements[1]))) {
-                ingreadient.name = elements[0].trim();
-                ingreadient.amount = Number(elements[1].trim());
-            }
-        }
-        return ingreadient;
-    };
-
-    const addNewStepHandler = (itemStr: string) => {
-        dispach(addStep(itemStr));
-    };
-
-    const deleteStepHandler = (index: number) => {
-        dispach(removeStep(index));
-    };
-
-    const deleteModeClickHandler = () => {
-        dispach(setRecipeMode(RecipeReducerModes.delete));
-    };
-
-    if (!recipe) {
+    if (!props.recipe) {
         return (
             <Flex justify={FlexJustify.center}>
                 <Icon image={IconImage.spin} animation={AnimationEnum.spin} />
@@ -129,7 +23,7 @@ const Recipe = () => {
         );
     }
 
-    if (deletedSuccesfully) {
+    if (props.deletedSuccesfully) {
         return (
             <Card padding={PaddingEnum.paddingOne}>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
@@ -137,7 +31,7 @@ const Recipe = () => {
                         Recipe deleted succesfully
                     </Label>
                     <Flex>
-                        <IconButton onClick={recipesClickHandler} text="Recipes" />
+                        <IconButton onClick={props.onRecipesClick} text="Recipes" />
                     </Flex>
                 </Flex>
             </Card>
@@ -150,69 +44,72 @@ const Recipe = () => {
                 <Outlet />
                 <Flex justify={FlexJustify.spaceBetween}>
                     <Label bold={true} size={LabelSize.large}>
-                        {recipe?.title ?? ""}
+                        {props.recipe?.title ?? ""}
                     </Label>
-                    {mode === RecipeReducerModes.default && (
+                    {recipeMode === RecipeReducerModes.default && (
                         <Flex>
                             <IconButton
-                                onClick={onEditClickHandler}
+                                onClick={props.onEditClick}
                                 style={ButtonStyle.transparent}
                                 image={IconImage.edit}
                             />
                             <IconButton
-                                onClick={deleteModeClickHandler}
+                                onClick={props.onDeleteModeClick}
                                 style={ButtonStyle.transparent}
                                 image={IconImage.remove}
                             />
                         </Flex>
                     )}
                 </Flex>
-                <Label size={LabelSize.medium}>{recipe?.description ?? ""}</Label>
+                <Label size={LabelSize.medium}>{props.recipe?.description ?? ""}</Label>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize2}>
                     <StringList
                         title="Steps"
-                        items={recipe?.steps}
-                        isDisabled={mode !== RecipeReducerModes.edit}
-                        onEditClick={editStepHandler}
-                        onAddNewItem={addNewStepHandler}
-                        onDeleteClick={deleteStepHandler}
-                        onRowClick={editStepHandler}
+                        items={props.recipe?.steps}
+                        isDisabled={recipeMode !== RecipeReducerModes.edit}
+                        onEditClick={props.onEditStepClick}
+                        onAddNewItem={props.onAddNewStepClick}
+                        onDeleteClick={props.onDeleteStep}
+                        onRowClick={props.onEditStepClick}
                     />
                     <SimpleList
                         title="Ingreadients"
-                        items={recipe?.ingreadients}
-                        isDisabled={mode !== RecipeReducerModes.edit}
+                        items={props.recipe?.ingreadients}
+                        isDisabled={recipeMode !== RecipeReducerModes.edit}
                         itemToString={(item) => `${item?.name}: ${item?.amount}`}
-                        onAddNewItem={newIngreadientCreatedHandler}
-                        onEditClick={onEditIngreadientHandler}
+                        onAddNewItem={() => {}}
+                        onEditClick={() => {}}
                     />
                     <Multiselect
-                        isDisabled={mode !== RecipeReducerModes.edit}
-                        items={tags}
+                        isDisabled={recipeMode !== RecipeReducerModes.edit}
+                        items={props.tags}
                         itemToString={(t: TagModel) => t.name || " "}
                         itemKey={(t: TagModel) => t.id}
-                        seletedKeys={recipe.tagIds}
+                        seletedKeys={props.recipe.tagIds}
                         title="Tags"
-                        onItemClick={tagClickHandler}
+                        onItemClick={props.onTagClick}
                     />
                 </Flex>
-                {mode === RecipeReducerModes.edit && (
+                {recipeMode === RecipeReducerModes.edit && (
                     <Flex justify={FlexJustify.spaceBetween}>
                         <IconButton
                             image={IconImage.save}
                             style={ButtonStyle.accept}
-                            onClick={submitClickHandler}
+                            onClick={props.onSubmitClick}
                             text="Submit"
+                            isLoading={props.isLoading}
+                            isDisabled={props.isLoading}
                         />
                         <IconButton
                             image={IconImage.close}
                             style={ButtonStyle.cancel}
-                            onClick={onCancelClickHandler}
+                            onClick={props.onCancelClick}
                             text="Cancel"
+                            isDisabled={props.isLoading}
                         />
                     </Flex>
                 )}
-                {mode === RecipeReducerModes.delete && (
+                {recipeMode === RecipeReducerModes.delete && (
                     <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
                         <Label bold size={LabelSize.medium} color={ColorEnum.red}>
                             Czy na pewno chcesz usunąć przepis?
@@ -221,13 +118,13 @@ const Recipe = () => {
                             <IconButton
                                 image={IconImage.remove}
                                 style={ButtonStyle.cancel}
-                                onClick={deleteClickHandler}
+                                onClick={props.onDeleteClick}
                                 text="Delete"
                             />
                             <IconButton
                                 image={IconImage.close}
                                 style={ButtonStyle.cancel}
-                                onClick={onCancelClickHandler}
+                                onClick={props.onCancelClick}
                                 text="Cancel"
                             />
                         </Flex>
@@ -238,5 +135,22 @@ const Recipe = () => {
     );
 };
 
+export interface RecipeProps {
+    recipe?: RecipeModel;
+    deletedSuccesfully?: boolean;
+    recipeMode?: RecipeReducerModes;
+    tags?: Array<TagModel>;
+    isLoading?: boolean;
+    onRecipesClick?: () => void;
+    onEditClick?: () => void;
+    onEditStepClick?: (intex?: number) => void;
+    onDeleteStep?: (index?: number) => void;
+    onDeleteModeClick?: () => void;
+    onAddNewStepClick?: (item: string) => void;
+    onTagClick?: (key: string, selected: boolean) => void;
+    onSubmitClick?: () => void;
+    onCancelClick?: () => void;
+    onDeleteClick?: () => void;
+}
 
 export default Recipe;

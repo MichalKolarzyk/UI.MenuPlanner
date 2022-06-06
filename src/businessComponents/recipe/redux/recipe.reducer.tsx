@@ -7,6 +7,7 @@ import {
     ADD_RECIPE_TAG,
     REMOVE_RECIPE_TAG,
     SET_RECIPE_IS_LOADING,
+    SET_RECIPE_SUBMITED_SUCCESFULLY,
     SET_RECIPE_DELETED_SUCCESFULLY,
     SET_NEWRECIPE,
     SET_RECIPE_MODE,
@@ -18,6 +19,7 @@ export class RecipeReducerState {
     mode?: RecipeReducerModes;
     isLoading?: boolean = false;
     deletedSuccesfully?: boolean = false;
+    submitedSuccesfully?: boolean = false;
     sortedBy?: string;
 }
 
@@ -102,6 +104,12 @@ const recipeReducer = (state: RecipeReducerState = initialState, action: any): R
                     tagIds: [...(state.recipe?.tagIds?.filter((item) => item !== payload) ?? [])],
                 } as RecipeModel,
             };
+        }
+        case SET_RECIPE_SUBMITED_SUCCESFULLY: {
+            return{
+                ...state,
+                submitedSuccesfully: payload
+            }
         }
         default:
             return state;

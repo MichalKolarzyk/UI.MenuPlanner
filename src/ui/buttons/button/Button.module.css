@@ -6,6 +6,11 @@
     height: auto;
 }
 
+.disabled{
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
 .accept {
     background-color: var(--color-green);
     color: var(--color-white);
