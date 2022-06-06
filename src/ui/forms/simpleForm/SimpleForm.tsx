@@ -109,20 +109,20 @@ const SimpleForm = (props: SimpleFormProps) => {
         />
     ));
     return (
-        <Card color={CardColors.grey} padding={PaddingEnum.paddingOne}>
-            <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize3}>
-                <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize1}>
-                    <Label bold size={LabelSize.medium}>
-                        {props.title}
+        <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize3}>
+            <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize1}>
+                <Label bold size={LabelSize.medium}>
+                    {props.title}
+                </Label>
+                {props.serverErrorMessage && (
+                    <Label size={LabelSize.small} color={ColorEnum.redL1}>
+                        {props.serverErrorMessage}
                     </Label>
-                    {props.serverErrorMessage && (
-                        <Label size={LabelSize.small} color={ColorEnum.redL1}>
-                            {props.serverErrorMessage}
-                        </Label>
-                    )}
-                </Flex>
-                {props.createdSuccesfully && <Label color={ColorEnum.greenL1}>Created succesfully</Label>}
-                {!props.createdSuccesfully && <form onSubmit={submitHandler}>
+                )}
+            </Flex>
+            {props.createdSuccesfully && <Label size={LabelSize.medium} bold color={ColorEnum.greenL1}>Created succesfully</Label>}
+            {!props.createdSuccesfully && (
+                <form onSubmit={submitHandler}>
                     <Flex
                         style={FlexStyle.column}
                         alignItems={FlexAlignItems.alignUnset}
@@ -137,9 +137,9 @@ const SimpleForm = (props: SimpleFormProps) => {
                         </Flex>
                         {buttonElements}
                     </Flex>
-                </form>}
-            </Flex>
-        </Card>
+                </form>
+            )}
+        </Flex>
     );
 };
 

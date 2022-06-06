@@ -6,7 +6,6 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import Card, { CardColors } from "./ui/containers/cards/card/Card";
 import { store } from "./redux";
 import { Provider } from "react-redux";
-import Label, { LabelSize } from "./ui/labels/label/Label";
 import Login from "./businessComponents/login/Login";
 import Recipes from "./businessComponents/recipes/Recipes";
 import Recipe from "./businessComponents/recipe/Recipe";

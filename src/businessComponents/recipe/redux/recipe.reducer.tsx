@@ -4,18 +4,26 @@ import {
     SET_RECIPE,
     REMOVE_RECIPE_STEP,
     UPDATE_RECIPE_STEP,
-    SET_RECIPE_EDIT_MODE,
     SET_RECIPE_IS_LOADING,
+    SET_RECIPE_DELETED_SUCCESFULLY,
     SET_NEWRECIPE,
+    SET_RECIPE_MODE,
 } from "../../../redux/actionTypes";
 
 export class RecipeReducerState {
     recipe?: RecipeModel;
     recipes?: Array<RecipeModel>;
     createdRecipe?: RecipeModel;
-    editMode?: boolean = false;
+    mode?: RecipeReducerModes;
     isLoading?: boolean = false;
+    deletedSuccesfully?: boolean = false;
     sortedBy?: string;
+}
+
+export enum RecipeReducerModes {
+    default="default",
+    edit= "edit",
+    delete="delete",
 }
 
 export const initialState = new RecipeReducerState();
@@ -54,10 +62,10 @@ const recipeReducer = (state: RecipeReducerState = initialState, action: any): R
                     steps: [...(state.recipe?.steps?.filter((item, index) => index !== payload) ?? [])],
                 } as RecipeModel,
             };
-        case SET_RECIPE_EDIT_MODE:
+        case SET_RECIPE_MODE:
             return {
                 ...state,
-                editMode: payload,
+                mode: payload,
             };
         case SET_RECIPE_IS_LOADING:
             return {
@@ -68,6 +76,12 @@ const recipeReducer = (state: RecipeReducerState = initialState, action: any): R
             return {
                 ...state,
                 createdRecipe: payload,
+            };
+        }
+        case SET_RECIPE_DELETED_SUCCESFULLY: {
+            return {
+                ...state,
+                deletedSuccesfully: payload,
             };
         }
         default:

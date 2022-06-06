@@ -4,6 +4,7 @@ import recipeReducer from "../businessComponents/recipe/redux/recipe.reducer";
 import userReducer from "./reducers/user.reducer";
 import recipesReducer from "../businessComponents/recipes/redux/recipes.reducer";
 import registrationReducer from "../businessComponents/registration/redux/registration.reducer";
+import newRecipeReducer from "../businessComponents/newRecipe/redux/newRecipe.reducer";
 
 export const store = configureStore({
     reducer:{
@@ -12,6 +13,7 @@ export const store = configureStore({
         recipe: recipeReducer,
         recipes: recipesReducer,
         registration: registrationReducer,
+        newRecipe: newRecipeReducer,
     }
     
 })

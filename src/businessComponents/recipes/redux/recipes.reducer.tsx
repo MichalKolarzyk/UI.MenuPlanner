@@ -15,7 +15,7 @@ export class RecipeReducerState {
     isLoading?: boolean = false;
     sortedBy?: string;
     skip?: number = 0;
-    take?: number = 5;
+    take?: number = 12;
     tags?: Array<TagModel>;
     selectedTagsIds?: Array<string>;
 }

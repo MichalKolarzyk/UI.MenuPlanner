@@ -11,12 +11,13 @@ import Card, { CardColors } from "../../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import Input, { InputType } from "../../ui/inputs/input/Input";
 import Label, { LabelSize } from "../../ui/labels/label/Label";
+import { RecipeReducerModes } from "../recipe/redux/recipe.reducer";
 
 const EditStep = () => {
     const { stepIndex } = useParams();
     const index: number = Number(stepIndex);
     const recipe = useSelector<RootState, RecipeModel | undefined>((state) => state.recipe.recipe);
-    const editMode = useSelector<RootState, boolean | undefined>((state) => state.recipe.editMode);
+    const mode = useSelector<RootState, RecipeReducerModes | undefined>((state) => state.recipe.mode);
     const navigate = useNavigate();
     const dispach = useDispatch();
     const backdropClick = () => {
@@ -48,7 +49,7 @@ const EditStep = () => {
                         </Label>
                         <Input
                             type={InputType.textarea}
-                            disabled={!editMode}
+                            disabled={mode !== RecipeReducerModes.edit}
                             value={recipe?.steps?.[index]}
                             onChange={inputChangeHandler}
                         />

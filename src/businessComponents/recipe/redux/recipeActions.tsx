@@ -3,12 +3,13 @@ import RecipeModel from "../../../models/RecipeModel";
 import {
     SET_RECIPE_IS_LOADING,
     SET_RECIPE,
-    SET_NEWRECIPE,
     ADD_RECIPE_STEP,
     UPDATE_RECIPE_STEP,
     REMOVE_RECIPE_STEP,
-    SET_RECIPE_EDIT_MODE,
+    SET_RECIPE_MODE,
+    SET_RECIPE_DELETED_SUCCESFULLY,
 } from "../../../redux/actionTypes";
+import { RecipeReducerModes } from "./recipe.reducer";
 
 export const setIsLoading = (isLoading: boolean) => {
     return {
@@ -20,13 +21,6 @@ export const setIsLoading = (isLoading: boolean) => {
 export const setRecipe = (payload?: RecipeModel) => {
     return {
         type: SET_RECIPE,
-        payload,
-    };
-};
-
-export const setCreatedRecipe = (payload?: RecipeModel) => {
-    return {
-        type: SET_NEWRECIPE,
         payload,
     };
 };
@@ -52,10 +46,16 @@ export const removeStep = (payload: number) => {
     };
 };
 
-export const setEditMode = (editMode?: boolean) => {
+export const setRecipeMode = (mode?: RecipeReducerModes) => {
     return {
-        type: SET_RECIPE_EDIT_MODE,
-        payload: editMode,
+        type: SET_RECIPE_MODE,
+        payload: mode,
+    };
+};
+export const setRecipeDeletedSuccesfully = (deletedSuccesfully?: boolean) => {
+    return {
+        type: SET_RECIPE_DELETED_SUCCESFULLY,
+        payload: deletedSuccesfully,
     };
 };
 
@@ -75,18 +75,6 @@ export const deleteRecipe = (id?: string) => {
             return;
         }
         const response = await apiMenuPlanner.deleteRecipe(id);
-    };
-};
-
-export const createRecipe = (recipe?: RecipeModel) => {
-    return async (dispach: any) => {
-        if (!recipe) {
-            return;
-        }
-        dispach(setIsLoading(true));
-        const response = await apiMenuPlanner.addRecipe(recipe);
-        dispach(setCreatedRecipe(response.data));
-        dispach(setIsLoading(false));
     };
 };
 
