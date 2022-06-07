@@ -1,4 +1,4 @@
-import { ErrorModel, UserModel } from "../../../api/models";
+import { ErrorModel, RegisterUserModel } from "../../../api/models";
 import {
     SET_REGISTRATION_ERROR,
     SET_REGISTRATION_USER,
@@ -6,7 +6,7 @@ import {
 } from "../../../redux/actionTypes";
 
 export class RegistrationReducerState {
-    user?: UserModel;
+    user?: RegisterUserModel;
     error?: ErrorModel;
     userSuccesfullyCreated?: boolean;
 }

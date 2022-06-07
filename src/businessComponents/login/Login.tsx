@@ -1,20 +1,22 @@
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ButtonStyle } from "../../ui/buttons/button/Button";
-import IconButton from "../../ui/buttons/iconButton/IconButton";
+import { ErrorModel } from "../../api/models";
+import { AppDispatch, RootState } from "../../redux";
 import Canvas, { CanvasSize } from "../../ui/canvases/Canvas";
 import { AnimationEnum } from "../../ui/constants/Constants";
 import Card, { CardColors } from "../../ui/containers/cards/card/Card";
-import Flex, { FlexAlignItems, FlexGapSize, FlexStyle } from "../../ui/containers/flexes/Flex";
-import { IconImage } from "../../ui/icons/Icon";
+import SimpleForm, { FormFieldValidationResult, SimpleFormButtonStyle } from "../../ui/forms/simpleForm/SimpleForm";
 import { InputType } from "../../ui/inputs/input/Input";
-import LabelInput from "../../ui/inputs/labelInput/LabelInput";
-import Label, { LabelSize } from "../../ui/labels/label/Label";
+import { fetchLogin } from "./login.reducer";
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispach = useDispatch<AppDispatch>();
+    const loggedSuccessfully = useSelector<RootState, boolean | undefined>((state) => state.login.loggedSuccessFully);
+    const error = useSelector<RootState, ErrorModel | undefined>((state) => state.login.error);
 
-    const loginHandler = () => {
-        navigate("/recipes");
+    const loginHandler = (item: any) => {
+        dispach(fetchLogin(item))
     };
 
     const registrationHandler = () => {
@@ -25,26 +27,45 @@ const Login = () => {
         <Canvas size={CanvasSize.fullscreen}>
             <Canvas size={CanvasSize.extraSmall} animation={AnimationEnum.slideDown}>
                 <Card color={CardColors.grey}>
-                    <Flex
-                        style={FlexStyle.column}
-                        alignItems={FlexAlignItems.alignUnset}
-                        gapSize={FlexGapSize.gapSize2}
-                    >
-                        <Label bold italic size={LabelSize.medium}>
-                            Sign In
-                        </Label>
-                        <LabelInput label="Email" />
-                        <LabelInput type={InputType.password} label="Password" />
-                        <Flex>
-                            <IconButton onClick={loginHandler} image={IconImage.user} text="Login" />
-                            <IconButton
-                                style={ButtonStyle.cancel}
-                                onClick={registrationHandler}
-                                image={IconImage.save}
-                                text="Sing up"
-                            />
-                        </Flex>
-                    </Flex>
+                    <SimpleForm
+                            onSubmit={loginHandler}
+                            onSecondChoiceClick={registrationHandler}
+                            simpleFormButtonStyle={SimpleFormButtonStyle.loginSignUp}
+                            createdSuccesfully={loggedSuccessfully}
+                            serverErrorMessage={error?.detail}
+                            title="Login"
+                            item={{
+                                email: "",
+                                password: "",
+                            }}
+                            fields={[
+                                {
+                                    property: "email",
+                                    text: "Email",
+                                    onValidation: (property: string) => {
+                                        if (property.length < 3) {
+                                            return FormFieldValidationResult.invalidField(
+                                                "Email should have at list 3 characters"
+                                            );
+                                        }
+                                        return FormFieldValidationResult.ValidField;
+                                    },
+                                },
+                                {
+                                    property: "password",
+                                    text: "Password",
+                                    type: InputType.password,
+                                    onValidation: (property: string) => {
+                                        if (property.length < 3) {
+                                            return FormFieldValidationResult.invalidField(
+                                                "Password should have at list 3 characters"
+                                            );
+                                        }
+                                        return FormFieldValidationResult.ValidField;
+                                    },
+                                },
+                            ]}
+                        />
                 </Card>
             </Canvas>
         </Canvas>

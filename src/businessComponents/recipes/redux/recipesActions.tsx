@@ -11,7 +11,7 @@ import {
     SET_RECIPES_TAGS,
 } from "../../../redux/actionTypes";
 
-export const setIsLoading = (isLoading: boolean) => {
+export const setIsLoading = (isLoading?: boolean) => {
     return {
         type: SET_RECIPES_IS_LOADING,
         payload: isLoading,
@@ -49,7 +49,7 @@ export const setRecipesTake = (take?: number) => {
 export const setRecipesTags = (tags?: Array<TagModel>) => {
     return {
         type: SET_RECIPES_TAGS,
-        payload: tags,
+        payload: tags ?? null,
     }
 }
 

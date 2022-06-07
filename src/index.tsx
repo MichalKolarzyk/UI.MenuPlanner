@@ -1,53 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import Card, { CardColors } from "./ui/containers/cards/card/Card";
-import { store } from "./redux";
 import { Provider } from "react-redux";
-import Login from "./businessComponents/login/Login";
-import Recipes from "./businessComponents/recipes/Recipes";
-import Registration from "./businessComponents/registration/Registration";
-import Main from "./businessComponents/main/Main";
-import EditStep from "./businessComponents/editStep/EditStep";
-import NewRecipe from "./businessComponents/newRecipe/NewRecipe";
-import RecipeController from "./businessComponents/recipe/RecipeController";
+import "./index.css";
+import { store } from "./redux";
+import reportWebVitals from "./reportWebVitals";
+import AppRouter from "./routers/AppRouter";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="login" element={<Login />} />
-                    <Route path="registration" element={<Registration />} />
-                    <Route path="" element={<Main />}>
-                        <Route path="recipes" element={<Recipes />}>
-                            <Route path="newRecipe" element={<NewRecipe />} />
-                        </Route>
-                        <Route path="recipes/:recipeId" element={<RecipeController />}>
-                            <Route path="step/:stepIndex" element={<EditStep />} />
-                        </Route>
-
-                        <Route
-                            path="teams"
-                            element={
-                                <Card color={CardColors.green}>
-                                    Teams
-                                    <Outlet />
-                                </Card>
-                            }
-                        >
-                            <Route path=":id" element={<Card color={CardColors.green}>Team</Card>} />
-                            <Route path="new" element={<Card color={CardColors.green}>New team form</Card>} />
-                            {false && <Route index element={<Card color={CardColors.green}>Settings</Card>} />}
-                        </Route>
-                        <Route path="*" element={<Card color={CardColors.white}>Nothing here</Card>} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
+            <AppRouter />
         </Provider>
     </React.StrictMode>
 );

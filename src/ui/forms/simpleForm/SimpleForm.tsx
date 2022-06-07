@@ -33,7 +33,6 @@ const SimpleForm = (props: SimpleFormProps) => {
         } else {
             props.onSubmitFail?.();
         }
-        setItem(props.item)
     };
 
     let buttonElements;

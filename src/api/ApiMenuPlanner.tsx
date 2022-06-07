@@ -1,12 +1,12 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import DishModel from "../models/DishModel";
 import RecipeModel from "../models/RecipeModel";
-import { TagModel, UserModel } from "./models";
+import { LoginRequestModel, LoginResponseModel, TagModel, RegisterUserModel, UserModel } from "./models";
 import { RecipeRequest } from "./requests";
 
 export default class ApiMenuPlanner {
     axiosInstance: AxiosInstance;
-
+    
     constructor(baseUrl: string) {
         this.axiosInstance = axios.create({
             baseURL: baseUrl,
@@ -18,11 +18,11 @@ export default class ApiMenuPlanner {
         return this.axiosInstance.get(`/api/dish/${id}`, {});
     }
 
-    getRecipe(id: string): Promise<AxiosResponse<RecipeModel>>{
+    getRecipe(id: string): Promise<AxiosResponse<RecipeModel>> {
         return this.axiosInstance.get(`/api/recipe/${id}`, {});
     }
 
-    getRecipes(request: RecipeRequest): Promise<AxiosResponse<Array<RecipeModel>>>{
+    getRecipes(request: RecipeRequest): Promise<AxiosResponse<Array<RecipeModel>>> {
         return this.axiosInstance.post("/api/recipe", request);
     }
 
@@ -35,14 +35,22 @@ export default class ApiMenuPlanner {
     }
 
     deleteRecipe(id: string) {
-        return this.axiosInstance.delete(`/api/recipe?id=${id}`)
+        return this.axiosInstance.delete(`/api/recipe?id=${id}`);
     }
 
-    getTags() : Promise<AxiosResponse<Array<TagModel>>> {
-        return this.axiosInstance.get<Array<TagModel>>("/api/tag")
+    getTags(): Promise<AxiosResponse<Array<TagModel>>> {
+        return this.axiosInstance.get<Array<TagModel>>("/api/tag");
     }
 
-    registerUser(newUser: UserModel) {
-        return this.axiosInstance.post("/api/user", newUser)
+    registerUser(newUser: RegisterUserModel) {
+        return this.axiosInstance.post("/api/user", newUser);
+    }
+
+    loginUser(login: LoginRequestModel): Promise<AxiosResponse<LoginResponseModel>> {
+        return this.axiosInstance.post("/api/user/login", login);
+    }
+
+    profileUser(token?: string): Promise<AxiosResponse<UserModel>> {
+        return this.axiosInstance.get("/api/user/profile", {headers: {"Authorization" : `Bearer ${token}`}} );
     }
 }
