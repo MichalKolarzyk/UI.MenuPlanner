@@ -1,13 +1,10 @@
-import jwtDecode from "jwt-decode";
 import { apiMenuPlanner } from "../../api";
 import { ErrorModel, LoginRequestModel, LoginResponseModel } from "../../api/models";
 import {
     SET_LOGIN,
     SET_LOGIN_ERROR,
     SET_LOGIN_IS_LOADING,
-    SET_LOGIN_LOGGED_SUCCESSFULLY,
 } from "../../redux/actionTypes";
-import { setUser, setUserIsLogged } from "../user/user.reducer";
 
 export class LoginReducerState {
     login?: LoginResponseModel;
@@ -25,11 +22,6 @@ const loginReducer = (state: LoginReducerState = initialState, action: any): Log
             return {
                 ...state,
                 isLoading: payload,
-            };
-        case SET_LOGIN_LOGGED_SUCCESSFULLY:
-            return {
-                ...state,
-                loggedSuccessFully: payload,
             };
         case SET_LOGIN:
             return {
@@ -54,13 +46,6 @@ export const setLoginIsLoading = (isLoading?: boolean) => {
     };
 };
 
-export const setLoginLoggedSuccessfully = (loggedSuccessfully?: boolean) => {
-    return {
-        type: SET_LOGIN_LOGGED_SUCCESSFULLY,
-        payload: loggedSuccessfully,
-    };
-};
-
 export const setLogin = (login?: LoginResponseModel) => {
     return {
         type: SET_LOGIN,
@@ -77,7 +62,6 @@ export const setLoginError = (error?: ErrorModel) => {
 
 export const fetchLogin = (login?: LoginRequestModel) => {
     return async (dispach: any) => {
-        dispach(setLoginLoggedSuccessfully(false));
         dispach(setLoginError(undefined));
         if (!login) {
             return;
@@ -86,13 +70,17 @@ export const fetchLogin = (login?: LoginRequestModel) => {
         try {
             const loginResponse = await apiMenuPlanner.loginUser(login);
             dispach(setLogin(loginResponse.data));
-            dispach(setLoginLoggedSuccessfully(true));
-
-            const userResponse = await apiMenuPlanner.profileUser(loginResponse.data.token);
-            dispach(setUserIsLogged(true));
-            dispach(setUser(userResponse.data))
         } catch (error: any) {
-            dispach(setLoginError(error.response.data));
+            if (!error.response) {
+                dispach(setLoginError({
+                    title: "Tmieout",
+                    detail: "The server is not responding",
+                }))
+            } else {
+                dispach(setLoginError(error.response.data));
+            }
+        } finally {
+            dispach(setLoginIsLoading(false));
         }
     };
 };

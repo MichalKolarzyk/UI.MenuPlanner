@@ -40,6 +40,8 @@ const SimpleForm = (props: SimpleFormProps) => {
         buttonElements = (
             <Flex justify={FlexJustify.spaceBetween}>
                 <IconButton
+                    isLoading={props.isLoading}
+                    isDisabled={props.isLoading} 
                     shape={ShapeEnum.slightlyRounded}
                     image={IconImage.save}
                     style={ButtonStyle.accept}
@@ -47,6 +49,7 @@ const SimpleForm = (props: SimpleFormProps) => {
                     submit
                 />
                 <IconButton
+                    isDisabled={props.isLoading} 
                     shape={ShapeEnum.slightlyRounded}
                     onClick={props.onSecondChoiceClick}
                     style={ButtonStyle.cancel}
@@ -59,6 +62,8 @@ const SimpleForm = (props: SimpleFormProps) => {
         buttonElements = (
             <Flex>
                 <IconButton
+                    isLoading={props.isLoading}
+                    isDisabled={props.isLoading}            
                     shape={ShapeEnum.slightlyRounded}
                     image={IconImage.user}
                     style={ButtonStyle.accept}
@@ -66,6 +71,7 @@ const SimpleForm = (props: SimpleFormProps) => {
                     submit
                 />
                 <IconButton
+                    isDisabled={props.isLoading}   
                     shape={ShapeEnum.slightlyRounded}
                     onClick={props.onSecondChoiceClick}
                     style={ButtonStyle.cancel}
@@ -78,6 +84,8 @@ const SimpleForm = (props: SimpleFormProps) => {
         buttonElements = (
             <Flex>
                 <IconButton
+                    isLoading={props.isLoading}
+                    isDisabled={props.isLoading}
                     shape={ShapeEnum.slightlyRounded}
                     image={IconImage.user}
                     style={ButtonStyle.default}
@@ -85,6 +93,7 @@ const SimpleForm = (props: SimpleFormProps) => {
                     submit
                 />
                 <IconButton
+                    isDisabled={props.isLoading}
                     shape={ShapeEnum.slightlyRounded}
                     onClick={props.onSecondChoiceClick}
                     style={ButtonStyle.cancel}
@@ -149,6 +158,7 @@ type SimpleFormProps = {
     simpleFormButtonStyle?: SimpleFormButtonStyle;
     serverErrorMessage?: string;
     createdSuccesfully?: boolean;
+    isLoading?: boolean;
     onSubmit?: (item: any) => void;
     onSubmitFail?: () => void;
     onSecondChoiceClick?: () => void;

@@ -13,6 +13,7 @@ const Login = () => {
     const navigate = useNavigate();
     const dispach = useDispatch<AppDispatch>();
     const loggedSuccessfully = useSelector<RootState, boolean | undefined>((state) => state.login.loggedSuccessFully);
+    const isLoading = useSelector<RootState, boolean | undefined>((state) => state.login.isLoading);
     const error = useSelector<RootState, ErrorModel | undefined>((state) => state.login.error);
 
     const loginHandler = (item: any) => {
@@ -28,6 +29,7 @@ const Login = () => {
             <Canvas size={CanvasSize.extraSmall} animation={AnimationEnum.slideDown}>
                 <Card color={CardColors.grey}>
                     <SimpleForm
+                            isLoading={isLoading}
                             onSubmit={loginHandler}
                             onSecondChoiceClick={registrationHandler}
                             simpleFormButtonStyle={SimpleFormButtonStyle.loginSignUp}

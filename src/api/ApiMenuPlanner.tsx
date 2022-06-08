@@ -6,7 +6,7 @@ import { RecipeRequest } from "./requests";
 
 export default class ApiMenuPlanner {
     axiosInstance: AxiosInstance;
-    
+
     constructor(baseUrl: string) {
         this.axiosInstance = axios.create({
             baseURL: baseUrl,
@@ -51,6 +51,6 @@ export default class ApiMenuPlanner {
     }
 
     profileUser(token?: string): Promise<AxiosResponse<UserModel>> {
-        return this.axiosInstance.get("/api/user/profile", {headers: {"Authorization" : `Bearer ${token}`}} );
+        return this.axiosInstance.get("/api/user/profile", { headers: { Authorization: `Bearer ${token}` } });
     }
 }

@@ -7,7 +7,7 @@ import { BoxShadowEnum, PaddingEnum, ShapeEnum } from "../../ui/constants/Consta
 import Card, { CardColors } from "../../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import Label, { LabelSize } from "../../ui/labels/label/Label";
-import { setLogin, setLoginLoggedSuccessfully } from "../login/login.reducer";
+import { setLogin } from "../login/login.reducer";
 import { setUserIsLogged } from "../user/user.reducer";
 
 const Main = () => {
@@ -16,16 +16,23 @@ const Main = () => {
     const user = useSelector<RootState, UserModel | undefined>((state) => state.user.user);
 
     const logoutClick = () => {
-        dispach(setLogin(undefined))
-        dispach(setLoginLoggedSuccessfully(false))
-        dispach(setUserIsLogged(false))
-    }
+        dispach(
+            setLogin({
+                authorizationMethod: "",
+                token: "",
+            })
+        );
+        dispach(setUserIsLogged(false));
+    };
 
     return (
         <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
             <Card color={CardColors.grey} boxShadow={BoxShadowEnum.none} padding={PaddingEnum.paddingZero}>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
                     <Flex justify={FlexJustify.center}>
+                        <Label italic size={LabelSize.large}>
+                            {user?.email}
+                        </Label>
                         <Label italic size={LabelSize.large}>
                             Menu Planner
                         </Label>
