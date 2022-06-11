@@ -1,7 +1,6 @@
 import { apiMenuPlanner } from "../../../api";
-import { TagModel } from "../../../api/models";
+import { RecipeModel, TagModel } from "../../../api/models";
 import { RecipeRequest } from "../../../api/requests";
-import RecipeModel from "../../../models/RecipeModel";
 import {
     SET_RECIPES,
     SET_RECIPES_IS_LOADING,

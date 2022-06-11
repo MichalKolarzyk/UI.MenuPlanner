@@ -1,5 +1,4 @@
-import { Outlet, useNavigate, useParams } from "react-router-dom";
-import RecipeModel from "../../models/RecipeModel";
+import { Outlet } from "react-router-dom";
 import { ButtonStyle } from "../../ui/buttons/button/Button";
 import IconButton from "../../ui/buttons/iconButton/IconButton";
 import { AnimationEnum, ColorEnum, FontsizeEnum, PaddingEnum } from "../../ui/constants/Constants";
@@ -10,7 +9,7 @@ import Label from "../../ui/labels/label/Label";
 import { SimpleList, StringList } from "../../ui/lists/SimpleList/SimpleList";
 import { RecipeReducerModes } from "./redux/recipe.reducer";
 import Multiselect from "../../ui/inputs/multiselect/Multiselect";
-import { TagModel } from "../../api/models";
+import { RecipeModel, TagModel } from "../../api/models";
 
 const Recipe = (props: RecipeProps) => {
     const recipeMode = props.recipeMode ?? RecipeReducerModes.default;

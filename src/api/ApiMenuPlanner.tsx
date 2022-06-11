@@ -1,7 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import RecipeModel from "../models/RecipeModel";
 import { store } from "../redux";
-import { LoginRequestModel, LoginResponseModel, TagModel, RegisterUserModel, UserModel, DishModel } from "./models";
+import { LoginRequestModel, LoginResponseModel, TagModel, RegisterUserModel, UserModel, DishModel, RecipeModel } from "./models";
 import { DishRequest, RecipeRequest } from "./requests";
 
 export default class ApiMenuPlanner {

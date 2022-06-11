@@ -1,5 +1,4 @@
-import { TagModel } from "../../../api/models";
-import RecipeModel from "../../../models/RecipeModel";
+import { RecipeModel, TagModel } from "../../../api/models";
 import {
     SET_RECIPES,
     SET_RECIPES_SORTED_BY,

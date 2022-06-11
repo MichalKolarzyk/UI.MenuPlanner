@@ -1,5 +1,5 @@
 import { apiMenuPlanner } from "../../../api";
-import RecipeModel from "../../../models/RecipeModel";
+import { RecipeModel } from "../../../api/models";
 import {
     SET_RECIPE_IS_LOADING,
     SET_RECIPE,

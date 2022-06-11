@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import RecipeModel from "../../models/RecipeModel";
 import { overlayPortal } from "../../portals";
 import { RootState } from "../../redux";
 import { updateStep } from "../recipe/redux/recipeActions";
@@ -12,6 +11,7 @@ import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../..
 import Input, { InputType } from "../../ui/inputs/input/Input";
 import Label from "../../ui/labels/label/Label";
 import { RecipeReducerModes } from "../recipe/redux/recipe.reducer";
+import { RecipeModel } from "../../api/models";
 
 const EditStep = () => {
     const { stepIndex } = useParams();

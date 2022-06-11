@@ -1,6 +1,5 @@
 import { apiMenuPlanner } from "../../../api";
-import { ErrorModel } from "../../../api/models";
-import RecipeModel from "../../../models/RecipeModel";
+import { ErrorModel, RecipeModel } from "../../../api/models";
 import { SET_NEWRECIPE, SET_NEWRECIPE_CREATED_SUCCESFULLY, SET_NEWRECIPE_ERROR } from "../../../redux/actionTypes";
 
 export const setCreatedSuccessfully = (createdSuccesfully: boolean) => {

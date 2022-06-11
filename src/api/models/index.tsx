@@ -55,3 +55,16 @@ export enum DishTypeEnum {
     dinner="dinner",
     supper="supper",
 }
+export class RecipeModel{
+    id?: string;
+    title?: string;
+    description?: string;
+    ingreadients?: Array<Ingreadient>;
+    steps?: Array<string>;
+    tagIds?: Array<string>;
+}
+
+export class Ingreadient {
+    name?: string;
+    amount?: number;
+}

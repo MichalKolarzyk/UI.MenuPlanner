@@ -1,4 +1,4 @@
-import RecipeModel from "../../../models/RecipeModel";
+import { RecipeModel } from "../../../api/models";
 import {
     SET_RECIPE,
     ADD_RECIPE_STEP,

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
-import { TagModel } from "../../api/models";
-import RecipeModel from "../../models/RecipeModel";
+import { RecipeModel, TagModel } from "../../api/models";
 import { AppDispatch, RootState } from "../../redux";
 import { ButtonStyle } from "../../ui/buttons/button/Button";
 import IconButton from "../../ui/buttons/iconButton/IconButton";

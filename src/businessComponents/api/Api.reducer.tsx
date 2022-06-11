@@ -35,6 +35,8 @@ export const setApiIsLoading = (isLoading: boolean) => {
 
 export const setApiError = (error?: any) => {
     let errorModel: ErrorModel | undefined;
+
+    console.log(error);
     if (!error) {
         errorModel = undefined;
     } else if (!error.response) {
