@@ -1,8 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import DishModel from "../models/DishModel";
 import RecipeModel from "../models/RecipeModel";
-import { LoginRequestModel, LoginResponseModel, TagModel, RegisterUserModel, UserModel } from "./models";
-import { RecipeRequest } from "./requests";
+import { LoginRequestModel, LoginResponseModel, TagModel, RegisterUserModel, UserModel, DishModel } from "./models";
+import { DishRequest, RecipeRequest } from "./requests";
 
 export default class ApiMenuPlanner {
     axiosInstance: AxiosInstance;
@@ -52,5 +51,13 @@ export default class ApiMenuPlanner {
 
     profileUser(token?: string): Promise<AxiosResponse<UserModel>> {
         return this.axiosInstance.get("/api/user/profile", { headers: { Authorization: `Bearer ${token}` } });
+    }
+
+    getDishes(request: DishRequest) : Promise<AxiosResponse<Array<DishModel>>>{
+        return this.axiosInstance.post("/api/dish", request);
+    }
+    
+    createDishes(dish: DishModel) : Promise<AxiosResponse<Array<DishModel>>>{
+        return this.axiosInstance.post("/api/dish/create", dish);
     }
 }

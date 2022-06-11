@@ -1,3 +1,5 @@
+import RecipeModel from "../../models/RecipeModel";
+
 export class TagModel {
     id?: string;
     name?: string;
@@ -36,4 +38,22 @@ export class LoginRequestModel{
 export class LoginResponseModel{
     token?: string
     authorizationMethod?: string
+}
+
+export class DishModel{
+     id?: string;
+     userId?: string
+     dishType?: DishTypeEnum
+     day?: string
+     recipeTitle?: string
+     recipeId?: string
+}
+
+export enum DishTypeEnum {
+    starter = "starter",
+    breakfast= "breakfast",
+    lunch="lunch",
+    snack="snack",
+    dinner="dinner",
+    supper="supper",
 }

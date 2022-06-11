@@ -4,3 +4,9 @@ export class RecipeRequest {
     sortBy? : "Title" | "Description"
     tagIds? : Array<string>
 }
+
+export class DishRequest {
+    firstDay?: string;
+    numberOfDays?: number;
+    userIds?: Array<string>;
+}

@@ -61,7 +61,7 @@ const Recipe = (props: RecipeProps) => {
                         </Flex>
                     )}
                 </Flex>
-                <Label size={FontsizeEnum.medium}>{props.recipe?.description ?? ""}</Label>
+                <Label size={FontsizeEnum.small}>{props.recipe?.description ?? ""}</Label>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize2}>
                     <StringList
                         title="Steps"

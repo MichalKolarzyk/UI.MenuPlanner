@@ -17,7 +17,7 @@ const Login = () => {
     const error = useSelector<RootState, ErrorModel | undefined>((state) => state.login.error);
 
     const loginHandler = (item: any) => {
-        dispach(fetchLogin(item))
+        dispach(fetchLogin(item, () => navigate("/recipes")));
     };
 
     const registrationHandler = () => {
@@ -29,45 +29,45 @@ const Login = () => {
             <Canvas size={CanvasSize.extraSmall} animation={AnimationEnum.slideDown}>
                 <Card color={CardColors.grey}>
                     <SimpleForm
-                            isLoading={isLoading}
-                            onSubmit={loginHandler}
-                            onSecondChoiceClick={registrationHandler}
-                            simpleFormButtonStyle={SimpleFormButtonStyle.loginSignUp}
-                            createdSuccesfully={loggedSuccessfully}
-                            serverErrorMessage={error?.detail}
-                            title="Login"
-                            item={{
-                                email: "",
-                                password: "",
-                            }}
-                            fields={[
-                                {
-                                    property: "email",
-                                    text: "Email",
-                                    onValidation: (property: string) => {
-                                        if (property.length < 3) {
-                                            return FormFieldValidationResult.invalidField(
-                                                "Email should have at list 3 characters"
-                                            );
-                                        }
-                                        return FormFieldValidationResult.ValidField;
-                                    },
+                        isLoading={isLoading}
+                        onSubmit={loginHandler}
+                        onSecondChoiceClick={registrationHandler}
+                        simpleFormButtonStyle={SimpleFormButtonStyle.loginSignUp}
+                        createdSuccesfully={loggedSuccessfully}
+                        serverErrorMessage={error?.detail}
+                        title="Login"
+                        item={{
+                            email: "",
+                            password: "",
+                        }}
+                        fields={[
+                            {
+                                property: "email",
+                                text: "Email",
+                                onValidation: (property: string) => {
+                                    if (property.length < 3) {
+                                        return FormFieldValidationResult.invalidField(
+                                            "Email should have at list 3 characters"
+                                        );
+                                    }
+                                    return FormFieldValidationResult.ValidField;
                                 },
-                                {
-                                    property: "password",
-                                    text: "Password",
-                                    type: InputType.password,
-                                    onValidation: (property: string) => {
-                                        if (property.length < 3) {
-                                            return FormFieldValidationResult.invalidField(
-                                                "Password should have at list 3 characters"
-                                            );
-                                        }
-                                        return FormFieldValidationResult.ValidField;
-                                    },
+                            },
+                            {
+                                property: "password",
+                                text: "Password",
+                                type: InputType.password,
+                                onValidation: (property: string) => {
+                                    if (property.length < 3) {
+                                        return FormFieldValidationResult.invalidField(
+                                            "Password should have at list 3 characters"
+                                        );
+                                    }
+                                    return FormFieldValidationResult.ValidField;
                                 },
-                            ]}
-                        />
+                            },
+                        ]}
+                    />
                 </Card>
             </Canvas>
         </Canvas>

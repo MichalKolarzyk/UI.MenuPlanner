@@ -60,7 +60,7 @@ export const setLoginError = (error?: ErrorModel) => {
     };
 };
 
-export const fetchLogin = (login?: LoginRequestModel) => {
+export const fetchLogin = (login?: LoginRequestModel, callback?: () => void) => {
     return async (dispach: any) => {
         dispach(setLoginError(undefined));
         if (!login) {
@@ -70,6 +70,7 @@ export const fetchLogin = (login?: LoginRequestModel) => {
         try {
             const loginResponse = await apiMenuPlanner.loginUser(login);
             dispach(setLogin(loginResponse.data));
+            callback?.();
         } catch (error: any) {
             if (!error.response) {
                 dispach(setLoginError({

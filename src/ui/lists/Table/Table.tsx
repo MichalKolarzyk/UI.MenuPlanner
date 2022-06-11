@@ -29,7 +29,7 @@ const Table = (props: TableProps) => {
     const header = columns.map((col, index) => (
         <th className={classes.headerCell} key={index}>
             <Flex>
-                <Label size={FontsizeEnum.medium} bold italic>
+                <Label size={FontsizeEnum.small} bold italic>
                     {col.name}
                 </Label>
                 <IconButton
@@ -60,7 +60,7 @@ const TableRow = (props: RowProps) => {
         <tr className={classes.row} onClick={onClickHandler}>
             {props.columns.map((col, index) => (
                 <td className={classes.cell} key={index}>
-                    <Label size={FontsizeEnum.medium}>{props.item[col.property]}</Label>
+                    <Label size={FontsizeEnum.small}>{props.item[col.property]}</Label>
                 </td>
             ))}
         </tr>

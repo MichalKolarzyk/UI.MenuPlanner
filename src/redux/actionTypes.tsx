@@ -7,6 +7,9 @@ export const SET_LOGIN_ERROR = "SET_LOGIN_ERROR";
 
 export const SET_DISH = "SET_DISH";
 
+export const SET_DISHES = "SET_DISHES"
+export const SET_DISHES_USERS = "SET_DISHES_USERS"
+
 export const SET_RECIPE = "SET_RECIPE";
 export const DELETE_RECIPE = "DELETE_RECIPE"
 export const ADD_RECIPE_STEP = "ADD_RECIPE_STEP";

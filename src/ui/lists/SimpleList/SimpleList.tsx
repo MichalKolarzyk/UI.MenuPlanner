@@ -56,7 +56,7 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
 
     return (
         <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-            <Label bold size={FontsizeEnum.large}>
+            <Label bold size={FontsizeEnum.small}>
                 {props.title}
             </Label>
             <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>

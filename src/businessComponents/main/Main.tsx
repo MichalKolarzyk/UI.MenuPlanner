@@ -13,7 +13,6 @@ import { setUserIsLogged } from "../user/user.reducer";
 const Main = () => {
     const navigate = useNavigate();
     const dispach = useDispatch<AppDispatch>();
-    const user = useSelector<RootState, UserModel | undefined>((state) => state.user.user);
 
     const logoutClick = () => {
         dispach(
@@ -23,6 +22,7 @@ const Main = () => {
             })
         );
         dispach(setUserIsLogged(false));
+        navigate("/login");
     };
 
     return (
@@ -30,9 +30,6 @@ const Main = () => {
             <Card color={CardColors.grey} boxShadow={BoxShadowEnum.none} padding={PaddingEnum.paddingZero}>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
                     <Flex justify={FlexJustify.center}>
-                        <Label italic size={FontsizeEnum.large}>
-                            {user?.email}
-                        </Label>
                         <Label italic size={FontsizeEnum.large}>
                             Menu Planner
                         </Label>
@@ -47,7 +44,7 @@ const Main = () => {
                             </Button>
                         </Flex>
                         <Flex>
-                            <Button onClick={() => navigate("login")} shape={ShapeEnum.sharp}>
+                            <Button onClick={() => navigate("profile")} shape={ShapeEnum.sharp}>
                                 Profile
                             </Button>
                             <Button onClick={logoutClick} shape={ShapeEnum.sharp}>
