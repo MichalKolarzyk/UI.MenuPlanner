@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { ButtonStyle } from "../../buttons/button/Button";
 import IconButton from "../../buttons/iconButton/IconButton";
+import { FontsizeEnum } from "../../constants/Constants";
 import Flex, { FlexJustify } from "../../containers/flexes/Flex";
 import { IconImage } from "../../icons/Icon";
-import Label, { LabelSize } from "../../labels/label/Label";
+import Label from "../../labels/label/Label";
 import classes from "./Table.module.css";
 
 const Table = (props: TableProps) => {
@@ -28,7 +29,7 @@ const Table = (props: TableProps) => {
     const header = columns.map((col, index) => (
         <th className={classes.headerCell} key={index}>
             <Flex>
-                <Label size={LabelSize.medium} bold italic>
+                <Label size={FontsizeEnum.medium} bold italic>
                     {col.name}
                 </Label>
                 <IconButton
@@ -59,7 +60,7 @@ const TableRow = (props: RowProps) => {
         <tr className={classes.row} onClick={onClickHandler}>
             {props.columns.map((col, index) => (
                 <td className={classes.cell} key={index}>
-                    <Label size={LabelSize.medium}>{props.item[col.property]}</Label>
+                    <Label size={FontsizeEnum.medium}>{props.item[col.property]}</Label>
                 </td>
             ))}
         </tr>

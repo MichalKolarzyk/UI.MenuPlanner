@@ -1,13 +1,12 @@
-import { useState } from "react";
-import { ButtonStyle } from "../../buttons/button/Button";
+import { useId, useState } from "react";
+import Button, { ButtonStyle } from "../../buttons/button/Button";
 import IconButton from "../../buttons/iconButton/IconButton";
-import { PaddingEnum } from "../../constants/Constants";
+import { PaddingEnum, PositionEnum, ZIndexEnum } from "../../constants/Constants";
 import Card, { CardColors } from "../../containers/cards/card/Card";
-import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
+import Flex, { FlexAlignItems, FlexGapSize, FlexStyle } from "../../containers/flexes/Flex";
 import { IconImage } from "../../icons/Icon";
 import Label from "../../labels/label/Label";
 import Input, { InputStyle } from "../input/Input";
-import LabelInput from "../labelInput/LabelInput";
 
 const Dropdown = (props: DropdownProps) => {
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -19,43 +18,53 @@ const Dropdown = (props: DropdownProps) => {
         props.onItemSelected?.(selectedItem);
     };
 
-    const openDropdownHandler = () => {
-        setIsDropdownVisible(!isDropdownVisible);
+    const inputClickHandler = () => {
+        setIsDropdownVisible(true);
     };
-    const closeDropdownHandler = () => {
+
+    const cardBlurHandler = () => {
+        //setIsDropdownVisible(false);
+    };
+
+    const elementClickHandler = (item: any) => {
+        props.onItemSelected?.(item)
         setIsDropdownVisible(false);
-    };
-    const options = props.items?.map?.((i) => (
-        //<Label value={props.itemToString?.(i)}>{props.itemToString?.(i)}</Label>
-        <Label>{props.itemToString?.(i)}</Label>
+    }
+
+    const options = props.items?.map?.((i, index) => (
+        <Button style={ButtonStyle.transparent} key={index} onClick={() => elementClickHandler(i)}>{props.itemToString?.(i)}</Button>
     ));
 
     return (
-        <Card padding={PaddingEnum.paddingZero}>
-            <Flex alignItems={FlexAlignItems.alignUnset} style={FlexStyle.column}>
-                <Flex gapSize={FlexGapSize.gapSize0}>
-                    <Input style={InputStyle.transparent}/>
-                    <IconButton
-                        onClick={openDropdownHandler}
-                        style={ButtonStyle.transparent}
-                        image={IconImage.sortDown}
-                    ></IconButton>
-                </Flex>
-                {isDropdownVisible && <Card color={CardColors.grey}>
-                    <Flex alignItems={FlexAlignItems.alignUnset} style={FlexStyle.column}>
+        <Card onBlur={cardBlurHandler} position={PositionEnum.relative} padding={PaddingEnum.paddingZero}>
+            <Flex gapSize={FlexGapSize.gapSize0}>
+                <Input
+                    value={props.searchPhrase}
+                    onClick={inputClickHandler}
+                    onChange={props.onSerchPhraseChange}
+                    style={InputStyle.transparent}
+                />
+                <IconButton
+                    onClick={() => setIsDropdownVisible(!isDropdownVisible)}
+                    style={ButtonStyle.transparent}
+                    image={IconImage.sortDown}
+                ></IconButton>
+            </Flex>
+            {isDropdownVisible && (
+                <Card position={PositionEnum.absolute} color={CardColors.grey}>
+                    <Flex gapSize={FlexGapSize.gapSize0} style={FlexStyle.column}>
                         {options}
                     </Flex>
-                </Card>}
-            </Flex>
+                </Card>
+            )}
         </Card>
     );
-
-    //<select onBlur={closeDropdownHandler} onClick={openDropdownHandler} onChange={selectChange}>{options}</select>;
 };
 
 export interface DropdownProps {
     items?: Array<any>;
     searchPhrase?: string;
+    onSerchPhraseChange?: (event: any) => void;
     itemToString?: (item: any) => string;
     onItemSelected?: (item: any) => void;
 }

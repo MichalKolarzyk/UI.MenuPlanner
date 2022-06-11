@@ -1,13 +1,13 @@
 @import "../../styles/style.css";
 
 .fontsize_small {
-    font-size: small;
+    font-size: 16px;
 }
 .fontsize_medium {
-    font-size: medium;
+    font-size: 24px;
 }
 .fontsize_large {
-    font-size: large;
+    font-size: 32px;
 }
 
 .padding_Zero {
@@ -50,17 +50,32 @@
 .zIndex0 {
     z-index: 0;
 }
+.zIndex1 {
+    z-index: 1;
+}
 .zIndex10 {
     z-index: 10;
+}
+.zIndex11 {
+    z-index: 11;
 }
 .zIndex20 {
     z-index: 20;
 }
+.zIndex21 {
+    z-index: 21;
+}
 .zIndex30 {
     z-index: 30;
 }
+.zIndex31 {
+    z-index: 31;
+}
 .zIndex40 {
     z-index: 40;
+}
+.zIndex41 {
+    z-index: 41;
 }
 
 .color_green {
@@ -99,6 +114,24 @@
 .color_transparentD1 {
     color: var(--color-black);
 }
+
+.position_fixed{
+    position: fixed;
+}
+.position_relative{
+    position: relative;
+}
+.position_absolute{
+    position: absolute;
+}
+.position_sticky{
+    position: sticky;
+}
+.position_static{
+    position: static;
+}
+
+
 
 .animation_spin {
     animation: spin infinite 3s linear;

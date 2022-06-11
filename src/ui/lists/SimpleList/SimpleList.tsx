@@ -1,12 +1,12 @@
 import { ChangeEvent, useState } from "react";
 import Card, { CardColors, CardShape } from "../../containers/cards/card/Card";
-import Label, { LabelSize } from "../../labels/label/Label";
+import Label from "../../labels/label/Label";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import IconButton from "../../buttons/iconButton/IconButton";
 import { IconImage } from "../../icons/Icon";
 import Input, { InputType } from "../../inputs/input/Input";
 import Button, { ButtonStyle } from "../../buttons/button/Button";
-import { PaddingEnum, ShapeEnum } from "../../constants/Constants";
+import { FontsizeEnum, PaddingEnum, ShapeEnum } from "../../constants/Constants";
 
 export const SimpleList = <T,>(props: SimpleListProps<T>) => {
     const [addingMode, setAddingMode] = useState(false);
@@ -56,7 +56,7 @@ export const SimpleList = <T,>(props: SimpleListProps<T>) => {
 
     return (
         <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-            <Label bold size={LabelSize.large}>
+            <Label bold size={FontsizeEnum.large}>
                 {props.title}
             </Label>
             <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>

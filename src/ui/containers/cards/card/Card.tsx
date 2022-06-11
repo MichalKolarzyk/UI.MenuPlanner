@@ -1,24 +1,28 @@
-import { BoxShadowEnum, PaddingEnum, useClasses, ZIndexEnum } from '../../../constants/Constants';
+import { BaseProps } from '../../../base';
+import { BoxShadowEnum, PaddingEnum, PositionEnum, useClasses, ZIndexEnum } from '../../../constants/Constants';
 import classes from './Card.module.css'
 
 const Card = (props: CardProps) => {
     let className = classes.base;
     className += " " + classes[props.color ?? CardColors.white]
     className += " " + classes[props.shape ?? CardShape.roundedCorners]
+    className += " " + useClasses(props.position ?? "")
     className += " " + useClasses(props.padding ?? PaddingEnum.paddingHalf)
     className += " " + useClasses(props.boxShadow ?? BoxShadowEnum.light)
+    className += " " + useClasses(props.zIndex ?? "")
     className += " " + props.className;
 
-    return <div  className={className}>{props.children}</div>
+    return <div onClick={props.onClick} onBlur={props.onBlur} className={className}>{props.children}</div>
 }
 
-type CardProps = {
-    shape?: CardShape,
-    color?: CardColors,
-    children?: any,
-    className?: string,
-    padding?: PaddingEnum,
-    boxShadow?: BoxShadowEnum,
+class CardProps extends BaseProps {
+    shape?: CardShape;
+    color?: CardColors;
+    children?: any;
+    padding?: PaddingEnum;
+    boxShadow?: BoxShadowEnum;
+    position?: PositionEnum;
+    zIndex?: ZIndexEnum;
 }
 
 export enum CardShape{

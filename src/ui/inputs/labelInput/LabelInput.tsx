@@ -1,3 +1,4 @@
+import { BaseProps } from "../../base";
 import { ColorEnum } from "../../constants/Constants";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import Icon, { IconImage } from "../../icons/Icon";
@@ -21,7 +22,7 @@ const LabelInput = (props: LabelInputProps) => {
     );
 };
 
-export interface LabelInputProps {
+export class LabelInputProps extends BaseProps {
     type?: InputType;
     isValid?: boolean;
     options?: Array<string>;

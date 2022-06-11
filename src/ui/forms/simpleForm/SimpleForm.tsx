@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ButtonStyle } from "../../buttons/button/Button";
 import IconButton from "../../buttons/iconButton/IconButton";
-import { ColorEnum, PaddingEnum, ShapeEnum } from "../../constants/Constants";
+import { ColorEnum, FontsizeEnum, PaddingEnum, ShapeEnum } from "../../constants/Constants";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import { IconImage } from "../../icons/Icon";
 import { InputType } from "../../inputs/input/Input";
 import LabelInput from "../../inputs/labelInput/LabelInput";
-import Label, { LabelSize } from "../../labels/label/Label";
+import Label from "../../labels/label/Label";
 
 const SimpleForm = (props: SimpleFormProps) => {
     const [item, setItem] = useState(props.item);
@@ -119,16 +119,16 @@ const SimpleForm = (props: SimpleFormProps) => {
     return (
         <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize3}>
             <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize1}>
-                <Label bold size={LabelSize.medium}>
+                <Label bold size={FontsizeEnum.medium}>
                     {props.title}
                 </Label>
                 {props.serverErrorMessage && (
-                    <Label size={LabelSize.small} color={ColorEnum.redL1}>
+                    <Label size={FontsizeEnum.small} color={ColorEnum.redL1}>
                         {props.serverErrorMessage}
                     </Label>
                 )}
             </Flex>
-            {props.createdSuccesfully && <Label size={LabelSize.medium} bold color={ColorEnum.greenL1}>Created succesfully</Label>}
+            {props.createdSuccesfully && <Label size={FontsizeEnum.medium} bold color={ColorEnum.greenL1}>Created succesfully</Label>}
             {!props.createdSuccesfully && (
                 <form onSubmit={submitHandler}>
                     <Flex

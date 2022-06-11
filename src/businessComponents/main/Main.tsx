@@ -3,10 +3,10 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { UserModel } from "../../api/models";
 import { AppDispatch, RootState } from "../../redux";
 import Button from "../../ui/buttons/button/Button";
-import { BoxShadowEnum, PaddingEnum, ShapeEnum } from "../../ui/constants/Constants";
+import { BoxShadowEnum, FontsizeEnum, PaddingEnum, ShapeEnum } from "../../ui/constants/Constants";
 import Card, { CardColors } from "../../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
-import Label, { LabelSize } from "../../ui/labels/label/Label";
+import Label from "../../ui/labels/label/Label";
 import { setLogin } from "../login/login.reducer";
 import { setUserIsLogged } from "../user/user.reducer";
 
@@ -30,10 +30,10 @@ const Main = () => {
             <Card color={CardColors.grey} boxShadow={BoxShadowEnum.none} padding={PaddingEnum.paddingZero}>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
                     <Flex justify={FlexJustify.center}>
-                        <Label italic size={LabelSize.large}>
+                        <Label italic size={FontsizeEnum.large}>
                             {user?.email}
                         </Label>
-                        <Label italic size={LabelSize.large}>
+                        <Label italic size={FontsizeEnum.large}>
                             Menu Planner
                         </Label>
                     </Flex>

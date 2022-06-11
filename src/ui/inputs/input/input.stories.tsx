@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { FontsizeEnum } from "../../constants/Constants";
 import Flex, { FlexAlignItems, FlexStyle } from "../../containers/flexes/Flex";
-import Label, { LabelSize } from "../../labels/label/Label";
+import Label from "../../labels/label/Label";
 import Input, { InputProps, InputStyle, InputType } from "./Input";
 
 export default {
@@ -14,7 +15,7 @@ const baseArgs: InputProps = {
 };
 const Template: ComponentStory<typeof Input> = (args) => (
     <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-        <Label bold size={LabelSize.medium}>
+        <Label bold size={FontsizeEnum.medium}>
             Types
         </Label>
         <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
@@ -33,14 +34,16 @@ const Template: ComponentStory<typeof Input> = (args) => (
             <Label>textarea</Label>
             <Input {...baseArgs} type={InputType.textarea} />
         </Flex>
-        <Label bold size={LabelSize.medium}>
-            Styles
+        <Label bold size={FontsizeEnum.medium}>
+            Styles valid / invalid:
         </Label>
         <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
             <Label>default</Label>
             <Input {...baseArgs} style={InputStyle.default} />
+            <Input {...baseArgs} style={InputStyle.default} isValid={false}/>
             <Label>transparent</Label>
             <Input {...baseArgs} style={InputStyle.transparent} />
+            <Input {...baseArgs} style={InputStyle.transparent} isValid={false}/>
         </Flex>
     </Flex>
 );

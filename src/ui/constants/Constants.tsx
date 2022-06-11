@@ -34,10 +34,15 @@ export enum BoxShadowEnum{
 
 export enum ZIndexEnum{
     zIndex0 = "zIndex0",
+    zIndex1 = "zIndex1",
     zIndex10 = "zIndex10",
+    zIndex11 = "zIndex11",
     zIndex20 = "zIndex20",
+    zIndex21 = "zIndex21",
     zIndex30 = "zIndex30",
+    zIndex31 = "zIndex31",
     zIndex40 = "zIndex40",
+    zIndex41 = "zIndex41",
 }
 
 export enum ColorEnum {
@@ -56,6 +61,14 @@ export enum ColorEnum {
     transparent= "color_transparent",
     transparentD1= "color_transparentD1",
     black="color_black",
+}
+
+export enum PositionEnum{
+    fixed = "position_fixed",
+    relative = "position_relative",
+    absolute = "position_absolute",
+    sticky = "position_sticky",
+    static = "position_static",
 }
 
 

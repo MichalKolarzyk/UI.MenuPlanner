@@ -5,12 +5,12 @@ import RecipeModel from "../../models/RecipeModel";
 import { overlayPortal } from "../../portals";
 import { RootState } from "../../redux";
 import { updateStep } from "../recipe/redux/recipeActions";
-import Canvas, { CanvasOpacity, CanvasSize } from "../../ui/canvases/Canvas";
-import { AnimationEnum, ZIndexEnum } from "../../ui/constants/Constants";
-import Card, { CardColors } from "../../ui/containers/cards/card/Card";
+import Canvas, {  CanvasSize } from "../../ui/canvases/Canvas";
+import { AnimationEnum, FontsizeEnum, ZIndexEnum } from "../../ui/constants/Constants";
+import Card from "../../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import Input, { InputType } from "../../ui/inputs/input/Input";
-import Label, { LabelSize } from "../../ui/labels/label/Label";
+import Label from "../../ui/labels/label/Label";
 import { RecipeReducerModes } from "../recipe/redux/recipe.reducer";
 
 const EditStep = () => {
@@ -44,7 +44,7 @@ const EditStep = () => {
                         alignItems={FlexAlignItems.alignUnset}
                         gapSize={FlexGapSize.gapSize2}
                     >
-                        <Label size={LabelSize.medium} bold>
+                        <Label size={FontsizeEnum.medium} bold>
                             Edit step
                         </Label>
                         <Input

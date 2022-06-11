@@ -1,11 +1,11 @@
 import { isDisabled } from "@testing-library/user-event/dist/utils";
 import { ButtonStyle } from "../../buttons/button/Button";
 import IconButton from "../../buttons/iconButton/IconButton";
-import { ColorEnum, ShapeEnum } from "../../constants/Constants";
+import { ColorEnum, FontsizeEnum, ShapeEnum } from "../../constants/Constants";
 import Card, { CardColors, CardShape } from "../../containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexStyle } from "../../containers/flexes/Flex";
 import { IconImage, IconSize } from "../../icons/Icon";
-import Label, { LabelSize } from "../../labels/label/Label";
+import Label from "../../labels/label/Label";
 
 const Multiselect = (props: MultiselectProps) => {
     const isSelected = (item: any) => {
@@ -16,7 +16,7 @@ const Multiselect = (props: MultiselectProps) => {
         <>
             {(isSelected(item) || !props.isDisabled) && <Card color={isSelected(item) ? CardColors.blue : CardColors.grey} shape={CardShape.roundedCorners2}>
                 <Flex>
-                    <Label color={isSelected(item) ? ColorEnum.white : ColorEnum.gray} size={LabelSize.medium}>
+                    <Label color={isSelected(item) ? ColorEnum.white : ColorEnum.gray} size={FontsizeEnum.medium}>
                         {props.itemToString?.(item)}
                     </Label>
                     {!props.isDisabled && (
@@ -34,7 +34,7 @@ const Multiselect = (props: MultiselectProps) => {
 
     return (
         <Flex alignItems={FlexAlignItems.alignUnset} style={FlexStyle.column}>
-            <Label bold size={LabelSize.medium}>
+            <Label bold size={FontsizeEnum.medium}>
                 {props.title}
             </Label>
             <Flex>{elements}</Flex>

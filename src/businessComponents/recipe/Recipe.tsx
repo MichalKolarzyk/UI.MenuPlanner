@@ -2,11 +2,11 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 import RecipeModel from "../../models/RecipeModel";
 import { ButtonStyle } from "../../ui/buttons/button/Button";
 import IconButton from "../../ui/buttons/iconButton/IconButton";
-import { AnimationEnum, ColorEnum, PaddingEnum } from "../../ui/constants/Constants";
+import { AnimationEnum, ColorEnum, FontsizeEnum, PaddingEnum } from "../../ui/constants/Constants";
 import Card from "../../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import Icon, { IconImage } from "../../ui/icons/Icon";
-import Label, { LabelSize } from "../../ui/labels/label/Label";
+import Label from "../../ui/labels/label/Label";
 import { SimpleList, StringList } from "../../ui/lists/SimpleList/SimpleList";
 import { RecipeReducerModes } from "./redux/recipe.reducer";
 import Multiselect from "../../ui/inputs/multiselect/Multiselect";
@@ -27,7 +27,7 @@ const Recipe = (props: RecipeProps) => {
         return (
             <Card padding={PaddingEnum.paddingOne}>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-                    <Label bold size={LabelSize.medium} color={ColorEnum.green}>
+                    <Label bold size={FontsizeEnum.medium} color={ColorEnum.green}>
                         Recipe deleted succesfully
                     </Label>
                     <Flex>
@@ -43,7 +43,7 @@ const Recipe = (props: RecipeProps) => {
             <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize2}>
                 <Outlet />
                 <Flex justify={FlexJustify.spaceBetween}>
-                    <Label bold={true} size={LabelSize.large}>
+                    <Label bold={true} size={FontsizeEnum.large}>
                         {props.recipe?.title ?? ""}
                     </Label>
                     {recipeMode === RecipeReducerModes.default && (
@@ -61,7 +61,7 @@ const Recipe = (props: RecipeProps) => {
                         </Flex>
                     )}
                 </Flex>
-                <Label size={LabelSize.medium}>{props.recipe?.description ?? ""}</Label>
+                <Label size={FontsizeEnum.medium}>{props.recipe?.description ?? ""}</Label>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset} gapSize={FlexGapSize.gapSize2}>
                     <StringList
                         title="Steps"
@@ -111,7 +111,8 @@ const Recipe = (props: RecipeProps) => {
                 )}
                 {recipeMode === RecipeReducerModes.delete && (
                     <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-                        <Label bold size={LabelSize.medium} color={ColorEnum.red}>
+                        <Label bold size={
+                            FontsizeEnum.medium} color={ColorEnum.red}>
                             Czy na pewno chcesz usunąć przepis?
                         </Label>
                         <Flex justify={FlexJustify.spaceBetween}>

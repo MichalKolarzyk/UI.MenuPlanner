@@ -1,9 +1,9 @@
-import { ColorEnum, useClasses } from '../../constants/Constants';
+import { ColorEnum, FontsizeEnum, useClasses } from '../../constants/Constants';
 import classes from './Label.module.css'
 
 const Label = (props: LabelProps) =>{
     let className = classes.base;
-    className += " " + classes[props.size ?? LabelSize.small]
+    className += " " + useClasses(props.size ?? FontsizeEnum.small)
     className += " " + useClasses(props.color ?? ColorEnum.black)
     className += " " + classes[props.bold ? "bold" : ""]
     className += " " + classes[props.italic ? "italic" : ""]
@@ -11,18 +11,12 @@ const Label = (props: LabelProps) =>{
     return <label className={className}>{props.children}</label>
 }
 
-export interface LabelProps {
+export class LabelProps {
     children?: any;
-    size?: LabelSize;
+    size?: FontsizeEnum;
     color?: ColorEnum;
     bold?: boolean;
     italic?: boolean;
-}
-
-export enum LabelSize {
-    small = "small",
-    medium = "medium",
-    large = "large",
 }
 
 

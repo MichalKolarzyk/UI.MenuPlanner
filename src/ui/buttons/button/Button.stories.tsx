@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { FontsizeEnum, ShapeEnum } from "../../constants/Constants";
 import Flex, { FlexAlignItems, FlexStyle } from "../../containers/flexes/Flex";
-import Label, { LabelSize } from "../../labels/label/Label";
+import Label from "../../labels/label/Label";
 import Button, { ButtonProps, ButtonStyle } from "./Button";
 
 export default {
@@ -13,7 +13,7 @@ const baseArgs: ButtonProps = {};
 
 const Template: ComponentStory<typeof Button> = (args) => (
     <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-        <Label bold size={LabelSize.large}>
+        <Label bold size={FontsizeEnum.large}>
             Sizes
         </Label>
         <Flex>
@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Button> = (args) => (
                 large
             </Button>
         </Flex>
-        <Label bold size={LabelSize.large}>
+        <Label bold size={FontsizeEnum.large}>
             Styles
         </Label>
         <Flex>
@@ -50,7 +50,7 @@ const Template: ComponentStory<typeof Button> = (args) => (
                 transparentWhite
             </Button>
         </Flex>
-        <Label bold size={LabelSize.large}>
+        <Label bold size={FontsizeEnum.large}>
             Shapes
         </Label>
         <Flex>

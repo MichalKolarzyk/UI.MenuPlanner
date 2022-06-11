@@ -1,3 +1,4 @@
+import { PositionEnum, useClasses } from '../../constants/Constants';
 import classes from './Flex.module.css'
 
 const Flex = (props: FlexProps) => {
@@ -7,6 +8,7 @@ const Flex = (props: FlexProps) => {
     className += " " + classes[props.gapSize ?? FlexGapSize.gapSize1]
     className += " " + classes[props.justify ?? FlexJustify.left]
     className += " " + classes[props.alignItems ?? FlexAlignItems.alignCenter]
+    className += " " + useClasses(props.position ?? "")
 
     return <div className={className}>{props.children}</div>
 }
@@ -18,6 +20,7 @@ type FlexProps = {
     justify?: FlexJustify,
     alignItems?: FlexAlignItems,
     content?: boolean,
+    position?: PositionEnum
 }
 
 export enum FlexStyle{

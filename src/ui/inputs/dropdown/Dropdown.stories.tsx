@@ -1,4 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import Card, { CardColors } from "../../containers/cards/card/Card";
+import Flex, { FlexAlignItems, FlexStyle } from "../../containers/flexes/Flex";
 import Dropdown from "./Dropdown";
 
 export default {
@@ -6,11 +8,16 @@ export default {
     component: Dropdown,
 } as ComponentMeta<typeof Dropdown>;
 
-const Template: ComponentStory<typeof Dropdown> = (args) => <Dropdown {...args}/>;
+const Template: ComponentStory<typeof Dropdown> = (args) => (
+    <Flex alignItems={FlexAlignItems.alignUnset} style={FlexStyle.column}>
+        <Dropdown {...args} />
+        <Card color={CardColors.green} />
+    </Flex>
+);
 
 export const dropdown = Template.bind({});
 dropdown.args = {
-    itemToString: (item: any) => item.name,
+    itemToString: (item: any) => `${item.name} : ${item.description}` ,
     items: [
         {
             name: "tag1",
@@ -24,5 +31,5 @@ dropdown.args = {
             name: "tag3",
             description: "tag desc 3",
         },
-    ]
+    ],
 };

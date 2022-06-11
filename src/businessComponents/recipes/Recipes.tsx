@@ -6,11 +6,11 @@ import RecipeModel from "../../models/RecipeModel";
 import { AppDispatch, RootState } from "../../redux";
 import { ButtonStyle } from "../../ui/buttons/button/Button";
 import IconButton from "../../ui/buttons/iconButton/IconButton";
-import { AnimationEnum, PaddingEnum } from "../../ui/constants/Constants";
+import { AnimationEnum, FontsizeEnum, PaddingEnum } from "../../ui/constants/Constants";
 import Card from "../../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import Icon, { IconImage } from "../../ui/icons/Icon";
-import Label, { LabelSize } from "../../ui/labels/label/Label";
+import Label from "../../ui/labels/label/Label";
 import Multiselect from "../../ui/inputs/multiselect/Multiselect";
 import Table, { Column } from "../../ui/lists/Table/Table";
 import { fetchRecipes, fetchTags, setRecipesSelectedTags, setRecipesSkip, setSortedBy } from "./redux/recipesActions";
@@ -80,7 +80,7 @@ const Recipes = () => {
                 <Outlet />
 
                 <Flex justify={FlexJustify.spaceBetween}>
-                    <Label bold size={LabelSize.large}>
+                    <Label bold size={FontsizeEnum.large}>
                         Recipes
                     </Label>
                     <IconButton
