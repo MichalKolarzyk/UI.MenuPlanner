@@ -10,6 +10,7 @@ import {
     SET_RECIPES_SORTED_BY,
     SET_RECIPES_TAGS,
 } from "../../../redux/actionTypes";
+import { setApiError } from "../../api/Api.reducer";
 
 export const setIsLoading = (isLoading?: boolean) => {
     return {
@@ -75,8 +76,12 @@ export const fetchRecipes = () => {
             tagIds: getState().recipes.selectedTagsIds,
             take: getState().recipes.take,
         };
-        const response = await apiMenuPlanner.getRecipes(request);
+        try{
+            const response = await apiMenuPlanner.getRecipes(request);
+            dispach(setRecipes(response.data));
+        } catch(error){
+            dispach(setApiError(error))
+        }
 
-        dispach(setRecipes(response.data));
     };
 };

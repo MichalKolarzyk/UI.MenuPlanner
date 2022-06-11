@@ -128,7 +128,7 @@ const SimpleForm = (props: SimpleFormProps) => {
                     </Label>
                 )}
             </Flex>
-            {props.createdSuccesfully && <Label size={FontsizeEnum.medium} bold color={ColorEnum.greenL1}>Created succesfully</Label>}
+            {props.createdSuccesfully && <Label size={FontsizeEnum.small} color={ColorEnum.greenL1}>Created succesfully</Label>}
             {!props.createdSuccesfully && (
                 <form onSubmit={submitHandler}>
                     <Flex

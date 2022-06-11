@@ -14,6 +14,7 @@ import Label from "../../ui/labels/label/Label";
 import Multiselect from "../../ui/inputs/multiselect/Multiselect";
 import Table, { Column } from "../../ui/lists/Table/Table";
 import { fetchRecipes, fetchTags, setRecipesSelectedTags, setRecipesSkip, setSortedBy } from "./redux/recipesActions";
+import Spiner from "../../ui/placeHolders/spiner/Spiner";
 
 const Recipes = () => {
     const dispach = useDispatch<AppDispatch>();
@@ -67,11 +68,7 @@ const Recipes = () => {
     }, [dispach, sortedBy, skip, selectedTagsIds]);
 
     if (!recipes) {
-        return (
-            <Flex justify={FlexJustify.center}>
-                <Icon image={IconImage.spin} animation={AnimationEnum.spin} />
-            </Flex>
-        );
+        return <Spiner/>
     }
 
     return (

@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import RecipeModel from "../models/RecipeModel";
+import { store } from "../redux";
 import { LoginRequestModel, LoginResponseModel, TagModel, RegisterUserModel, UserModel, DishModel } from "./models";
 import { DishRequest, RecipeRequest } from "./requests";
 
@@ -11,6 +12,23 @@ export default class ApiMenuPlanner {
             baseURL: baseUrl,
             timeout: 1000,
         });
+
+        this.axiosInstance.interceptors.request.use((config) => {
+            const token = store.getState().login.login?.token;
+            if (config.headers && token) {
+                config.headers.Authorization = `Bearer ${token}`;
+            }
+            return config;
+        });
+
+        this.axiosInstance.interceptors.response.use(
+            (response) => response,
+            (error) => {
+                if (error?.response?.status && error.response.status === 401) {
+                    window.location.href = "/login";
+                }
+            }
+        );
     }
 
     getDish(id: string): Promise<AxiosResponse<DishModel>> {
@@ -49,15 +67,15 @@ export default class ApiMenuPlanner {
         return this.axiosInstance.post("/api/user/login", login);
     }
 
-    profileUser(token?: string): Promise<AxiosResponse<UserModel>> {
-        return this.axiosInstance.get("/api/user/profile", { headers: { Authorization: `Bearer ${token}` } });
+    profileUser(): Promise<AxiosResponse<UserModel>> {
+        return this.axiosInstance.get("/api/user/profile");
     }
 
-    getDishes(request: DishRequest) : Promise<AxiosResponse<Array<DishModel>>>{
+    getDishes(request: DishRequest): Promise<AxiosResponse<Array<DishModel>>> {
         return this.axiosInstance.post("/api/dish", request);
     }
-    
-    createDishes(dish: DishModel) : Promise<AxiosResponse<Array<DishModel>>>{
+
+    createDishes(dish: DishModel): Promise<AxiosResponse<Array<DishModel>>> {
         return this.axiosInstance.post("/api/dish/create", dish);
     }
 }

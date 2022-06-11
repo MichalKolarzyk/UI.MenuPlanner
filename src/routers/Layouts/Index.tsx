@@ -3,19 +3,10 @@ import { Navigate, Outlet } from "react-router-dom";
 import { RootState } from "../../redux";
 
 export const AuthLayout = () => {
-    const userIsLogged = useSelector<RootState, boolean | undefined>((state) => state.user.isLogged);
-    if(userIsLogged){
-        return <Outlet/>;
+    const token = useSelector<RootState, string | undefined>((state) => state.login.login?.token);
+    console.log(token);
+    if (!token) {
+        return <Navigate to="/login" replace />;
     }
-    console.log("to login")
-    return <Navigate to="/login" replace/>
+    return <Outlet />;
 };
-
-// export const NotAuthLayout = (props: any) => {
-//     const userIsLogged = useSelector<RootState, boolean | undefined>((state) => state.user.isLogged);
-//     if(!userIsLogged){
-//         return props.children
-//     }
-//     console.log("to recipes")
-//     return <Navigate to="/recipes" replace/>
-// };

@@ -15,7 +15,8 @@ import { createRegistrationUser, setRegistrationUser, setRegistrationUserSuccesf
 const Registration = () => {
     const navigate = useNavigate();
     const dispach = useDispatch<AppDispatch>();
-    const error = useSelector<RootState, ErrorModel | undefined>((state) => state.registration.error);
+    const error = useSelector<RootState, ErrorModel | undefined>((state) => state.api.error);
+    const isLoading = useSelector<RootState, boolean | undefined>((state) => state.api.isLoading);
     const userSuccesfullyCreated = useSelector<RootState, boolean | undefined>(
         (state) => state.registration.userSuccesfullyCreated
     );
@@ -40,6 +41,7 @@ const Registration = () => {
                 <Card>
                     <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
                         <SimpleForm
+                            isLoading={isLoading}
                             onSubmit={submitHandler}
                             onSecondChoiceClick={loginHandler}
                             simpleFormButtonStyle={SimpleFormButtonStyle.signUpSignIn}

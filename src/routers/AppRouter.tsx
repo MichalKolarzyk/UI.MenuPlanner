@@ -9,7 +9,6 @@ import RecipeController from "../businessComponents/recipe/RecipeController";
 import Recipes from "../businessComponents/recipes/Recipes";
 import Registration from "../businessComponents/registration/Registration";
 import Card, { CardColors } from "../ui/containers/cards/card/Card";
-import { AuthLayout } from "./Layouts/Index";
 
 const AppRouter = () => {
     return (

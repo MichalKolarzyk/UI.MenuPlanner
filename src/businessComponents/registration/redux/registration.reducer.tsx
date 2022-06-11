@@ -1,13 +1,11 @@
 import { ErrorModel, RegisterUserModel } from "../../../api/models";
 import {
-    SET_REGISTRATION_ERROR,
     SET_REGISTRATION_USER,
     SET_REGISTRATION_USER_SUCCESFULLY_CREATED,
 } from "../../../redux/actionTypes";
 
 export class RegistrationReducerState {
     user?: RegisterUserModel;
-    error?: ErrorModel;
     userSuccesfullyCreated?: boolean;
 }
 
@@ -20,11 +18,6 @@ const registrationReducer = (state: RegistrationReducerState = initialState, act
             return {
                 ...state,
                 user: payload,
-            };
-        case SET_REGISTRATION_ERROR:
-            return {
-                ...state,
-                error: payload,
             };
         case SET_REGISTRATION_USER_SUCCESFULLY_CREATED:
             return {

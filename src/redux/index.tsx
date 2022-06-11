@@ -6,6 +6,7 @@ import newRecipeReducer from "../businessComponents/newRecipe/redux/newRecipe.re
 import userReducer from "../businessComponents/user/user.reducer";
 import loginReducer from "../businessComponents/login/login.reducer";
 import dishesReducer from "../businessComponents/dishes/dishes.reducer";
+import apiReducer from "../businessComponents/api/Api.reducer";
 
 export const store = configureStore({
     reducer:{
@@ -16,6 +17,7 @@ export const store = configureStore({
         newRecipe: newRecipeReducer,
         login: loginReducer,
         dishes: dishesReducer,
+        api: apiReducer,
     }
 })
 

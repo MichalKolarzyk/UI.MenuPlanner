@@ -1,5 +1,3 @@
-import RecipeModel from "../../models/RecipeModel";
-
 export class TagModel {
     id?: string;
     name?: string;

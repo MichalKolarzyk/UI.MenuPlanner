@@ -13,8 +13,8 @@ const Login = () => {
     const navigate = useNavigate();
     const dispach = useDispatch<AppDispatch>();
     const loggedSuccessfully = useSelector<RootState, boolean | undefined>((state) => state.login.loggedSuccessFully);
-    const isLoading = useSelector<RootState, boolean | undefined>((state) => state.login.isLoading);
-    const error = useSelector<RootState, ErrorModel | undefined>((state) => state.login.error);
+    const isLoading = useSelector<RootState, boolean | undefined>((state) => state.api.isLoading);
+    const error = useSelector<RootState, ErrorModel | undefined>((state) => state.api.error);
 
     const loginHandler = (item: any) => {
         dispach(fetchLogin(item, () => navigate("/recipes")));

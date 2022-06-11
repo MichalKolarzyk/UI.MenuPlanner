@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { LoginResponseModel } from "../api/models";
+import { LoginResponseModel, UserModel } from "../api/models";
 import { setLogin } from "../businessComponents/login/login.reducer";
 import { fetchUser } from "../businessComponents/user/user.reducer";
 import { AppDispatch, RootState } from "../redux";

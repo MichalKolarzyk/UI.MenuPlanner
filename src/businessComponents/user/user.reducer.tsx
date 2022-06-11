@@ -5,7 +5,6 @@ import { SET_USER, SET_USER_ISLOGGED } from "../../redux/actionTypes";
 
 export class UserReducerState {
     user?: RegisterUserModel;
-    isLogged?: boolean;
 }
 
 export const initialState = new UserReducerState();
@@ -17,11 +16,6 @@ const userReducer = (state: UserReducerState = initialState, action: any): UserR
             return {
                 ...state,
                 user: payload,
-            };
-        case SET_USER_ISLOGGED:
-            return {
-                ...state,
-                isLogged: payload,
             };
         default:
             return state;
@@ -50,7 +44,7 @@ export const fetchUser = () => {
             if(!token){
                 return;
             }
-            const userResponse = await apiMenuPlanner.profileUser(token);
+            const userResponse = await apiMenuPlanner.profileUser();
             dispach(setUserIsLogged(true));
             dispach(setUser(userResponse.data));
         }
