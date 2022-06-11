@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import LabelInput from "./LabelInput";
 
 export default {
-    title: "UI/Input",
+    title: "UI/Inputs",
     component: LabelInput,
 } as ComponentMeta<typeof LabelInput>;
 

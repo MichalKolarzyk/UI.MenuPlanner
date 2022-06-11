@@ -6,7 +6,6 @@ import { ErrorModel } from "../../api/models";
 import RecipeModel from "../../models/RecipeModel";
 import { overlayPortal } from "../../portals";
 import { AppDispatch, RootState } from "../../redux";
-import { ButtonStyle } from "../../ui/buttons/button/Button";
 import IconButton from "../../ui/buttons/iconButton/IconButton";
 import Canvas, { CanvasOpacity, CanvasSize } from "../../ui/canvases/Canvas";
 import { ZIndexEnum } from "../../ui/constants/Constants";

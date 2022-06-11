@@ -6,7 +6,7 @@ import Input, { InputType } from "../input/Input";
 
 const LabelInput = (props: LabelInputProps) => {
     return (
-        <Flex alignItems={FlexAlignItems.alignUnset} style={FlexStyle.column} gapSize={FlexGapSize.gapSize0}>
+        <Flex alignItems={FlexAlignItems.alignUnset} justify={FlexJustify.stretch} style={FlexStyle.column} gapSize={FlexGapSize.gapSize0}>
             <Flex justify={FlexJustify.left}>
                 <Flex>
                     <Icon image={props.image}/>

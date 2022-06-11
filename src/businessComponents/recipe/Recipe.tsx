@@ -9,7 +9,7 @@ import Icon, { IconImage } from "../../ui/icons/Icon";
 import Label, { LabelSize } from "../../ui/labels/label/Label";
 import { SimpleList, StringList } from "../../ui/lists/SimpleList/SimpleList";
 import { RecipeReducerModes } from "./redux/recipe.reducer";
-import Multiselect from "../../ui/lists/multiselect/Multiselect";
+import Multiselect from "../../ui/inputs/multiselect/Multiselect";
 import { TagModel } from "../../api/models";
 
 const Recipe = (props: RecipeProps) => {

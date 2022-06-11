@@ -11,7 +11,7 @@ import Card from "../../ui/containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import Icon, { IconImage } from "../../ui/icons/Icon";
 import Label, { LabelSize } from "../../ui/labels/label/Label";
-import Multiselect from "../../ui/lists/multiselect/Multiselect";
+import Multiselect from "../../ui/inputs/multiselect/Multiselect";
 import Table, { Column } from "../../ui/lists/Table/Table";
 import { fetchRecipes, fetchTags, setRecipesSelectedTags, setRecipesSkip, setSortedBy } from "./redux/recipesActions";
 

@@ -42,6 +42,9 @@ const Main = () => {
                             <Button onClick={() => navigate("recipes")} shape={ShapeEnum.sharp}>
                                 Recipes
                             </Button>
+                            <Button onClick={() => navigate("dishes")} shape={ShapeEnum.sharp}>
+                                Dishes
+                            </Button>
                         </Flex>
                         <Flex>
                             <Button onClick={() => navigate("login")} shape={ShapeEnum.sharp}>

@@ -5,16 +5,16 @@ import "./index.css";
 import { store } from "./redux";
 import reportWebVitals from "./reportWebVitals";
 import AppRouter from "./routers/AppRouter";
-import UserService from "./services/UserService";
+import LoginListener from "./listeners/LoginListener";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <UserService>
+            <LoginListener>
                 <AppRouter />
-            </UserService>
+            </LoginListener>
         </Provider>
     </React.StrictMode>
 );

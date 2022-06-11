@@ -8,7 +8,7 @@ import { AppDispatch, RootState } from "../redux";
 const KEY_TOKEN = "KEY_TOKEN";
 const KEY_AUTHORIZATION_METHOD = "KEY_AUTHORIZATION_METHOD";
 
-const UserService = (props: any) => {
+const LoginListener = (props: any) => {
     const dispach = useDispatch<AppDispatch>();
     const login = useSelector<RootState, LoginResponseModel | undefined>((state) => state.login.login);
 
@@ -37,4 +37,4 @@ const UserService = (props: any) => {
     return props.children;
 };
 
-export default UserService;
+export default LoginListener;

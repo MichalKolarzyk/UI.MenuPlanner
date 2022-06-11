@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ButtonStyle } from "../../buttons/button/Button";
 import IconButton from "../../buttons/iconButton/IconButton";
 import { ColorEnum, PaddingEnum, ShapeEnum } from "../../constants/Constants";
@@ -34,7 +34,7 @@ const SimpleForm = (props: SimpleFormProps) => {
             props.onSubmitFail?.();
         }
     };
-
+    
     let buttonElements;
     if (props.simpleFormButtonStyle === SimpleFormButtonStyle.sumbitCancel) {
         buttonElements = (

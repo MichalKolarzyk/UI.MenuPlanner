@@ -4,7 +4,8 @@ import TextareaInput from "./textareaInput/TextareaInput";
 
 const Input = (props: InputProps) => {
     let className = classes.base;
-    className += " " + classes[(props.isValid ?? true) ? "valid" : "invalid"]
+    className += " " + classes[props.style ?? InputStyle.default]
+    className += " " + classes[(props.isValid ?? true) ? "" : "invalid"]
 
     if(props.type === InputType.enum){
         return <EnumInput disabled={props.disabled} className={className} options={props.options} onChange={props.onChange} value={props.value}/>
@@ -18,12 +19,18 @@ const Input = (props: InputProps) => {
 
 export interface InputProps {
     type?: InputType;
+    style?: InputStyle;
     isValid?: boolean;
     value?: string;
     options?: Array<string>
-    onChange?: (event: any) => void
     disabled?: boolean;
+    onChange?: (event: any) => void
 };
+
+export enum InputStyle{
+    default= "default",
+    transparent="transparent"
+}
 
 export enum InputType {
     enum = "enum",

@@ -1,7 +1,4 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { PaddingEnum } from "../../constants/Constants";
-import { IconImage } from "../../icons/Icon";
-import { ButtonStyle } from "../button/Button";
 import IconButton from "./IconButton";
 
 export default {
@@ -13,12 +10,4 @@ const Template: ComponentStory<typeof IconButton> = (args) => <IconButton {...ar
 export const iconButton = Template.bind({});
 iconButton.args = {
     text: "Edit",
-};
-
-const TemplateWtihCart: ComponentStory<typeof IconButton> = (args) => <IconButton {...args} />;
-export const transparentButton = TemplateWtihCart.bind({});
-transparentButton.args = {
-    text: "Edit",
-    style: ButtonStyle.transparent,
-    image: IconImage.add,
 };

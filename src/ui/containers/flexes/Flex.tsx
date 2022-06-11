@@ -2,6 +2,7 @@ import classes from './Flex.module.css'
 
 const Flex = (props: FlexProps) => {
     let className = classes.base;
+    className += props.content ? " "  + classes.content : " "
     className += " " + classes[props.style ?? FlexStyle.row]
     className += " " + classes[props.gapSize ?? FlexGapSize.gapSize1]
     className += " " + classes[props.justify ?? FlexJustify.left]
@@ -16,6 +17,7 @@ type FlexProps = {
     gapSize?: FlexGapSize,
     justify?: FlexJustify,
     alignItems?: FlexAlignItems,
+    content?: boolean,
 }
 
 export enum FlexStyle{

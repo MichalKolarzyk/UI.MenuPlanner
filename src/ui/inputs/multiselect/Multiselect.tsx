@@ -4,7 +4,7 @@ import IconButton from "../../buttons/iconButton/IconButton";
 import { ColorEnum, ShapeEnum } from "../../constants/Constants";
 import Card, { CardColors, CardShape } from "../../containers/cards/card/Card";
 import Flex, { FlexAlignItems, FlexStyle } from "../../containers/flexes/Flex";
-import { IconImage } from "../../icons/Icon";
+import { IconImage, IconSize } from "../../icons/Icon";
 import Label, { LabelSize } from "../../labels/label/Label";
 
 const Multiselect = (props: MultiselectProps) => {
@@ -22,7 +22,7 @@ const Multiselect = (props: MultiselectProps) => {
                     {!props.isDisabled && (
                         <IconButton
                             onClick={() => props.onItemClick?.(props.itemKey?.(item), !isSelected(item))}
-                            image={isSelected(item) ? IconImage.minus : IconImage.add}
+                            image={ isSelected(item) ? IconImage.minus : IconImage.add}
                             style={isSelected(item) ? ButtonStyle.transparentWhite : ButtonStyle.transparent}
                             shape={ShapeEnum.elipse}
                         />

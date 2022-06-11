@@ -3,6 +3,9 @@
     border-style: none;
 }
 
+.content{
+    flex: content
+}
 .alignUnset {
     align-items: unset;
 }

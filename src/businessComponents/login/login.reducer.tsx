@@ -46,7 +46,7 @@ export const setLoginIsLoading = (isLoading?: boolean) => {
     };
 };
 
-export const setLogin = (login?: LoginResponseModel) => {
+export const setLogin = (login: LoginResponseModel) => {
     return {
         type: SET_LOGIN,
         payload: login,

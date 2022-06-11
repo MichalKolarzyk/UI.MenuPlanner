@@ -80,7 +80,7 @@ const RecipeController = () => {
     };
 
     const deleteStepHandler = (index?: number) => {
-        if(!index){
+        if(index === null || index === undefined){
             return;
         }
         dispach(removeStep(index));
