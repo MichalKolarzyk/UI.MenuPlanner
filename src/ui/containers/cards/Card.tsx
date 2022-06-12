@@ -1,5 +1,5 @@
-import { BaseProps } from '../../../base';
-import { BoxShadowEnum, PaddingEnum, PositionEnum, useClasses, ZIndexEnum } from '../../../constants/Constants';
+import { BaseProps } from '../../base';
+import { BoxShadowEnum, ColorEnum, PaddingEnum, PositionEnum, useClasses, ZIndexEnum } from '../../constants/Constants';
 import classes from './Card.module.css'
 
 const Card = (props: CardProps) => {
@@ -34,6 +34,7 @@ export enum CardShape{
 export enum CardColors{
     white= "white",
     grey= "grey",
+    darkGrey="darkGrey",
     green= "green",
     blue= "blue",
     transparent="transparent"

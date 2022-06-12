@@ -4,7 +4,7 @@ import { ErrorModel } from "../../api/models";
 import { AppDispatch, RootState } from "../../redux";
 import Canvas, { CanvasSize } from "../../ui/canvases/Canvas";
 import { AnimationEnum } from "../../ui/constants/Constants";
-import Card, { CardColors } from "../../ui/containers/cards/card/Card";
+import Card, { CardColors } from "../../ui/containers/cards/Card";
 import SimpleForm, { FormFieldValidationResult, SimpleFormButtonStyle } from "../../ui/forms/simpleForm/SimpleForm";
 import { InputType } from "../../ui/inputs/input/Input";
 import { fetchLogin } from "./login.reducer";

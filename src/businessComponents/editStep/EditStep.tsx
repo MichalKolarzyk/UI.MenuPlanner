@@ -6,7 +6,7 @@ import { RootState } from "../../redux";
 import { updateStep } from "../recipe/redux/recipeActions";
 import Canvas, {  CanvasSize } from "../../ui/canvases/Canvas";
 import { AnimationEnum, FontsizeEnum, ZIndexEnum } from "../../ui/constants/Constants";
-import Card from "../../ui/containers/cards/card/Card";
+import Card from "../../ui/containers/cards/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import Input, { InputType } from "../../ui/inputs/input/Input";
 import Label from "../../ui/labels/label/Label";

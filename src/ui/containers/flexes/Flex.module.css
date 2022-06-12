@@ -1,6 +1,7 @@
 .base {
     display: flex;
     border-style: none;
+    flex-wrap: wrap;
 }
 
 .content{
@@ -17,6 +18,9 @@
 }
 .alignCenter {
     align-items: center;
+}
+.alignBaseline {
+    align-items: baseline;
 }
 
 .alignStretch{

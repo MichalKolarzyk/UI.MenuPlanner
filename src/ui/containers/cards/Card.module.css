@@ -1,5 +1,4 @@
 .base {
-
 }
 
 .white {
@@ -9,13 +8,16 @@
 .grey {
     background-color: rgb(243, 243, 243);
 }
+.darkGrey {
+    background-color: rgb(211, 211, 211);
+}
 
 .blue {
     background-color: var(--color-blue-l1);
 }
 
 .green {
-    background-color: #a6f5b7;
+    background-color: #c3ffc1;
 }
 .transparent {
     background-color: transparent;
@@ -30,4 +32,3 @@
 .roundedCorners2 {
     border-radius: 10px;
 }
-

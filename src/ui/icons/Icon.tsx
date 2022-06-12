@@ -41,6 +41,7 @@ export enum IconImage {
 }
 
 export enum IconSize {
+    xSmall = "xSmall",
     small = "small",
     medium = "medium",
     large = "large",

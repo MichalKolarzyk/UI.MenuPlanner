@@ -50,6 +50,7 @@ export enum FlexAlignItems{
     alignLeft = "alignLeft",
     alignCenter = "alignCenter",
     alignStretch = "alignStretch",
+    alignBaseline = "alignBaseline",
 
 }
 

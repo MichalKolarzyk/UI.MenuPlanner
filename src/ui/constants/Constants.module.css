@@ -1,6 +1,9 @@
 @import "../../styles/style.css";
 
 .fontsize_small {
+    font-size: 10px;
+}
+.fontsize_small {
     font-size: 16px;
 }
 .fontsize_medium {

@@ -43,6 +43,7 @@ export class DishModel{
      userId?: string
      dishType?: DishTypeEnum
      day?: string
+     portions?: number
      recipeTitle?: string
      recipeId?: string
 }

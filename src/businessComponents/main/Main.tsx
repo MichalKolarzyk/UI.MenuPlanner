@@ -4,11 +4,10 @@ import { UserModel } from "../../api/models";
 import { AppDispatch, RootState } from "../../redux";
 import Button from "../../ui/buttons/button/Button";
 import { BoxShadowEnum, FontsizeEnum, PaddingEnum, ShapeEnum } from "../../ui/constants/Constants";
-import Card, { CardColors } from "../../ui/containers/cards/card/Card";
+import Card, { CardColors } from "../../ui/containers/cards/Card";
 import Flex, { FlexAlignItems, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import Label from "../../ui/labels/label/Label";
 import { setLogin } from "../login/login.reducer";
-import { setUserIsLogged } from "../user/user.reducer";
 
 const Main = () => {
     const navigate = useNavigate();
@@ -21,7 +20,6 @@ const Main = () => {
                 token: "",
             })
         );
-        dispach(setUserIsLogged(false));
         navigate("/login");
     };
 

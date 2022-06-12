@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Card, { CardColors } from "../../containers/cards/card/Card";
+import Card, { CardColors } from "../../containers/cards/Card";
 import Flex, { FlexAlignItems, FlexStyle } from "../../containers/flexes/Flex";
 import Dropdown from "./Dropdown";
 

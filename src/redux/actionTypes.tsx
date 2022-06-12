@@ -2,7 +2,7 @@ export const SET_API_ERROR = "SET_API_ERROR"
 export const SET_API_IS_LOADING = "SET_API_IS_LOADING"
 
 export const SET_USER = "SET_USER";
-export const SET_USER_ISLOGGED = "SET_USER_ISLOGGED";
+export const SET_USER_REQUEST_DONE = "SET_USER_REQUEST_DONE";
 
 export const SET_LOGIN = "SET_LOGIN";
 

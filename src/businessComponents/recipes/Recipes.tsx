@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "../../redux";
 import { ButtonStyle } from "../../ui/buttons/button/Button";
 import IconButton from "../../ui/buttons/iconButton/IconButton";
 import { AnimationEnum, FontsizeEnum, PaddingEnum } from "../../ui/constants/Constants";
-import Card from "../../ui/containers/cards/card/Card";
+import Card from "../../ui/containers/cards/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import Icon, { IconImage } from "../../ui/icons/Icon";
 import Label from "../../ui/labels/label/Label";

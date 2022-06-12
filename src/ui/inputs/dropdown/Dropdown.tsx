@@ -2,7 +2,7 @@ import { useId, useState } from "react";
 import Button, { ButtonStyle } from "../../buttons/button/Button";
 import IconButton from "../../buttons/iconButton/IconButton";
 import { PaddingEnum, PositionEnum, ZIndexEnum } from "../../constants/Constants";
-import Card, { CardColors } from "../../containers/cards/card/Card";
+import Card, { CardColors } from "../../containers/cards/Card";
 import Flex, { FlexAlignItems, FlexGapSize, FlexStyle } from "../../containers/flexes/Flex";
 import { IconImage } from "../../icons/Icon";
 import Label from "../../labels/label/Label";

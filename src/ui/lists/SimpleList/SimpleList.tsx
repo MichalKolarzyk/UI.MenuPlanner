@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import Card, { CardColors, CardShape } from "../../containers/cards/card/Card";
+import Card, { CardColors, CardShape } from "../../containers/cards/Card";
 import Label from "../../labels/label/Label";
 import Flex, { FlexAlignItems, FlexGapSize, FlexJustify, FlexStyle } from "../../containers/flexes/Flex";
 import IconButton from "../../buttons/iconButton/IconButton";

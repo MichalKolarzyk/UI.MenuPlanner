@@ -1,0 +1,19 @@
+.base {
+    display: grid;
+    grid-gap: 10px;
+    background-color: #fff;
+    color: #444;
+}
+
+/* @media only screen and (max-width: 600px) {
+    .base {
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(5, 200px);
+    }
+}
+@media only screen and (max-width: 450px) {
+    .base {
+        grid-template-columns: repeat(2, 150px);
+        grid-template-rows: repeat(8, 200px);
+    }
+} */

@@ -8,7 +8,7 @@ import Profile from "../businessComponents/profile/Profile";
 import RecipeController from "../businessComponents/recipe/RecipeController";
 import Recipes from "../businessComponents/recipes/Recipes";
 import Registration from "../businessComponents/registration/Registration";
-import Card, { CardColors } from "../ui/containers/cards/card/Card";
+import Card, { CardColors } from "../ui/containers/cards/Card";
 
 const AppRouter = () => {
     return (

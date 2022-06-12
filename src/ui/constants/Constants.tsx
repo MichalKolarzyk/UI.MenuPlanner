@@ -7,6 +7,7 @@ export enum AnimationEnum {
 }
 
 export enum FontsizeEnum {
+    xSmall = "fontsize_xSmall",
     small = "fontsize_small",
     medium = "fontsize_medium",
     large = "fontsize_large",

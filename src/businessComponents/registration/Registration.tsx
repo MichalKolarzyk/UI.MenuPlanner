@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from "../../redux";
 import IconButton from "../../ui/buttons/iconButton/IconButton";
 import Canvas, { CanvasSize } from "../../ui/canvases/Canvas";
 import { AnimationEnum } from "../../ui/constants/Constants";
-import Card from "../../ui/containers/cards/card/Card";
+import Card from "../../ui/containers/cards/Card";
 import Flex, { FlexAlignItems, FlexStyle } from "../../ui/containers/flexes/Flex";
 import SimpleForm, { FormFieldValidationResult, SimpleFormButtonStyle } from "../../ui/forms/simpleForm/SimpleForm";
 import { IconImage } from "../../ui/icons/Icon";

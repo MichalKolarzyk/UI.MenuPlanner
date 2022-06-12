@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Icon, { IconImage, IconSize } from "../../icons/Icon";
-import Card, { CardColors } from "../cards/card/Card";
+import Card, { CardColors } from "../cards/Card";
 import Flex, { FlexGapSize, FlexStyle } from "./Flex";
 
 export default {
-    title: "UI/Flexes",
+    title: "UI/Containers",
     component: Flex,
 } as ComponentMeta<typeof Flex>;
 
