@@ -3,7 +3,7 @@ import { DishModel, DishTypeEnum } from "../../api/models";
 import { DateHelper } from "../../helpers/DateHelper";
 import Button, { ButtonStyle } from "../../ui/buttons/button/Button";
 import IconButton, { IconButtonSize } from "../../ui/buttons/iconButton/IconButton";
-import { ColorEnum, PaddingEnum } from "../../ui/constants/Constants";
+import { BorderEnum, ColorEnum, PaddingEnum } from "../../ui/constants/Constants";
 import Card, { CardColors } from "../../ui/containers/cards/Card";
 import Flex, { FlexAlignItems, FlexJustify, FlexStyle } from "../../ui/containers/flexes/Flex";
 import { IconImage } from "../../ui/icons/Icon";
@@ -16,7 +16,7 @@ const DayCard = (props: DayCardProps) => {
     };
 
     const date = DateHelper.toDayMonthString(props.day);
-    const dayOfWeek = DateHelper.getDayOfWeek(props.day);
+    const dayOfWeek = DateHelper.toDayOfWeekShort(props.day);
 
     const onRecipeClick = (dish: DishModel) => {
         navigate(`/recipes/${dish.recipeId}`);
@@ -47,17 +47,19 @@ const DayCard = (props: DayCardProps) => {
     );
 
     let cardColor;
+    let border;
     const isToday = DateHelper.isToday(props.day);
     if (isToday === -1) {
         cardColor = CardColors.darkGrey;
     } else if (isToday === 0) {
-        cardColor = CardColors.green;
+        border = BorderEnum.blue;
+        cardColor = CardColors.white;
     } else {
         cardColor = CardColors.grey;
     }
 
     return (
-        <Card color={cardColor}>
+        <Card color={cardColor} border={border}>
             <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
                 <Flex justify={FlexJustify.spaceBetween}>
                     <Label bold>
@@ -65,7 +67,7 @@ const DayCard = (props: DayCardProps) => {
                     </Label>
                     {!props.isDisabled && (
                         <IconButton
-                            onClick={() => props.onAdd?.(props.day)}
+                            onClick={() => props.onEdit?.(props.day)}
                             style={ButtonStyle.transparent}
                             image={IconImage.edit}
                         />

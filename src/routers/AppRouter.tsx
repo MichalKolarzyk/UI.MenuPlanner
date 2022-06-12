@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DishDay from "../businessComponents/dishDay/DishDay";
 import Dishes from "../businessComponents/dishes/Dishes";
 import EditStep from "../businessComponents/editStep/EditStep";
 import Login from "../businessComponents/login/Login";
@@ -17,13 +18,15 @@ const AppRouter = () => {
                 <Route path="login" element={<Login />} />
                 <Route path="registration" element={<Registration />} />
                 <Route path="/" element={<Main />}>
+                    <Route path="dishes" element={<Dishes />}>
+                        <Route path=":day" element={<DishDay />} />
+                    </Route>
                     <Route path="recipes" element={<Recipes />}>
                         <Route path="newRecipe" element={<NewRecipe />} />
                     </Route>
                     <Route path="recipes/:recipeId" element={<RecipeController />}>
                         <Route path="step/:stepIndex" element={<EditStep />} />
                     </Route>
-                    <Route path="dishes" element={<Dishes />} />
                     <Route path="profile" element={<Profile />} />
                     <Route path="*" element={<Card color={CardColors.white}>Nothing here</Card>} />
                 </Route>

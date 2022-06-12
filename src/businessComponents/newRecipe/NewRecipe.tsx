@@ -7,7 +7,7 @@ import { overlayPortal } from "../../portals";
 import { AppDispatch, RootState } from "../../redux";
 import IconButton from "../../ui/buttons/iconButton/IconButton";
 import Canvas, { CanvasOpacity, CanvasSize } from "../../ui/canvases/Canvas";
-import { ZIndexEnum } from "../../ui/constants/Constants";
+import { AnimationEnum, ZIndexEnum } from "../../ui/constants/Constants";
 import Card from "../../ui/containers/cards/Card";
 import Flex, { FlexAlignItems, FlexStyle } from "../../ui/containers/flexes/Flex";
 import SimpleForm, { FormFieldValidationResult, SimpleFormButtonStyle } from "../../ui/forms/simpleForm/SimpleForm";
@@ -52,7 +52,7 @@ const NewRecipe = () => {
     const element = (
         <>
             <Canvas onClick={goBack} zIndex={ZIndexEnum.zIndex20} opacity={CanvasOpacity.light} />
-            <Canvas opacity={CanvasOpacity.light} size={CanvasSize.extraSmall} zIndex={ZIndexEnum.zIndex30}>
+            <Canvas animation={AnimationEnum.slideDown} opacity={CanvasOpacity.light} size={CanvasSize.extraSmall} zIndex={ZIndexEnum.zIndex30}>
                 <Card>
                     <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
                         <SimpleForm

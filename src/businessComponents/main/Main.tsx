@@ -34,11 +34,11 @@ const Main = () => {
                     </Flex>
                     <Flex justify={FlexJustify.spaceBetween}>
                         <Flex>
-                            <Button onClick={() => navigate("recipes")} shape={ShapeEnum.sharp}>
-                                Recipes
-                            </Button>
                             <Button onClick={() => navigate("dishes")} shape={ShapeEnum.sharp}>
                                 Dishes
+                            </Button>
+                            <Button onClick={() => navigate("recipes")} shape={ShapeEnum.sharp}>
+                                Recipes
                             </Button>
                         </Flex>
                         <Flex>

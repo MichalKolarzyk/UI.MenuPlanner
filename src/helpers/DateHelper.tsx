@@ -74,7 +74,7 @@ export class DateHelper {
         return `${date.getDate()}.${monthAsString}`;
     };
 
-    static getDayOfWeek = (date?: Date): DayOfWeek => {
+    static toDayOfWeek = (date?: Date): DayOfWeek => {
         if (!date) {
             return DayOfWeek.saturday;
         }
@@ -98,6 +98,31 @@ export class DateHelper {
                 return DayOfWeek.saturday;
         }
     };
+    
+    static toDayOfWeekShort = (date?: Date): DayOfWeekShort => {
+        if (!date) {
+            return DayOfWeekShort.saturday;
+        }
+        const day = date.getDay();
+        switch (day) {
+            case 0:
+                return DayOfWeekShort.sunday;
+            case 1:
+                return DayOfWeekShort.monday;
+            case 2:
+                return DayOfWeekShort.thursday;
+            case 3:
+                return DayOfWeekShort.wednesday;
+            case 4:
+                return DayOfWeekShort.thursday;
+            case 5:
+                return DayOfWeekShort.friday;
+            case 6:
+                return DayOfWeekShort.saturday;
+            default:
+                return DayOfWeekShort.saturday;
+        }
+    };
 }
 
 export enum DayOfWeek {
@@ -108,4 +133,14 @@ export enum DayOfWeek {
     thursday = "thursday",
     friday = "friday",
     saturday = "saturday",
+}
+
+export enum DayOfWeekShort {
+    sunday = "Sun",
+    monday = "Mon",
+    tuesday = "Tue",
+    wednesday = "Wed",
+    thursday = "Thu",
+    friday = "Fri",
+    saturday = "Sat",
 }

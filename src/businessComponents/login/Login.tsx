@@ -17,7 +17,7 @@ const Login = () => {
     const error = useSelector<RootState, ErrorModel | undefined>((state) => state.api.error);
 
     const loginHandler = (item: any) => {
-        dispach(fetchLogin(item, () => navigate("/recipes")));
+        dispach(fetchLogin(item, () => navigate("/dishes")));
     };
 
     const registrationHandler = () => {

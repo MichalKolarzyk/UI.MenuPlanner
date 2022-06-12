@@ -1,3 +1,7 @@
+.base{
+  top: 5vh;
+}
+
 .fixed {
     position: fixed;
 }
@@ -13,6 +17,7 @@
 .lightOpacity{
   background-color: rgba(0, 0, 0, 0.75);
 }
+
 
 .extraSmall {
   top: 5vh;

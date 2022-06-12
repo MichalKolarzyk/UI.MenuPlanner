@@ -29,6 +29,7 @@ export class CanvasProps {
 }
 
 export enum CanvasSize {
+    none = "",
     extraSmall = "extraSmall",
     small = "small",
     medium = "medium",

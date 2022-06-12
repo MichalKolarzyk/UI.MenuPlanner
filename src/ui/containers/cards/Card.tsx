@@ -1,5 +1,5 @@
 import { BaseProps } from '../../base';
-import { BoxShadowEnum, ColorEnum, PaddingEnum, PositionEnum, useClasses, ZIndexEnum } from '../../constants/Constants';
+import { BorderEnum, BoxShadowEnum, ColorEnum, PaddingEnum, PositionEnum, useClasses, ZIndexEnum } from '../../constants/Constants';
 import classes from './Card.module.css'
 
 const Card = (props: CardProps) => {
@@ -10,6 +10,7 @@ const Card = (props: CardProps) => {
     className += " " + useClasses(props.padding ?? PaddingEnum.paddingHalf)
     className += " " + useClasses(props.boxShadow ?? BoxShadowEnum.light)
     className += " " + useClasses(props.zIndex ?? "")
+    className += " " + useClasses(props.border ?? "")
     className += " " + props.className;
 
     return <div onClick={props.onClick} onBlur={props.onBlur} className={className}>{props.children}</div>
@@ -23,6 +24,7 @@ class CardProps extends BaseProps {
     boxShadow?: BoxShadowEnum;
     position?: PositionEnum;
     zIndex?: ZIndexEnum;
+    border?: BorderEnum;
 }
 
 export enum CardShape{

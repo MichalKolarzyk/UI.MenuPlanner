@@ -45,9 +45,14 @@
 .boxshadow_none {
     box-shadow: none;
 }
-
 .boxshadow_light {
     box-shadow: 1px 1px 2px #888888;
+}
+
+.border_blue{
+    border: solid;
+    border-color: var(--color-blue-l1);
+    border-width: 3px;
 }
 
 .zIndex0 {

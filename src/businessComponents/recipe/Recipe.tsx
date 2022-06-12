@@ -26,7 +26,7 @@ const Recipe = (props: RecipeProps) => {
         return (
             <Card padding={PaddingEnum.paddingOne}>
                 <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
-                    <Label bold size={FontsizeEnum.medium} color={ColorEnum.green}>
+                    <Label bold size={FontsizeEnum.small} color={ColorEnum.green}>
                         Recipe deleted succesfully
                     </Label>
                     <Flex>
@@ -111,7 +111,7 @@ const Recipe = (props: RecipeProps) => {
                 {recipeMode === RecipeReducerModes.delete && (
                     <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
                         <Label bold size={
-                            FontsizeEnum.medium} color={ColorEnum.red}>
+                            FontsizeEnum.small} color={ColorEnum.red}>
                             Czy na pewno chcesz usunąć przepis?
                         </Label>
                         <Flex justify={FlexJustify.spaceBetween}>

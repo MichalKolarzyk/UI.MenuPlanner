@@ -72,6 +72,10 @@ export enum PositionEnum{
     static = "position_static",
 }
 
+export enum BorderEnum{
+    none = "",
+    blue = "border_blue",
+}
 
 export const useClasses = (value: string) => {
     return classes[value];
