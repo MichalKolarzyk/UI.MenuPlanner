@@ -13,7 +13,12 @@ const Card = (props: CardProps) => {
     className += " " + useClasses(props.border ?? "")
     className += " " + props.className;
 
-    return <div onClick={props.onClick} onBlur={props.onBlur} className={className}>{props.children}</div>
+    let style : React.CSSProperties = {
+        width: props.width ?? "",
+        height: props.height ?? "",
+    }
+
+    return <div style={style} onClick={props.onClick} onBlur={props.onBlur} className={className}>{props.children}</div>
 }
 
 class CardProps extends BaseProps {
@@ -25,6 +30,8 @@ class CardProps extends BaseProps {
     position?: PositionEnum;
     zIndex?: ZIndexEnum;
     border?: BorderEnum;
+    width?: string;
+    height?: string;
 }
 
 export enum CardShape{

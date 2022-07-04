@@ -20,7 +20,8 @@ const NewRecipe = () => {
     const navigate = useNavigate();
     const portal = overlayPortal;
     const createdRecipe = useSelector<RootState, RecipeModel | undefined>((state) => state.newRecipe.newRecipe);
-    const error = useSelector<RootState, ErrorModel | undefined>((state) => state.newRecipe.error);
+    const error = useSelector<RootState, ErrorModel | undefined>((state) => state.api.error);
+    const isLoading = useSelector<RootState, boolean | undefined>((state) => state.api.isLoading);
     const createdSuccesfully = useSelector<RootState, boolean | undefined>(
         (state) => state.newRecipe.createdSuccesfully
     );
@@ -44,7 +45,6 @@ const NewRecipe = () => {
     };
 
     const submitHandler = async (item: any) => {
-        console.log(item);
         const newRecipe = item as RecipeModel;
         await dispach(createRecipe(newRecipe));
     };
@@ -56,6 +56,7 @@ const NewRecipe = () => {
                 <Card>
                     <Flex style={FlexStyle.column} alignItems={FlexAlignItems.alignUnset}>
                         <SimpleForm
+                            isLoading={isLoading}
                             onSubmit={submitHandler}
                             createdSuccesfully={createdSuccesfully}
                             serverErrorMessage={error?.detail}
